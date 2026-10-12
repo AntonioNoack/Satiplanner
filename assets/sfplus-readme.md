@@ -1,0 +1,1 @@
+from https://k-mods.com/api/v2/wiki/raw/by-types?typeFilter=recipe
