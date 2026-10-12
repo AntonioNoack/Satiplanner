@@ -107,6 +107,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
 
             val inputs = f0.inputs
             for (i in 0 until min(inputs.size, t0.inputs.size)) {
+                val typeName = t0.inputs[i].type
                 for (f1 in inputs[i]) {
                     val t1 = f1.type
 
@@ -116,10 +117,12 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                     val px1 = coordsToWindowX(f1.posX)
                     val py1 = coordsToWindowY(f1.posY)
 
-                    val dy = (unitsY0s + i) * du + du.shr(1)
+                    val j = t1.outputs.indexOfFirst { it.type == typeName }
+                    val dy2 = (unitsY0s + i) * du + du.shr(1) - dy0
+                    val dy3 = (unitsY0s + j) * du + du.shr(1) - dy1
                     canvas.drawLine(
-                        px0 - dxl, py0 - dy0 + dy,
-                        px1 + dxl, py1 - dy1 + dy,
+                        px0 - dxl, py0 + dy2,
+                        px1 + dxl, py1 + dy3,
                         1f, -1, nodeBgColor.withAlpha(0),
                         false,
                     )
@@ -200,9 +203,10 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
             val titleX = x0 + du.shr(2)
             val titleY = y0 + (du - titleFont.sizeInt).shr(1)
             canvas.drawText(
-                titleX, titleY, titleFont, type.shortRecipeName,
+                // todo bug: height limit is not respected properly
+                titleX, titleY, titleFont, type.recipeName,
                 0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
-                w, -1, // todo bug: height limit is not respected properly
+                w - du * 2, titleFont.sizeInt * 2 / 3,
                 AxisAlignment.MIN, AxisAlignment.MIN,
             )
 
@@ -230,6 +234,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
             )
 
             if (sw >= 2) {
+                val hl = textFont.sizeInt * 2 / 3
                 val bg3 = 0x7985A0.withAlpha(255)
                 val bg2 = 0x60697F.withAlpha(255)
                 for (i in type.inputs.indices) {
@@ -237,18 +242,19 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                     val input = factory.inputs.getOrNull(i)
                     val inputType = type.inputs[i]
                     val color = if (!input.isNullOrEmpty()) bg3 else bg2
+                    val wl = if (i >= type.outputs.size) w - du else w.shr(1) - du
                     canvas.drawRect(x0, y, sw, sw, color, 1)
                     canvas.drawText(
                         x0 + du, y + sw.shr(1) - textFont.sizeInt, textFont, inputType.shortType,
                         0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        w.shr(1), -1,
+                        wl, hl,
                         AxisAlignment.MIN, AxisAlignment.MIN,
                     )
                     canvas.drawText(
                         x0 + du, y + (sw + textFont.sizeInt).shr(1), textFont,
                         "${(inputType.amount * factory.calculated).format()}/min",
                         0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        w.shr(1), -1,
+                        wl, hl,
                         AxisAlignment.MIN, AxisAlignment.MIN,
                     )
                 }
@@ -258,18 +264,19 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                     val output = factory.outputs.getOrNull(i)
                     val outputType = type.outputs[i]
                     val color = if (!output.isNullOrEmpty()) bg3 else bg2
+                    val wl = if (i >= type.inputs.size) w - du else w.shr(1) - du
                     canvas.drawRect(x1 - sw, y, sw, sw, color, 1)
                     canvas.drawText(
                         x1 - du, y + sw.shr(1) - textFont.sizeInt, textFont, outputType.shortType,
                         0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        w.shr(1), -1,
+                        wl, hl,
                         AxisAlignment.MAX, AxisAlignment.MIN,
                     )
                     canvas.drawText(
                         x1 - du, y + (sw + textFont.sizeInt).shr(1), textFont,
                         "${(outputType.amount * factory.calculated).format()}/min",
                         0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        w.shr(1), -1,
+                        wl, hl,
                         AxisAlignment.MAX, AxisAlignment.MIN,
                     )
                 }
@@ -465,32 +472,35 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
             val sloops = clicked.slotIndexF > -0.5f
             val factory = clicked.factory
             if (sloops) {
-                Menu.askName(
-                    windowStack, NameDesc("Set Sloops"), factory.sloops.toString(),
-                    NameDesc("Set"), { -1 }, { str ->
-                        factory.sloops = str.toIntOrNull() ?: 0
-                        isValid = false
-                    })
+                Menu.askNumber(
+                    windowStack, NameDesc("Set Sloops"),
+                    factory.sloops.toString(), NameDesc("Set")
+                ) { str ->
+                    factory.sloops = str.toIntOrNull() ?: 0
+                    isValid = false
+                }
             } else {
-                Menu.askName(
-                    windowStack, NameDesc("Set Overclock"), factory.overclock.format(),
-                    NameDesc("Set"), { -1 }, { str ->
-                        val value = SimpleExpressionParser.parseDouble(str)
-                        factory.overclock = value ?: 1.0
-                        isValid = false
-                    })
+                Menu.askNumber(
+                    windowStack, NameDesc("Set Overclock"),
+                    factory.overclock.format(), NameDesc("Set")
+                ) { str ->
+                    val value = SimpleExpressionParser.parseDouble(str)
+                    factory.overclock = value ?: 1.0
+                    isValid = false
+                }
             }
         } else if (clicked != null && clicked.slotIndex >=
             clicked.factory.type.run { max(inputs.size, outputs.size) }
         ) {
             // ask for new limit
-            Menu.askName(
-                windowStack, NameDesc("Set Limit"), clicked.factory.limit.format(),
-                NameDesc("Set"), { -1 }, { str ->
-                    val value = SimpleExpressionParser.parseDouble(str)
-                    clicked.factory.limit = value ?: -1.0
-                    isValid = false
-                })
+            Menu.askNumber(
+                windowStack, NameDesc("Set Constant"),
+                clicked.factory.limit.format(), NameDesc("Set")
+            ) { str ->
+                val value = SimpleExpressionParser.parseDouble(str)
+                clicked.factory.limit = value ?: -1.0
+                isValid = false
+            }
         } else {
             openOptionsForFactory(x, y, types) {}
         }
@@ -558,8 +568,9 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
         if (Input.isControlDown) when (key) {
             Key.KEY_S -> {
                 Menu.askName(
-                    windowStack, NameDesc("Enter Name"), lastSaveName,
-                    NameDesc("Save"), {
+                    windowStack, x.toInt() - Menu.paddingX, y.toInt() - Menu.paddingY,
+                    NameDesc("Enter Name"), lastSaveName,
+                    NameDesc("Save"), enableSpellcheck = false, {
                         when (it.toAllowedFilename()) {
                             it -> {
                                 var fileName = it
@@ -569,7 +580,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                             }
                             null -> 0xff3333
                             else -> 0xffff33
-                        }
+                        }.withAlpha(255)
                     }) {
                     var fileName = it.toAllowedFilename()
                     if (fileName != null) {

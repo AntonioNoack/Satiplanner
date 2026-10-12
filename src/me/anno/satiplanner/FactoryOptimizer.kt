@@ -11,18 +11,9 @@ object FactoryOptimizer {
     fun optimize(factories: List<Factory>): Boolean {
 
         for (i in factories.indices) {
-            factories[i].calculatedStr = "?"
-        }
-
-        // if not all inputs are connected, we can automatically set a factory to 0
-        /*val factories = factories.filter {
-            val type = it.type
-            it.inputs.size >= type.inputs.size &&
-                    type.inputs.indices.all { idx -> it.inputs[idx].isNotEmpty() }
-        }*/
-
-        for (i in factories.indices) {
-            factories[i].index = i
+            val factory = factories[i]
+            factory.calculatedStr = "?"
+            factory.index = i
         }
 
         // fOut = f * factor
@@ -81,7 +72,7 @@ object FactoryOptimizer {
 
             val outputMultiplier = factory.outputMultiplier
             for (i in 0 until min(factory.outputs.size, type.outputs.size)) {
-                val outputs = factory.outputs[i]
+                val outputs = factory.outputs[i] - factory // self must be excluded
                 if (outputs.isEmpty()) continue
 
                 val outputType = type.outputs[i]
@@ -160,7 +151,7 @@ object FactoryOptimizer {
                     val number = line.substring(i + mid.length)
                     val numberF = number.toDouble()
                     factory.calculated = numberF
-                    factory.calculatedStr = if (numberF > 1e6f) "Inf" else number + "x"
+                    factory.calculatedStr = if (numberF > 1e9) "Inf" else number + "x"
                 }
             }
             println(line)

@@ -2,6 +2,7 @@ package me.anno.satiplanner
 
 import me.anno.io.json.generic.JsonScanner
 import me.anno.utils.OS.res
+import me.anno.utils.structures.lists.Lists.any2
 import me.anno.utils.types.Strings.toDouble
 import kotlin.math.max
 
@@ -30,29 +31,37 @@ fun readRecipes2(): List<FactoryType> {
                     factoryName = sb.toString()
                 }
                 "category" -> category = scanner.readString()
-                "input" -> scanner.scanArray {
-                    var amount = 0.0
-                    var type = "?"
-                    scanner.scanObject { k2 ->
-                        when (k2) {
-                            "item" -> type = scanner.readString().extractItemName()
-                            "perMin" -> amount = scanner.readNumber().toDouble()
-                            else -> scanner.skipValue()
+                "input",
+                "output" -> {
+                    val isInput = k1 == "input"
+                    scanner.scanArray {
+                        var amount = 0.0
+                        var isFluid = false
+                        var type = "?"
+                        scanner.scanObject { k2 ->
+                            when (k2) {
+                                "item" -> {
+                                    val name = scanner.readString()
+                                    isFluid = "/Fluids/" in name ||
+                                            "Water/Desc" in name ||
+                                            "Gas/Desc_" in name ||
+                                            "Oil/Desc_" in name
+                                    type = name.extractItemName()
+                                }
+                                "perMin" -> amount = scanner.readNumber().toDouble()
+                                else -> scanner.skipValue()
+                            }
+                        }
+                        if (isFluid) amount /= 1000.0
+                        if (amount > 0.0) {
+                            val list = if (isInput) input else output
+                            if (list.any2 { it.type == type }) {
+                                amount += list.sumOf { if (it.type == type) it.amount else 0.0 }
+                                list.removeIf { it.type == type }
+                            }
+                            list.add(Resource(type, amount))
                         }
                     }
-                    if (amount > 0.0) input.add(Resource(type, amount))
-                }
-                "output" -> scanner.scanArray {
-                    var amount = 0.0
-                    var type = "?"
-                    scanner.scanObject { k2 ->
-                        when (k2) {
-                            "item" -> type = scanner.readString().extractItemName()
-                            "perMin" -> amount = scanner.readNumber().toDouble()
-                            else -> scanner.skipValue()
-                        }
-                    }
-                    if (amount > 0.0) output.add(Resource(type, amount))
                 }
                 "powerAverage" -> power = max(scanner.readNumber().toDouble().toInt(), 0)
                 else -> scanner.skipValue()

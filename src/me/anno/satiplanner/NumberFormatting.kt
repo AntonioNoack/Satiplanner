@@ -5,7 +5,7 @@ import kotlin.math.pow
 object NumberFormatting {
 
     fun Double.format(): String {
-        if (this > 1e6f) return "Inf"
+        if (this > 1e9) return "Inf"
         val str = toString()
         return if (str.endsWith(".0")) {
             str.substring(0, str.length - 2)
