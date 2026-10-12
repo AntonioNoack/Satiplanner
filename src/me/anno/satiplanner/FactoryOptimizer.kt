@@ -25,10 +25,8 @@ object FactoryOptimizer {
             factories[i].index = i
         }
 
-        // todo fOut = f * factor
-
-        // todo define the system of variables using glpsol
-        val inf = 1000_000_000
+        // fOut = f * factor
+        // define the system of variables using glpsol
         val sb = StringBuilder()
         for (i in factories.indices) {
             val factory = factories[i]
@@ -44,12 +42,12 @@ object FactoryOptimizer {
             val factory = factories[i]
             if (factory.limit >= 0) {
                 sb.append("s.t. FMax").append(i).append(": f").append(i)
-                    .append(" <= ").append(factory.limit).append(";\n")
+                    .append(" = ").append(factory.limit).append(";\n")
             }
             sb.append("s.t. FMin").append(i).append(": f").append(i).append(" >= 0;\n")
         }
 
-        // todo define input dependencies
+        // define input dependencies
         for (i in factories.indices) {
             val factory = factories[i]
             val type = factory.type
@@ -66,6 +64,7 @@ object FactoryOptimizer {
                     sb.append("f").append(input.index).append(" * ")
                         .append(type.inputs[j].amount)
                 }
+                if (inputs.isEmpty()) sb.append("1e38")
                 sb.append(";\n")
 
                 // production is less than inputs
@@ -105,7 +104,8 @@ object FactoryOptimizer {
             if (i >= 0) {
                 if (line.startsWith('f')) {
                     val factory = factories[line.substring(1, i).toInt()]
-                    factory.calculated = line.substring(i + mid.length) + "x"
+                    val number = line.substring(i + mid.length)
+                    factory.calculated = if (number.toFloat() > 1e6f) "Inf" else number + "x"
                 }
             }
             println(line)
@@ -133,9 +133,4 @@ fun createSimpleFactory(recipes: List<FactoryType>): List<Factory> {
         nodes[i].posX = i * 10f
     }
     return nodes
-}
-
-fun main() {
-    val recipes = readRecipes2()
-    FactoryOptimizer.optimize(createSimpleFactory(recipes))
 }
