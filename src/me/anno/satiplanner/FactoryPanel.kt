@@ -206,7 +206,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                 // todo bug: height limit is not respected properly
                 titleX, titleY, titleFont, type.recipeName,
                 0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
-                w - du * 2, titleFont.sizeInt * 2 / 3,
+                w - du * 2, titleFont.sizeInt,
                 AxisAlignment.MIN, AxisAlignment.MIN,
             )
 
@@ -234,7 +234,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
             )
 
             if (sw >= 2) {
-                val hl = textFont.sizeInt * 2 / 3
+                val hl = textFont.sizeInt
                 val bg3 = 0x7985A0.withAlpha(255)
                 val bg2 = 0x60697F.withAlpha(255)
                 for (i in type.inputs.indices) {
@@ -247,15 +247,13 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                     canvas.drawText(
                         x0 + du, y + sw.shr(1) - textFont.sizeInt, textFont, inputType.shortType,
                         0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        wl, hl,
-                        AxisAlignment.MIN, AxisAlignment.MIN,
+                        wl, hl, AxisAlignment.MIN, AxisAlignment.MIN,
                     )
                     canvas.drawText(
                         x0 + du, y + (sw + textFont.sizeInt).shr(1), textFont,
                         "${(inputType.amount * factory.calculated).format()}/min",
                         0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        wl, hl,
-                        AxisAlignment.MIN, AxisAlignment.MIN,
+                        wl, hl, AxisAlignment.MIN, AxisAlignment.MIN,
                     )
                 }
 
@@ -269,15 +267,13 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                     canvas.drawText(
                         x1 - du, y + sw.shr(1) - textFont.sizeInt, textFont, outputType.shortType,
                         0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        wl, hl,
-                        AxisAlignment.MAX, AxisAlignment.MIN,
+                        wl, hl, AxisAlignment.MAX, AxisAlignment.MIN,
                     )
                     canvas.drawText(
                         x1 - du, y + (sw + textFont.sizeInt).shr(1), textFont,
                         "${(outputType.amount * factory.calculated).format()}/min",
                         0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        wl, hl,
-                        AxisAlignment.MAX, AxisAlignment.MIN,
+                        wl, hl, AxisAlignment.MAX, AxisAlignment.MIN,
                     )
                 }
             }

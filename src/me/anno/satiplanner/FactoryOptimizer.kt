@@ -1,5 +1,6 @@
 package me.anno.satiplanner
 
+import org.joml.Vector2i
 import java.io.File
 import kotlin.concurrent.thread
 import kotlin.math.min
@@ -35,6 +36,8 @@ object FactoryOptimizer {
             }
         }
 
+        val wasteGroupsByInput = HashMap<Vector2i, WasteGroup>()
+
         // define input dependencies
         for (f in factories.indices) {
             val factory = factories[f]
@@ -51,6 +54,17 @@ object FactoryOptimizer {
                 sb.append("s.t. F${f}In${i}LTOut: ").production(f)
                     .append(" * ").append(factory.inputMultiplier * inputType.amount)
                     .append(" <= ")
+
+                val wasteGroup = wasteGroupsByInput.getOrPut(Vector2i(f, i)) {
+                    WasteGroup(inputTypeT)
+                }
+                if (wasteGroup.addWasteInput(factory)) {
+                    for (output in wasteGroup.inputs) {
+                        val oi = output.type.inputs.indexOfFirst { it.type == inputTypeT }
+                        check(oi >= 0)
+                        wasteGroupsByInput[Vector2i(output.index, oi)] = wasteGroup
+                    }
+                }
 
                 var first = true
                 for (input in inputs) {
@@ -69,59 +83,37 @@ object FactoryOptimizer {
                 }
                 sb.append(";\n")
             }
+        }
+        sb.append("\n")
 
-            val outputMultiplier = factory.outputMultiplier
-            for (i in 0 until min(factory.outputs.size, type.outputs.size)) {
-                val outputs = factory.outputs[i] - factory // self must be excluded
-                if (outputs.isEmpty()) continue
+        var wgIndex = 0
+        for ((_, wg) in wasteGroupsByInput) {
+            sb.append("var wg").append(wgIndex).append(";\n")
+            sb.append("s.t. WGMin").append(wgIndex)
+                .append(": wg").append(wgIndex).append(" >= 0;\n")
 
-                val outputType = type.outputs[i]
-                val outputTypeT = outputType.type
-                sb.append("s.t. F${f}Out${i}GTIn: ").production(f)
-                    .append(" * ").append(outputMultiplier * outputType.amount)
-                    .append(" >= ")
+            sb.append("s.t. WGWaste").append(wgIndex)
+                .append(": wg").append(wgIndex).append(" = ")
 
-                var first = true
-                for (output in outputs) {
-                    if (first) first = false
-                    else sb.append(" + ")
-
-                    val otherType = output.type
-                    val inputType = otherType.inputs.firstOrNull { it.type == outputTypeT }
-                        ?: error(
-                            "Did not find $outputTypeT in ${otherType.recipeName}.inputs, " +
-                                    "options: ${otherType.inputs}"
-                        )
-
-                    sb.production(output.index).append(" * ")
-                        .append(output.inputMultiplier * inputType.amount)
-                }
-                sb.append(";\n")
+            for (output in wg.outputs) {
+                val i = output.type.outputs.first { it.type == wg.type }
+                sb.append(" + ").production(output.index).append(" * ")
+                    .append(output.outputMultiplier * i.amount)
             }
+            for (input in wg.inputs) {
+                val i = input.type.inputs.first { it.type == wg.type }
+                sb.append(" - ").production(input.index).append(" * ")
+                    .append(input.inputMultiplier * i.amount)
+            }
+            sb.append(";\n")
+            wgIndex++
         }
         sb.append("\n")
 
         // minimize over-production
-        sb.append("minimize Wasted: 0")
-        for (f in factories.indices) {
-            val factory = factories[f]
-            val type = factory.type
-            val inputMultiplier = factory.inputMultiplier
-            for (i in 0 until min(factory.inputs.size, type.inputs.size)) {
-                val input = factory.inputs[i]
-                if (input.isEmpty()) continue // ignored
-
-                sb.append(" - ").production(f)
-                    .append(" * ").append(inputMultiplier * type.inputs[i].amount)
-            }
-            val outputMultiplier = factory.outputMultiplier
-            for (i in 0 until min(factory.outputs.size, type.outputs.size)) {
-                val output = factory.outputs[i]
-                if (output.isEmpty()) continue // ignored
-
-                sb.append(" + ").production(f)
-                    .append(" * ").append(outputMultiplier * type.outputs[i].amount)
-            }
+        sb.append("minimize Wasted: ")
+        for(i in 0 until wgIndex) {
+            sb.append(" + wg").append(i)
         }
         sb.append(";\n")
 
