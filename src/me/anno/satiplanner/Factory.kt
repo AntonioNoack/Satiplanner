@@ -5,20 +5,29 @@ class Factory(var type: FactoryType) {
     var index = -1
 
     // 1% .. 250%, 5 decimals
-    var overclock = 1f
+    var overclock = 100.0
 
     // 1,2 or 4, total = 2x?
     var sloops = 0
 
+    val inputMultiplier: Double
+        get() = overclock * 0.01
+    val outputMultiplier: Double
+        get() = inputMultiplier * sloopMultiplier
+
+    // todo find out max sloops
+    val sloopMultiplier: Double
+        get() = 1.0 + sloops * 0.25
+
     // -1 = no limit
-    var limit = -1f
+    var limit = -1.0
 
     var posX = 0f
     var posY = 0f
 
     var isSelected = false
     var calculatedStr = ""
-    var calculated = 0f
+    var calculated = 0.0
 
     val inputs = ArrayList<HashSet<Factory>>()
     val outputs = ArrayList<HashSet<Factory>>()

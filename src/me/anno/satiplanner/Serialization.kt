@@ -7,6 +7,7 @@ import me.anno.io.json.generic.JsonScanner
 import me.anno.io.json.generic.JsonWriter
 import me.anno.utils.OS.documents
 import me.anno.utils.structures.arrays.IntArrayList
+import me.anno.utils.types.Strings.toDouble
 import me.anno.utils.types.Strings.toFloat
 import me.anno.utils.types.Strings.toInt
 import org.apache.logging.log4j.LogManager
@@ -35,8 +36,8 @@ fun load(file: FileReference, types: List<FactoryType>): List<Factory> {
                         "type" -> factory.type = typesByName[scanner.readString()] ?: type0
                         "posX" -> factory.posX = scanner.readNumber().toFloat()
                         "posY" -> factory.posY = scanner.readNumber().toFloat()
-                        "limit" -> factory.limit = scanner.readNumber().toFloat()
-                        "overclock" -> factory.overclock = scanner.readNumber().toFloat()
+                        "limit" -> factory.limit = scanner.readNumber().toDouble()
+                        "overclock" -> factory.overclock = scanner.readNumber().toDouble()
                         "sloops" -> factory.sloops = scanner.readNumber().toInt()
                         "inputs" -> {
                             var slot = 0

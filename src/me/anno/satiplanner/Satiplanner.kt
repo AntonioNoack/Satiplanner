@@ -9,10 +9,6 @@ import me.anno.ui.base.menu.Menu
 import me.anno.ui.base.menu.MenuOption
 import me.anno.ui.debug.PureTestEngine.Companion.testPureUI
 
-// todo overclocking from 1% to 250%, 5 decimals
-// todo output multiplier 1,2 or 4, having max is 200% (sloop)
-// todo minimize over-production
-
 fun main() {
     val recipes = readRecipes2()
     Build.isDebug = false

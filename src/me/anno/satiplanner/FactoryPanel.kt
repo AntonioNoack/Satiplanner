@@ -5,8 +5,9 @@ import me.anno.input.Key
 import me.anno.language.translation.NameDesc
 import me.anno.maths.Maths.sq
 import me.anno.parser.SimpleExpressionParser
+import me.anno.satiplanner.FactoryOptimizer.createSimpleFactory
+import me.anno.satiplanner.NumberFormatting.format
 import me.anno.ui.Style
-import me.anno.ui.UIColors
 import me.anno.ui.base.components.AxisAlignment
 import me.anno.ui.base.groups.MapPanel
 import me.anno.ui.base.menu.Menu
@@ -16,7 +17,6 @@ import me.anno.ui.editor.files.FileNames.toAllowedFilename
 import me.anno.utils.Color.withAlpha
 import me.anno.utils.structures.lists.Lists.any2
 import me.anno.utils.structures.lists.Lists.none2
-import me.anno.utils.structures.lists.Lists.sumOfFloat
 import kotlin.concurrent.thread
 import kotlin.math.abs
 import kotlin.math.floor
@@ -83,37 +83,16 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
     }
 
     fun drawPower(canvas: Canvas) {
-        val power = factories.sumOfFloat {
-            it.calculated * it.type.power
-        }
+        val power = factories.sumOf { it.calculated * it.type.power }
         canvas.drawText(
-            x + width.shr(1), y, statusFont,
-            "${power.format()} MW", UIColors.gold, bigBgColor,
+            x + width.shr(1), y, statusFont, "${power.format()} MW",
+            0xffffaa.withAlpha(255), bigBgColor,
             AxisAlignment.CENTER, AxisAlignment.MIN
         )
     }
 
-    override fun draw(canvas: Canvas) {
-        canvas.drawRect(x, y, width, height, bigBgColor)
-        draw2DLineGrid(canvas, 0x333355.withAlpha(255), 2.0)
-        draw2DLineGrid(canvas, 0x43436F.withAlpha(255), 20.0)
-        draw2DLineGrid(canvas, 0x575790.withAlpha(255), 200.0)
-
-        drawStatus(canvas)
-        drawPower(canvas)
-
-        validate()
-
+    fun drawLinks(canvas: Canvas, dx: Int, sw: Int, du: Int) {
         val scale = scale.x.toFloat()
-        val du = scale.toInt()
-        val dx = (unitsX * 0.5f * scale).toInt()
-
-        titleFont = titleFont.withSize(scale * 0.5f)
-        textFont = textFont.withSize(scale * 0.3f)
-        val titleFont = titleFont
-        val textFont = textFont
-
-        val sw = du * 2 / 3
 
         // draw links
         val dxl = dx - sw.shr(1)
@@ -147,6 +126,43 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                 }
             }
         }
+    }
+
+    fun drawDraggedLink(canvas: Canvas, dx: Int, sw: Int, du: Int) {
+        val window = window
+        val factory = draggedFactory
+        val scale = scale.x.toFloat()
+        if (factory != null && window != null) {
+            canvas.push()
+
+            val px = coordsToWindowX(factory.posX).toInt()
+            val py = coordsToWindowY(factory.posY).toInt()
+
+            val type = factory.type
+            val unitsY = unitsY0 + max(type.inputs.size, type.outputs.size)
+            val dy = (unitsY * 0.5f * scale).toInt()
+
+            val x0 = px - dx
+            val x1 = px + dx
+            val y0 = py - dy
+
+            val xi = if (draggedIsInput) x0 + sw.shr(1) else x1 - sw.shr(1)
+            val yi = y0 + (unitsY0s + draggedSlot) * du + du.shr(1)
+
+            canvas.drawLine(
+                xi.toFloat(), yi.toFloat(), window.mouseX, window.mouseY,
+                1f, -1, nodeBgColor.withAlpha(0), flatEnds = false
+            )
+            canvas.pop()
+        }
+    }
+
+    fun drawFactories(canvas: Canvas, dx: Int, sw: Int, du: Int) {
+        val scale = scale.x.toFloat()
+        titleFont = titleFont.withSize(scale * 0.5f)
+        textFont = textFont.withSize(scale * 0.3f)
+        val titleFont = titleFont
+        val textFont = textFont
 
         for (i in factories.indices) {
             val factory = factories[i]
@@ -201,6 +217,18 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                 AxisAlignment.CENTER, AxisAlignment.MIN,
             )
 
+            // draw multiplier and sloop
+            canvas.drawText(
+                x1 - sw.shr(1), y0 + du * 2 / 5, textFont, "${factory.overclock.format()}%",
+                0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
+                AxisAlignment.MAX, AxisAlignment.CENTER,
+            )
+            canvas.drawText(
+                x1 - sw.shr(1), y0 + du * 4 / 5, textFont, "${factory.sloops} Sloops",
+                0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
+                AxisAlignment.MAX, AxisAlignment.CENTER,
+            )
+
             if (sw >= 2) {
                 val bg3 = 0x7985A0.withAlpha(255)
                 val bg2 = 0x60697F.withAlpha(255)
@@ -213,14 +241,14 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                     canvas.drawText(
                         x0 + du, y + sw.shr(1) - textFont.sizeInt, textFont, inputType.shortType,
                         0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        w.shr(1), -1, // todo bug: height limit is not respected properly
+                        w.shr(1), -1,
                         AxisAlignment.MIN, AxisAlignment.MIN,
                     )
                     canvas.drawText(
                         x0 + du, y + (sw + textFont.sizeInt).shr(1), textFont,
                         "${(inputType.amount * factory.calculated).format()}/min",
                         0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        w.shr(1), -1, // todo bug: height limit is not respected properly
+                        w.shr(1), -1,
                         AxisAlignment.MIN, AxisAlignment.MIN,
                     )
                 }
@@ -234,14 +262,14 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                     canvas.drawText(
                         x1 - du, y + sw.shr(1) - textFont.sizeInt, textFont, outputType.shortType,
                         0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        w.shr(1), -1, // todo bug: height limit is not respected properly
+                        w.shr(1), -1,
                         AxisAlignment.MAX, AxisAlignment.MIN,
                     )
                     canvas.drawText(
                         x1 - du, y + (sw + textFont.sizeInt).shr(1), textFont,
                         "${(outputType.amount * factory.calculated).format()}/min",
                         0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        w.shr(1), -1, // todo bug: height limit is not respected properly
+                        w.shr(1), -1,
                         AxisAlignment.MAX, AxisAlignment.MIN,
                     )
                 }
@@ -255,32 +283,35 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
             //  - speedup multiplier
             //  - output multiplier
         }
+    }
 
-        val window = window
-        val factory = draggedFactory
-        if (factory != null && window != null) {
-            canvas.push()
+    fun drawGrid(canvas: Canvas) {
+        draw2DLineGrid(canvas, 0x333355.withAlpha(255), 2.0)
+        draw2DLineGrid(canvas, 0x43436F.withAlpha(255), 20.0)
+        draw2DLineGrid(canvas, 0x575790.withAlpha(255), 200.0)
+    }
 
-            val px = coordsToWindowX(factory.posX).toInt()
-            val py = coordsToWindowY(factory.posY).toInt()
+    override fun drawBackground(canvas: Canvas, dx: Int, dy: Int) {
+        canvas.drawRect(x, y, width, height, bigBgColor)
+    }
 
-            val type = factory.type
-            val unitsY = unitsY0 + max(type.inputs.size, type.outputs.size)
-            val dy = (unitsY * 0.5f * scale).toInt()
+    override fun draw(canvas: Canvas) {
+        drawBackground(canvas)
+        drawGrid(canvas)
 
-            val x0 = px - dx
-            val x1 = px + dx
-            val y0 = py - dy
+        validate()
 
-            val xi = if (draggedIsInput) x0 + sw.shr(1) else x1 - sw.shr(1)
-            val yi = y0 + (unitsY0s + draggedSlot) * du + du.shr(1)
+        drawStatus(canvas)
+        drawPower(canvas)
 
-            canvas.drawLine(
-                xi.toFloat(), yi.toFloat(), window.mouseX, window.mouseY,
-                1f, -1, nodeBgColor.withAlpha(0), flatEnds = false
-            )
-            canvas.pop()
-        }
+        val scale = scale.x.toFloat()
+        val du = scale.toInt()
+        val dx = (unitsX * 0.5f * scale).toInt()
+        val sw = du * 2 / 3
+
+        drawLinks(canvas, dx, sw, du)
+        drawFactories(canvas, dx, sw, du)
+        drawDraggedLink(canvas, dx, sw, du)
     }
 
     val isDragging get() = draggedFactory != null
@@ -289,14 +320,6 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
     var draggedSlot = -1
     var draggedType = ""
     var draggedIsInput = false
-
-    fun Float.format(): String {
-        if (this > 1e6f) return "Inf"
-        val str = toString()
-        return if (str.endsWith(".0")) {
-            str.substring(0, str.length - 2)
-        } else str
-    }
 
     fun getFactoryAt(x: Float, y: Float): Factory? {
         val cx = windowToCoordsX(x)
@@ -438,15 +461,34 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
 
     override fun onDoubleClick(x: Float, y: Float, button: Key) {
         val clicked = getHoverData(x, y)
-        if (clicked != null && clicked.slotIndex >=
+        if (clicked != null && clicked.slotIndex < 0 && !clicked.isInput) {
+            val sloops = clicked.slotIndexF > -0.5f
+            val factory = clicked.factory
+            if (sloops) {
+                Menu.askName(
+                    windowStack, NameDesc("Set Sloops"), factory.sloops.toString(),
+                    NameDesc("Set"), { -1 }, { str ->
+                        factory.sloops = str.toIntOrNull() ?: 0
+                        isValid = false
+                    })
+            } else {
+                Menu.askName(
+                    windowStack, NameDesc("Set Overclock"), factory.overclock.format(),
+                    NameDesc("Set"), { -1 }, { str ->
+                        val value = SimpleExpressionParser.parseDouble(str)
+                        factory.overclock = value ?: 1.0
+                        isValid = false
+                    })
+            }
+        } else if (clicked != null && clicked.slotIndex >=
             clicked.factory.type.run { max(inputs.size, outputs.size) }
         ) {
             // ask for new limit
             Menu.askName(
-                windowStack, NameDesc("Set Limit"), clicked.factory.limit.toString(),
+                windowStack, NameDesc("Set Limit"), clicked.factory.limit.format(),
                 NameDesc("Set"), { -1 }, { str ->
                     val value = SimpleExpressionParser.parseDouble(str)
-                    clicked.factory.limit = (value ?: -1.0).toFloat()
+                    clicked.factory.limit = value ?: -1.0
                     isValid = false
                 })
         } else {
@@ -487,7 +529,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
         val slotIndex = floor(py - unitsY0s).toInt()
         val isInput = px < unitsX * 0.5f
 
-        return HoverData(factory, isInput, slotIndex)
+        return HoverData(factory, isInput, slotIndex, py - unitsY0s)
     }
 
     override fun getTooltipText(x: Float, y: Float): String? {

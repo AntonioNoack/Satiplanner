@@ -2,7 +2,7 @@ package me.anno.satiplanner
 
 import me.anno.io.json.generic.JsonScanner
 import me.anno.utils.OS.res
-import me.anno.utils.types.Strings.toFloat
+import me.anno.utils.types.Strings.toDouble
 import kotlin.math.max
 
 fun readRecipes2(): List<FactoryType> {
@@ -31,30 +31,30 @@ fun readRecipes2(): List<FactoryType> {
                 }
                 "category" -> category = scanner.readString()
                 "input" -> scanner.scanArray {
-                    var amount = 0f
+                    var amount = 0.0
                     var type = "?"
                     scanner.scanObject { k2 ->
                         when (k2) {
                             "item" -> type = scanner.readString().extractItemName()
-                            "perMin" -> amount = scanner.readNumber().toFloat()
+                            "perMin" -> amount = scanner.readNumber().toDouble()
                             else -> scanner.skipValue()
                         }
                     }
-                    if (amount > 0f) input.add(Resource(type, amount))
+                    if (amount > 0.0) input.add(Resource(type, amount))
                 }
                 "output" -> scanner.scanArray {
-                    var amount = 0f
+                    var amount = 0.0
                     var type = "?"
                     scanner.scanObject { k2 ->
                         when (k2) {
                             "item" -> type = scanner.readString().extractItemName()
-                            "perMin" -> amount = scanner.readNumber().toFloat()
+                            "perMin" -> amount = scanner.readNumber().toDouble()
                             else -> scanner.skipValue()
                         }
                     }
-                    if (amount > 0f) output.add(Resource(type, amount))
+                    if (amount > 0.0) output.add(Resource(type, amount))
                 }
-                "powerAverage" -> power = max(scanner.readNumber().toFloat().toInt(), 0)
+                "powerAverage" -> power = max(scanner.readNumber().toDouble().toInt(), 0)
                 else -> scanner.skipValue()
             }
         }

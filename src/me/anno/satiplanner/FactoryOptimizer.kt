@@ -58,7 +58,7 @@ object FactoryOptimizer {
                 val inputType = type.inputs[i]
                 val inputTypeT = inputType.type
                 sb.append("s.t. F${f}In${i}LTOut: ").production(f)
-                    .append(" * ").append(inputType.amount)
+                    .append(" * ").append(factory.inputMultiplier * inputType.amount)
                     .append(" <= ")
 
                 var first = true
@@ -67,18 +67,19 @@ object FactoryOptimizer {
                     else sb.append(" + ")
 
                     val otherType = input.type
-                    val otherI = otherType.outputs.firstOrNull { it.type == inputTypeT }
+                    val outputType = otherType.outputs.firstOrNull { it.type == inputTypeT }
                         ?: error(
                             "Did not find $inputTypeT in ${otherType.recipeName}.outputs, " +
                                     "options: ${otherType.outputs}"
                         )
 
                     sb.production(input.index).append(" * ")
-                        .append(otherI.amount)
+                        .append(input.outputMultiplier * outputType.amount)
                 }
                 sb.append(";\n")
             }
 
+            val outputMultiplier = factory.outputMultiplier
             for (i in 0 until min(factory.outputs.size, type.outputs.size)) {
                 val outputs = factory.outputs[i]
                 if (outputs.isEmpty()) continue
@@ -86,7 +87,7 @@ object FactoryOptimizer {
                 val outputType = type.outputs[i]
                 val outputTypeT = outputType.type
                 sb.append("s.t. F${f}Out${i}GTIn: ").production(f)
-                    .append(" * ").append(outputType.amount)
+                    .append(" * ").append(outputMultiplier * outputType.amount)
                     .append(" >= ")
 
                 var first = true
@@ -95,14 +96,14 @@ object FactoryOptimizer {
                     else sb.append(" + ")
 
                     val otherType = output.type
-                    val otherI = otherType.inputs.firstOrNull { it.type == outputTypeT }
+                    val inputType = otherType.inputs.firstOrNull { it.type == outputTypeT }
                         ?: error(
                             "Did not find $outputTypeT in ${otherType.recipeName}.inputs, " +
                                     "options: ${otherType.inputs}"
                         )
 
                     sb.production(output.index).append(" * ")
-                        .append(otherI.amount)
+                        .append(output.inputMultiplier * inputType.amount)
                 }
                 sb.append(";\n")
             }
@@ -114,19 +115,21 @@ object FactoryOptimizer {
         for (f in factories.indices) {
             val factory = factories[f]
             val type = factory.type
+            val inputMultiplier = factory.inputMultiplier
             for (i in 0 until min(factory.inputs.size, type.inputs.size)) {
                 val input = factory.inputs[i]
                 if (input.isEmpty()) continue // ignored
 
                 sb.append(" - ").production(f)
-                    .append(" * ").append(type.inputs[i].amount)
+                    .append(" * ").append(inputMultiplier * type.inputs[i].amount)
             }
+            val outputMultiplier = factory.outputMultiplier
             for (i in 0 until min(factory.outputs.size, type.outputs.size)) {
                 val output = factory.outputs[i]
                 if (output.isEmpty()) continue // ignored
 
                 sb.append(" + ").production(f)
-                    .append(" * ").append(type.outputs[i].amount)
+                    .append(" * ").append(outputMultiplier * type.outputs[i].amount)
             }
         }
         sb.append(";\n")
@@ -155,7 +158,7 @@ object FactoryOptimizer {
                 if (line.startsWith('f')) {
                     val factory = factories[line.substring(1, i).toInt()]
                     val number = line.substring(i + mid.length)
-                    val numberF = number.toFloat()
+                    val numberF = number.toDouble()
                     factory.calculated = numberF
                     factory.calculatedStr = if (numberF > 1e6f) "Inf" else number + "x"
                 }
@@ -166,34 +169,29 @@ object FactoryOptimizer {
         return process.waitFor() == 0
     }
 
-}
 
-fun StringBuilder.production(f: Int): StringBuilder {
-    append('f').append(f)
-    return this
-}
-
-@Deprecated("Not useful")
-fun StringBuilder.input(f: Int, i: Int): StringBuilder {
-    append('f').append(f).append("In").append(i)
-    return this
-}
-
-fun createSimpleFactory(recipes: List<FactoryType>): List<Factory> {
-    val f0 = Factory(recipes.first { it.recipeName == "Crushed Callanite" })
-    val f1 = Factory(recipes.first { it.recipeName == "Crushed Copper" })
-    val f2 = Factory(recipes.first { it.recipeName == "Copper Ingot" })
-    val f3 = Factory(recipes.first { it.recipeName == "Copper Rod" })
-    val f4 = Factory(recipes.first { it.recipeName == "Wire" })
-
-    f0.limit = 3f
-    f0.connectTo(0, f1, 0)
-    f1.connectTo(0, f2, 0)
-    f2.connectTo(0, f3, 0)
-    f3.connectTo(0, f4, 0)
-    val nodes = listOf(f0, f1, f2, f3, f4)
-    for (i in nodes.indices) {
-        nodes[i].posX = i * 10f
+    fun StringBuilder.production(f: Int): StringBuilder {
+        append('f').append(f)
+        return this
     }
-    return nodes
+
+    fun createSimpleFactory(recipes: List<FactoryType>): List<Factory> {
+        val f0 = Factory(recipes.first { it.recipeName == "Crushed Callanite" })
+        val f1 = Factory(recipes.first { it.recipeName == "Crushed Copper" })
+        val f2 = Factory(recipes.first { it.recipeName == "Copper Ingot" })
+        val f3 = Factory(recipes.first { it.recipeName == "Copper Rod" })
+        val f4 = Factory(recipes.first { it.recipeName == "Wire" })
+
+        f0.limit = 3.0
+        f0.connectTo(0, f1, 0)
+        f1.connectTo(0, f2, 0)
+        f2.connectTo(0, f3, 0)
+        f3.connectTo(0, f4, 0)
+        val nodes = listOf(f0, f1, f2, f3, f4)
+        for (i in nodes.indices) {
+            nodes[i].posX = i * 10f
+        }
+        return nodes
+    }
+
 }

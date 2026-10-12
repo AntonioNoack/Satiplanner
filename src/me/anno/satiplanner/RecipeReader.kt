@@ -31,7 +31,7 @@ fun String.toResourceList(): ResourceList {
     val end = if (endsWith(" /min")) length - 5 else length
     for (part in substring(start, end).split(", ")) {
         val ci = part.indexOf(' ')
-        val amount = part.substring(0, ci).toFloat()
+        val amount = part.substring(0, ci).toDouble()
         val name = part.substring(ci + 1).trim()
         result.add(Resource(name, amount))
     }
