@@ -9,6 +9,6 @@ class FactoryType(
     val inputs: ResourceList,
     val outputs: ResourceList,
 ) {
-    val shortRecipeName = recipeName.shorten(20)
+    val shortRecipeName = recipeName.shorten(30)
     override fun toString() = "Factory($recipeName, $factoryName, $power MW, $inputs -> $outputs)"
 }

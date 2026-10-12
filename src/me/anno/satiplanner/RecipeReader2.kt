@@ -72,6 +72,7 @@ fun readRecipes2(): List<FactoryType> {
 
 fun String.extractFactoryName(): String {
     return substringAfterLast('/')
+        .substringAfterLast("Build_")
 }
 
 fun String.extractItemName(): String {

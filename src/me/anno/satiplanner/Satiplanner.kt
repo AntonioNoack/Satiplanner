@@ -9,12 +9,9 @@ import me.anno.ui.base.menu.Menu
 import me.anno.ui.base.menu.MenuOption
 import me.anno.ui.debug.PureTestEngine.Companion.testPureUI
 
-// todo save files
-// todo node = factory, N inputs, M outputs
 // todo overclocking from 1% to 250%, 5 decimals
 // todo output multiplier 1,2 or 4, having max is 200% (sloop)
-// todo load all factories and resources
-// todo fixing a factory, the start, or the end, and the other values are calculated
+// todo minimize over-production
 
 fun main() {
     val recipes = readRecipes2()

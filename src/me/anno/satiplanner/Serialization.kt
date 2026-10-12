@@ -35,7 +35,7 @@ fun load(file: FileReference, types: List<FactoryType>): List<Factory> {
                         "type" -> factory.type = typesByName[scanner.readString()] ?: type0
                         "posX" -> factory.posX = scanner.readNumber().toFloat()
                         "posY" -> factory.posY = scanner.readNumber().toFloat()
-                        "limit" -> factory.limit = scanner.readNumber().toInt()
+                        "limit" -> factory.limit = scanner.readNumber().toFloat()
                         "overclock" -> factory.overclock = scanner.readNumber().toFloat()
                         "sloops" -> factory.sloops = scanner.readNumber().toInt()
                         "inputs" -> {

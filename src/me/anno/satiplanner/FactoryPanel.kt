@@ -4,7 +4,9 @@ import me.anno.input.Input
 import me.anno.input.Key
 import me.anno.language.translation.NameDesc
 import me.anno.maths.Maths.sq
+import me.anno.parser.SimpleExpressionParser
 import me.anno.ui.Style
+import me.anno.ui.UIColors
 import me.anno.ui.base.components.AxisAlignment
 import me.anno.ui.base.groups.MapPanel
 import me.anno.ui.base.menu.Menu
@@ -12,7 +14,9 @@ import me.anno.ui.base.menu.MenuOption
 import me.anno.ui.canvas.Canvas
 import me.anno.ui.editor.files.FileNames.toAllowedFilename
 import me.anno.utils.Color.withAlpha
+import me.anno.utils.structures.lists.Lists.any2
 import me.anno.utils.structures.lists.Lists.none2
+import me.anno.utils.structures.lists.Lists.sumOfFloat
 import kotlin.concurrent.thread
 import kotlin.math.abs
 import kotlin.math.floor
@@ -25,10 +29,6 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
 
     var isValid = true
     var isCalculating = false
-
-    // todo resource inputs
-    // todo resource outputs
-
     var allFine: Boolean? = null
 
     fun validate() {
@@ -38,7 +38,12 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
         thread(name = "Calculate") {
             isValid = true
             allFine = null
-            allFine = FactoryOptimizer.optimize(factories)
+            allFine = try {
+                FactoryOptimizer.optimize(factories)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                false
+            }
             isCalculating = false
         }
     }
@@ -51,6 +56,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
         isValid = false
     }
 
+    val statusFont = style.getFont("text")
     var titleFont = style.getFont("text")
     var textFont = titleFont
 
@@ -62,12 +68,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
     val titleBgColor = 0x373C48.withAlpha(255)
     val bigBgColor = 0x222733.withAlpha(255)
 
-    override fun draw(canvas: Canvas) {
-        canvas.drawRect(x, y, width, height, bigBgColor)
-        draw2DLineGrid(canvas, 0x333355.withAlpha(255), 2.0)
-        draw2DLineGrid(canvas, 0x43436F.withAlpha(255), 20.0)
-        draw2DLineGrid(canvas, 0x575790.withAlpha(255), 200.0)
-
+    fun drawStatus(canvas: Canvas) {
         val statusColor = when (allFine) {
             null -> 0x777777
             true -> 0x77ff77
@@ -78,7 +79,28 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
             true -> "✅"
             false -> "❌"
         }
-        canvas.drawText(x, y, titleFont, statusText, statusColor, bigBgColor)
+        canvas.drawText(x, y, statusFont, statusText, statusColor, bigBgColor)
+    }
+
+    fun drawPower(canvas: Canvas) {
+        val power = factories.sumOfFloat {
+            it.calculated * it.type.power
+        }
+        canvas.drawText(
+            x + width.shr(1), y, statusFont,
+            "${power.format()} MW", UIColors.gold, bigBgColor,
+            AxisAlignment.CENTER, AxisAlignment.MIN
+        )
+    }
+
+    override fun draw(canvas: Canvas) {
+        canvas.drawRect(x, y, width, height, bigBgColor)
+        draw2DLineGrid(canvas, 0x333355.withAlpha(255), 2.0)
+        draw2DLineGrid(canvas, 0x43436F.withAlpha(255), 20.0)
+        draw2DLineGrid(canvas, 0x575790.withAlpha(255), 200.0)
+
+        drawStatus(canvas)
+        drawPower(canvas)
 
         validate()
 
@@ -86,8 +108,8 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
         val du = scale.toInt()
         val dx = (unitsX * 0.5f * scale).toInt()
 
-        titleFont = titleFont.withSize(scale * 0.6f)
-        textFont = textFont.withSize(scale * 0.4f)
+        titleFont = titleFont.withSize(scale * 0.5f)
+        textFont = textFont.withSize(scale * 0.3f)
         val titleFont = titleFont
         val textFont = textFont
 
@@ -115,7 +137,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                     val px1 = coordsToWindowX(f1.posX)
                     val py1 = coordsToWindowY(f1.posY)
 
-                    val dy = (unitsY0s + i) * du + sw.shr(1)
+                    val dy = (unitsY0s + i) * du + du.shr(1)
                     canvas.drawLine(
                         px0 - dxl, py0 - dy0 + dy,
                         px1 + dxl, py1 - dy1 + dy,
@@ -168,10 +190,13 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                 AxisAlignment.MIN, AxisAlignment.MIN,
             )
 
-            val countY = y1 - du
-            if (allFine == true) canvas.drawText(
-                px, countY, textFont, factory.calculated,
-                0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
+            val countY = y1 - du.shr(2) * 3
+            val hasLimit = factory.limit >= 0f
+            canvas.drawText(
+                px, countY, titleFont,
+                if (hasLimit) "> ${factory.limit} <" else factory.calculatedStr,
+                if (hasLimit) 0xffcc99.withAlpha(255) else 0xcccccc.withAlpha(255),
+                titleBgColor.withAlpha(0),
                 w, -1,
                 AxisAlignment.CENTER, AxisAlignment.MIN,
             )
@@ -182,10 +207,18 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                 for (i in type.inputs.indices) {
                     val y = y0 + du * (unitsY0s + i) + (du - sw).shr(1)
                     val input = factory.inputs.getOrNull(i)
+                    val inputType = type.inputs[i]
                     val color = if (!input.isNullOrEmpty()) bg3 else bg2
                     canvas.drawRect(x0, y, sw, sw, color, 1)
                     canvas.drawText(
-                        x0 + du, y + (sw - textFont.sizeInt).shr(1), textFont, type.inputs[i].shortType,
+                        x0 + du, y + sw.shr(1) - textFont.sizeInt, textFont, inputType.shortType,
+                        0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
+                        w.shr(1), -1, // todo bug: height limit is not respected properly
+                        AxisAlignment.MIN, AxisAlignment.MIN,
+                    )
+                    canvas.drawText(
+                        x0 + du, y + (sw + textFont.sizeInt).shr(1), textFont,
+                        "${(inputType.amount * factory.calculated).format()}/min",
                         0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
                         w.shr(1), -1, // todo bug: height limit is not respected properly
                         AxisAlignment.MIN, AxisAlignment.MIN,
@@ -195,10 +228,18 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                 for (i in type.outputs.indices) {
                     val y = y0 + du * (unitsY0s + i) + (du - sw).shr(1)
                     val output = factory.outputs.getOrNull(i)
+                    val outputType = type.outputs[i]
                     val color = if (!output.isNullOrEmpty()) bg3 else bg2
                     canvas.drawRect(x1 - sw, y, sw, sw, color, 1)
                     canvas.drawText(
-                        x1 - du, y + (sw - textFont.sizeInt).shr(1), textFont, type.outputs[i].shortType,
+                        x1 - du, y + sw.shr(1) - textFont.sizeInt, textFont, outputType.shortType,
+                        0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
+                        w.shr(1), -1, // todo bug: height limit is not respected properly
+                        AxisAlignment.MAX, AxisAlignment.MIN,
+                    )
+                    canvas.drawText(
+                        x1 - du, y + (sw + textFont.sizeInt).shr(1), textFont,
+                        "${(outputType.amount * factory.calculated).format()}/min",
                         0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
                         w.shr(1), -1, // todo bug: height limit is not respected properly
                         AxisAlignment.MAX, AxisAlignment.MIN,
@@ -232,7 +273,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
             val y0 = py - dy
 
             val xi = if (draggedIsInput) x0 + sw.shr(1) else x1 - sw.shr(1)
-            val yi = y0 + (unitsY0s + draggedSlot) * du + sw.shr(1)
+            val yi = y0 + (unitsY0s + draggedSlot) * du + du.shr(1)
 
             canvas.drawLine(
                 xi.toFloat(), yi.toFloat(), window.mouseX, window.mouseY,
@@ -248,6 +289,14 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
     var draggedSlot = -1
     var draggedType = ""
     var draggedIsInput = false
+
+    fun Float.format(): String {
+        if (this > 1e6f) return "Inf"
+        val str = toString()
+        return if (str.endsWith(".0")) {
+            str.substring(0, str.length - 2)
+        } else str
+    }
 
     fun getFactoryAt(x: Float, y: Float): Factory? {
         val cx = windowToCoordsX(x)
@@ -278,10 +327,10 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                 val type = factory.type
                 val slotIndex = hoverData.slotIndex
                 val isLeft = hoverData.isInput
-                val limit = if (isLeft) type.inputs.size else type.outputs.size
-                if (slotIndex in 0 until limit) {
+                val slotList = if (isLeft) type.inputs else type.outputs
+                if (slotIndex in slotList.indices) {
                     draggedSlot = slotIndex
-                    draggedType = type.inputs[slotIndex].type
+                    draggedType = slotList[slotIndex].type
                     draggedFactory = factory
                     draggedIsInput = isLeft
                     return
@@ -299,48 +348,36 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
 
     fun stopDragging(x: Float, y: Float) {
         val srcFactory = draggedFactory ?: return
+        val typeName = draggedType
+        val srcIsInput = draggedIsInput
         val dstData = getHoverData(x, y)
         var success = false
         if (dstData != null) {
             val dstFactory = dstData.factory
-            val dstType = dstFactory.type
-            val srcType = srcFactory.type
-            val dstIndex = dstData.slotIndex
-            val dstIsInput = dstData.isInput
-            val srcList = if (dstIsInput) srcFactory.outputs else srcFactory.inputs
-            val dstList = if (dstIsInput) dstFactory.inputs else srcFactory.outputs
-            val srcTypeList = if (dstIsInput) srcType.outputs else srcType.inputs
-            val dstTypeList = if (dstIsInput) dstType.inputs else dstType.outputs
-            if (dstIndex in dstTypeList.indices && dstIsInput != draggedIsInput) {
-                val srcIndex = draggedSlot
-                val srcType = srcTypeList[srcIndex].type
-                val dstType = dstTypeList[dstIndex].type
-
-                val alreadyConnected =
-                    dstFactory in (srcList.getOrNull(srcIndex) ?: emptySet()) ||
-                            srcFactory in (dstList.getOrNull(dstIndex) ?: emptySet())
-
-                if (alreadyConnected) {
-                    // disconnect
-                    srcList[srcIndex] -= dstFactory
-                    dstList[dstIndex] -= srcFactory
-                    success = true
-                } else if (srcType == dstType) {
-                    while (srcList.size <= srcIndex) srcList.add(HashSet())
-                    while (dstList.size <= dstIndex) dstList.add(HashSet())
-
-                    srcList[srcIndex].add(dstFactory)
-                    dstList[dstIndex].add(srcFactory)
-                    success = true
-                }
+            success = if (srcIsInput) {
+                dstFactory.connectTo(srcFactory, typeName)
+            } else {
+                srcFactory.connectTo(dstFactory, typeName)
             }
         }
 
         if (success) {
             isValid = false
         } else {
-            // todo show this with input/output type being draggedType
-
+            // show this with input/output type being draggedType
+            val options = if (draggedIsInput) {
+                types.filter { type -> type.outputs.any2 { it.type == typeName } }
+            } else {
+                types.filter { type -> type.inputs.any2 { it.type == typeName } }
+            }
+            openOptionsForFactory(x, y, options) { dstFactory ->
+                val success = if (srcIsInput) {
+                    dstFactory.connectTo(srcFactory, typeName)
+                } else {
+                    srcFactory.connectTo(dstFactory, typeName)
+                }
+                if (success) isValid = false
+            }
         }
 
         draggedFactory = null
@@ -399,16 +436,37 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
         }
     }
 
-    class HoverData(val factory: Factory, val isInput: Boolean, val slotIndex: Int)
-
     override fun onDoubleClick(x: Float, y: Float, button: Key) {
+        val clicked = getHoverData(x, y)
+        if (clicked != null && clicked.slotIndex >=
+            clicked.factory.type.run { max(inputs.size, outputs.size) }
+        ) {
+            // ask for new limit
+            Menu.askName(
+                windowStack, NameDesc("Set Limit"), clicked.factory.limit.toString(),
+                NameDesc("Set"), { -1 }, { str ->
+                    val value = SimpleExpressionParser.parseDouble(str)
+                    clicked.factory.limit = (value ?: -1.0).toFloat()
+                    isValid = false
+                })
+        } else {
+            openOptionsForFactory(x, y, types) {}
+        }
+    }
+
+    fun openOptionsForFactory(
+        x: Float, y: Float, types: List<FactoryType>,
+        callback: (Factory) -> Unit
+    ) {
         Menu.openMenu(windowStack, NameDesc("Add Factory"), types.map { type ->
             MenuOption(NameDesc("${type.recipeName} (${type.factoryName})")) {
-                factories.add(Factory(type).apply {
+                val factory = Factory(type).apply {
                     posX = windowToCoordsX(x)
                     posY = windowToCoordsY(y)
-                })
+                }
+                factories.add(factory)
                 isValid = false
+                callback(factory)
             }
         })
     }
@@ -417,10 +475,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
         val factory = getFactoryAt(x, y) ?: return null
 
         val scale = scale.x
-        val du = scale.toInt()
         val dx = (unitsX * 0.5f * scale).toInt()
-
-        titleFont = titleFont.withSize(du * 0.6f)
 
         val type = factory.type
         val unitsY = unitsY0 + max(type.inputs.size, type.outputs.size)
@@ -430,9 +485,9 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
         val py = (y - coordsToWindowY(factory.posY) + dy) * 0.5f * unitsY / dy
 
         val slotIndex = floor(py - unitsY0s).toInt()
-        val isLeft = px < unitsX * 0.5f
+        val isInput = px < unitsX * 0.5f
 
-        return HoverData(factory, isLeft, slotIndex)
+        return HoverData(factory, isInput, slotIndex)
     }
 
     override fun getTooltipText(x: Float, y: Float): String? {
@@ -441,14 +496,15 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
         val type = factory.type
         val slotIndex = hoverData.slotIndex
         val isLeft = hoverData.isInput
+        val speed = factory.calculated
         if (isLeft && slotIndex in type.inputs.indices) {
             val input = type.inputs[slotIndex]
-            return "${input.type} x${input.amount}/min"
+            return "${input.type} ${speed.format()} * ${input.amount.format()}/min"
         }
 
         if (!isLeft && slotIndex in type.outputs.indices) {
             val input = type.outputs[slotIndex]
-            return "${input.type} x${input.amount}/min"
+            return "${input.type} ${speed.format()} * ${input.amount.format()}/min"
         }
 
         return "${type.recipeName} (${type.factoryName})"
@@ -484,7 +540,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                 }
             }
             Key.KEY_L -> {
-                // todo ask whether user is sure
+                // ask whether user is sure?
                 askLoad(this, types)
             }
             else -> {}
