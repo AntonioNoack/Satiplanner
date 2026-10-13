@@ -1,12 +1,14 @@
-package me.anno.satiplanner
+package me.anno.satiplanner.development
 
 import me.anno.io.json.generic.JsonScanner
+import me.anno.satiplanner.FactoryType
+import me.anno.satiplanner.Resource
 import me.anno.utils.OS.res
 import me.anno.utils.structures.lists.Lists.any2
 import me.anno.utils.types.Strings.toDouble
 import kotlin.math.max
 
-fun readRecipes2(): List<FactoryType> {
+fun readRecipesSFPlus(): List<FactoryType> {
     val file = res.getChild("sfplus.json")
     val scanner = JsonScanner(file.readTextSync())
     val types = ArrayList<FactoryType>()
@@ -15,8 +17,8 @@ fun readRecipes2(): List<FactoryType> {
         var factoryName = "?"
         var category = "?"
         var power = 0
-        val input = ResourceList(4)
-        val output = ResourceList(4)
+        val input = ArrayList<Resource>(4)
+        val output = ArrayList<Resource>(4)
         scanner.scanObject { k1 ->
             when (k1) {
                 "name" -> recipeName = scanner.readString()
@@ -25,8 +27,11 @@ fun readRecipes2(): List<FactoryType> {
                 "producedIn" -> {
                     val sb = StringBuilder()
                     scanner.scanArray {
-                        if (sb.isNotEmpty()) sb.append(", ")
-                        sb.append(scanner.readString().extractFactoryName())
+                        val name = scanner.readString().extractFactoryName()
+                        if (name != "WorkBench" && name != "Workshop") {
+                            if (sb.isNotEmpty()) sb.append(", ")
+                            sb.append(name)
+                        }
                     }
                     factoryName = sb.toString()
                 }
@@ -45,7 +50,9 @@ fun readRecipes2(): List<FactoryType> {
                                     isFluid = "/Fluids/" in name ||
                                             "Water/Desc" in name ||
                                             "Gas/Desc_" in name ||
-                                            "Oil/Desc_" in name
+                                            "Oil/Desc_" in name ||
+                                            "Liquid" in name ||
+                                            "Acid" in name
                                     type = name.extractItemName()
                                 }
                                 "perMin" -> amount = scanner.readNumber().toDouble()
@@ -91,7 +98,7 @@ fun String.extractItemName(): String {
 }
 
 fun main() {
-    val recipes = readRecipes2()
+    val recipes = readRecipesSFPlus()
     for (factory in recipes) {
         println(factory)
     }

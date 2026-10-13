@@ -1,0 +1,1489 @@
+- id: Adaptive Control Unit
+  machine: Manufacturer
+  power: 55
+  inputs: 5x Automated Wiring, 5x Circuit Board, 1x Heavy Modular Frame, 2x Computer
+  outputs: 1x Adaptive Control Unit
+- id: AI Expansion Server
+  machine: Quantum Encoder
+  power: 1000
+  inputs: 4x Magnetic Field Generator, 4x Neural-Quantum Processor, 4x Superposition Oscillator, 100x Excited Photonic Matter
+  outputs: 4x AI Expansion Server, 100x Dark Matter Residue
+- id: AI Limiter
+  machine: Assembler
+  power: 15
+  inputs: 25x Copper Sheet, 100x Quickwire
+  outputs: 5x AI Limiter
+- id: Alclad Aluminum Sheet
+  machine: Assembler
+  power: 15
+  inputs: 30x Aluminum Ingot, 10x Copper Ingot
+  outputs: 30x Alclad Aluminum Sheet
+- id: Alien DNA Capsule
+  machine: Constructor
+  power: 4
+  inputs: 10x Alien Protein
+  outputs: 10x Alien DNA Capsule
+- id: Alien Power Matrix
+  machine: Quantum Encoder
+  power: 1000
+  inputs: 12.5x SAM Fluctuator, 7.5x Power Shard, 7.5x Superposition Oscillator, 60x Excited Photonic Matter
+  outputs: 2.5x Alien Power Matrix, 60x Dark Matter Residue
+- id: 'Alternate: Adhered Iron Platealt'
+  machine: Assembler
+  power: 15
+  inputs: 11.25x Iron Plate, 3.75x Rubber
+  outputs: 3.75x Reinforced Iron Plate
+- id: 'Alternate: Alclad Casingalt'
+  machine: Assembler
+  power: 15
+  inputs: 150x Aluminum Ingot, 75x Copper Ingot
+  outputs: 112.5x Aluminum Casing
+- id: 'Alternate: Aluminum Beamalt'
+  machine: Constructor
+  power: 4
+  inputs: 22.5x Aluminum Ingot
+  outputs: 22.5x Steel Beam
+- id: 'Alternate: Aluminum Rodalt'
+  machine: Constructor
+  power: 4
+  inputs: 7.5x Aluminum Ingot
+  outputs: 52.5x Iron Rod
+- id: 'Alternate: Automated Speed Wiringalt'
+  machine: Manufacturer
+  power: 55
+  inputs: 3.75x Stator, 75x Wire, 1.875x High-Speed Connector
+  outputs: 7.5x Automated Wiring
+- id: 'Alternate: Basic Iron Ingotalt'
+  machine: Foundry
+  power: 16
+  inputs: 25x Iron Ore, 40x Limestone
+  outputs: 50x Iron Ingot
+- id: 'Alternate: Biocoalalt'
+  machine: Constructor
+  power: 4
+  inputs: 37.5x Biomass
+  outputs: 45x Coal
+- id: 'Alternate: Bolted Framealt'
+  machine: Assembler
+  power: 15
+  inputs: 7.5x Reinforced Iron Plate, 140x Screws
+  outputs: 5x Modular Frame
+- id: 'Alternate: Bolted Iron Platealt'
+  machine: Assembler
+  power: 15
+  inputs: 90x Iron Plate, 250x Screws
+  outputs: 15x Reinforced Iron Plate
+- id: 'Alternate: Cast Screwsalt'
+  machine: Constructor
+  power: 4
+  inputs: 12.5x Iron Ingot
+  outputs: 50x Screws
+- id: 'Alternate: Caterium Circuit Boardalt'
+  machine: Assembler
+  power: 15
+  inputs: 12.5x Plastic, 37.5x Quickwire
+  outputs: 8.75x Circuit Board
+- id: 'Alternate: Caterium Computeralt'
+  machine: Manufacturer
+  power: 55
+  inputs: 15x Circuit Board, 52.5x Quickwire, 22.5x Rubber
+  outputs: 3.75x Computer
+- id: 'Alternate: Caterium Wirealt'
+  machine: Constructor
+  power: 4
+  inputs: 15x Caterium Ingot
+  outputs: 120x Wire
+- id: 'Alternate: Charcoalalt'
+  machine: Constructor
+  power: 4
+  inputs: 15x Wood
+  outputs: 150x Coal
+- id: 'Alternate: Cheap Silicaalt'
+  machine: Assembler
+  power: 15
+  inputs: 22.5x Raw Quartz, 37.5x Limestone
+  outputs: 52.5x Silica
+- id: 'Alternate: Classic Batteryalt'
+  machine: Manufacturer
+  power: 55
+  inputs: 45x Sulfur, 52.5x Alclad Aluminum Sheet, 60x Plastic, 90x Wire
+  outputs: 30x Battery
+- id: 'Alternate: Cloudy Diamondsalt'
+  machine: Particle Accelerator
+  power: 500
+  inputs: 240x Coal, 480x Limestone
+  outputs: 20x Diamonds
+- id: 'Alternate: Coated Cablealt'
+  machine: Refinery
+  power: 30
+  inputs: 37.5x Wire, 15x Heavy Oil Residue
+  outputs: 67.5x Cable
+- id: 'Alternate: Coated Iron Canisteralt'
+  machine: Assembler
+  power: 15
+  inputs: 30x Iron Plate, 15x Copper Sheet
+  outputs: 60x Empty Canister
+- id: 'Alternate: Coated Iron Platealt'
+  machine: Assembler
+  power: 15
+  inputs: 37.5x Iron Ingot, 7.5x Plastic
+  outputs: 75x Iron Plate
+- id: 'Alternate: Coke Steel Ingotalt'
+  machine: Foundry
+  power: 16
+  inputs: 75x Iron Ore, 75x Petroleum Coke
+  outputs: 100x Steel Ingot
+- id: 'Alternate: Compacted Coalalt'
+  machine: Assembler
+  power: 15
+  inputs: 25x Coal, 25x Sulfur
+  outputs: 25x Compacted Coal
+- id: 'Alternate: Compacted Steel Ingotalt'
+  machine: Foundry
+  power: 16
+  inputs: 5x Iron Ore, 2.5x Compacted Coal
+  outputs: 10x Steel Ingot
+- id: 'Alternate: Cooling Devicealt'
+  machine: Blender
+  power: 75
+  inputs: 10x Heat Sink, 2.5x Motor, 60x Nitrogen Gas
+  outputs: 5x Cooling System
+- id: 'Alternate: Copper Alloy Ingotalt'
+  machine: Foundry
+  power: 16
+  inputs: 50x Copper Ore, 50x Iron Ore
+  outputs: 100x Copper Ingot
+- id: 'Alternate: Copper Rotoralt'
+  machine: Assembler
+  power: 15
+  inputs: 22.5x Copper Sheet, 195x Screws
+  outputs: 11.25x Rotor
+- id: 'Alternate: Crystal Computeralt'
+  machine: Assembler
+  power: 15
+  inputs: 5x Circuit Board, 1.6667x Crystal Oscillator
+  outputs: 3.3333x Computer
+- id: 'Alternate: Dark Matter Crystallizationalt'
+  machine: Particle Accelerator
+  power: 1000
+  inputs: 200x Dark Matter Residue
+  outputs: 20x Dark Matter Crystal
+- id: 'Alternate: Dark Matter Trapalt'
+  machine: Particle Accelerator
+  power: 1000
+  inputs: 30x Time Crystal, 150x Dark Matter Residue
+  outputs: 60x Dark Matter Crystal
+- id: 'Alternate: Dark-Ion Fuelalt'
+  machine: Converter
+  power: 250
+  inputs: 240x Packaged Rocket Fuel, 80x Dark Matter Crystal
+  outputs: 200x Ionized Fuel, 40x Compacted Coal
+- id: 'Alternate: Diluted Fuelalt'
+  machine: Blender
+  power: 75
+  inputs: 50x Heavy Oil Residue, 100x Water
+  outputs: 100x Fuel
+- id: 'Alternate: Diluted Packaged Fuelalt'
+  machine: Refinery
+  power: 30
+  inputs: 30x Heavy Oil Residue, 60x Packaged Water
+  outputs: 60x Packaged Fuel
+- id: 'Alternate: Distilled Silicaalt'
+  machine: Blender
+  power: 75
+  inputs: 120x Dissolved Silica, 50x Limestone, 100x Water
+  outputs: 270x Silica, 80x Water
+- id: 'Alternate: Electric Motoralt'
+  machine: Assembler
+  power: 15
+  inputs: 3.75x Electromagnetic Control Rod, 7.5x Rotor
+  outputs: 7.5x Motor
+- id: 'Alternate: Electrode Aluminum Scrapalt'
+  machine: Refinery
+  power: 30
+  inputs: 180x Alumina Solution, 60x Petroleum Coke
+  outputs: 300x Aluminum Scrap, 105x Water
+- id: 'Alternate: Electrode Circuit Boardalt'
+  machine: Assembler
+  power: 15
+  inputs: 20x Rubber, 40x Petroleum Coke
+  outputs: 5x Circuit Board
+- id: 'Alternate: Electromagnetic Connection Rodalt'
+  machine: Assembler
+  power: 15
+  inputs: 8x Stator, 4x High-Speed Connector
+  outputs: 8x Electromagnetic Control Rod
+- id: 'Alternate: Encased Industrial Pipealt'
+  machine: Assembler
+  power: 15
+  inputs: 24x Steel Pipe, 20x Concrete
+  outputs: 4x Encased Industrial Beam
+- id: 'Alternate: Fertile Uraniumalt'
+  machine: Blender
+  power: 75
+  inputs: 25x Uranium, 25x Uranium Waste, 15x Nitric Acid, 25x Sulfuric Acid
+  outputs: 100x Non-Fissile Uranium, 40x Water
+- id: 'Alternate: Fine Black Powderalt'
+  machine: Assembler
+  power: 15
+  inputs: 7.5x Sulfur, 15x Compacted Coal
+  outputs: 45x Black Powder
+- id: 'Alternate: Fine Concretealt'
+  machine: Assembler
+  power: 15
+  inputs: 15x Silica, 60x Limestone
+  outputs: 50x Concrete
+- id: 'Alternate: Flexible Frameworkalt'
+  machine: Manufacturer
+  power: 55
+  inputs: 3.75x Modular Frame, 22.5x Steel Beam, 30x Rubber
+  outputs: 7.5x Versatile Framework
+- id: 'Alternate: Fused Quartz Crystalalt'
+  machine: Foundry
+  power: 16
+  inputs: 75x Raw Quartz, 36x Coal
+  outputs: 54x Quartz Crystal
+- id: 'Alternate: Fused Quickwirealt'
+  machine: Assembler
+  power: 15
+  inputs: 7.5x Caterium Ingot, 37.5x Copper Ingot
+  outputs: 90x Quickwire
+- id: 'Alternate: Fused Wirealt'
+  machine: Assembler
+  power: 15
+  inputs: 12x Copper Ingot, 3x Caterium Ingot
+  outputs: 90x Wire
+- id: 'Alternate: Heat Exchangeralt'
+  machine: Assembler
+  power: 15
+  inputs: 30x Aluminum Casing, 30x Rubber
+  outputs: 10x Heat Sink
+- id: 'Alternate: Heat-Fused Framealt'
+  machine: Blender
+  power: 75
+  inputs: 3x Heavy Modular Frame, 150x Aluminum Ingot, 24x Nitric Acid, 30x Fuel
+  outputs: 3x Fused Modular Frame
+- id: 'Alternate: Heavy Encased Framealt'
+  machine: Manufacturer
+  power: 55
+  inputs: 7.5x Modular Frame, 9.375x Encased Industrial Beam, 33.75x Steel Pipe, 20.625x Concrete
+  outputs: 2.8125x Heavy Modular Frame
+- id: 'Alternate: Heavy Flexible Framealt'
+  machine: Manufacturer
+  power: 55
+  inputs: 18.75x Modular Frame, 11.25x Encased Industrial Beam, 75x Rubber, 390x Screws
+  outputs: 3.75x Heavy Modular Frame
+- id: 'Alternate: Heavy Oil Residuealt'
+  machine: Refinery
+  power: 30
+  inputs: 30x Crude Oil
+  outputs: 40x Heavy Oil Residue, 20x Polymer Resin
+- id: 'Alternate: Infused Uranium Cellalt'
+  machine: Manufacturer
+  power: 55
+  inputs: 25x Uranium, 15x Silica, 25x Sulfur, 75x Quickwire
+  outputs: 20x Encased Uranium Cell
+- id: 'Alternate: Instant Plutonium Cellalt'
+  machine: Particle Accelerator
+  power: 500
+  inputs: 75x Non-Fissile Uranium, 10x Aluminum Casing
+  outputs: 10x Encased Plutonium Cell
+- id: 'Alternate: Instant Scrapalt'
+  machine: Blender
+  power: 75
+  inputs: 150x Bauxite, 100x Coal, 50x Sulfuric Acid, 60x Water
+  outputs: 300x Aluminum Scrap, 50x Water
+- id: 'Alternate: Insulated Cablealt'
+  machine: Assembler
+  power: 15
+  inputs: 45x Wire, 30x Rubber
+  outputs: 100x Cable
+- id: 'Alternate: Insulated Crystal Oscillatoralt'
+  machine: Manufacturer
+  power: 55
+  inputs: 18.75x Quartz Crystal, 13.125x Rubber, 1.875x AI Limiter
+  outputs: 1.875x Crystal Oscillator
+- id: 'Alternate: Iron Alloy Ingotalt'
+  machine: Foundry
+  power: 16
+  inputs: 40x Iron Ore, 10x Copper Ore
+  outputs: 75x Iron Ingot
+- id: 'Alternate: Iron Pipealt'
+  machine: Constructor
+  power: 4
+  inputs: 100x Iron Ingot
+  outputs: 25x Steel Pipe
+- id: 'Alternate: Iron Wirealt'
+  machine: Constructor
+  power: 4
+  inputs: 12.5x Iron Ingot
+  outputs: 22.5x Wire
+- id: 'Alternate: Leached Caterium Ingotalt'
+  machine: Refinery
+  power: 30
+  inputs: 54x Caterium Ore, 30x Sulfuric Acid
+  outputs: 36x Caterium Ingot
+- id: 'Alternate: Leached Copper Ingotalt'
+  machine: Refinery
+  power: 30
+  inputs: 45x Copper Ore, 25x Sulfuric Acid
+  outputs: 110x Copper Ingot
+- id: 'Alternate: Leached Iron Ingotalt'
+  machine: Refinery
+  power: 30
+  inputs: 50x Iron Ore, 10x Sulfuric Acid
+  outputs: 100x Iron Ingot
+- id: 'Alternate: Molded Beamalt'
+  machine: Foundry
+  power: 16
+  inputs: 120x Steel Ingot, 80x Concrete
+  outputs: 45x Steel Beam
+- id: 'Alternate: Molded Steel Pipealt'
+  machine: Foundry
+  power: 16
+  inputs: 50x Steel Ingot, 30x Concrete
+  outputs: 50x Steel Pipe
+- id: 'Alternate: Nitro Rocket Fuelalt'
+  machine: Blender
+  power: 75
+  inputs: 100x Fuel, 75x Nitrogen Gas, 100x Sulfur, 50x Coal
+  outputs: 150x Rocket Fuel, 25x Compacted Coal
+- id: 'Alternate: OC Supercomputeralt'
+  machine: Assembler
+  power: 15
+  inputs: 6x Radio Control Unit, 6x Cooling System
+  outputs: 3x Supercomputer
+- id: 'Alternate: Oil-Based Diamondsalt'
+  machine: Particle Accelerator
+  power: 500
+  inputs: 200x Crude Oil
+  outputs: 40x Diamonds
+- id: 'Alternate: Petroleum Diamondsalt'
+  machine: Particle Accelerator
+  power: 500
+  inputs: 720x Petroleum Coke
+  outputs: 30x Diamonds
+- id: 'Alternate: Pink Diamondsalt'
+  machine: Converter
+  power: 250
+  inputs: 120x Coal, 45x Quartz Crystal
+  outputs: 15x Diamonds
+- id: 'Alternate: Plastic AI Limiteralt'
+  machine: Assembler
+  power: 15
+  inputs: 120x Quickwire, 28x Plastic
+  outputs: 8x AI Limiter
+- id: 'Alternate: Plastic Smart Platingalt'
+  machine: Manufacturer
+  power: 55
+  inputs: 2.5x Reinforced Iron Plate, 2.5x Rotor, 7.5x Plastic
+  outputs: 5x Smart Plating
+- id: 'Alternate: Plutonium Fuel Unitalt'
+  machine: Assembler
+  power: 15
+  inputs: 10x Encased Plutonium Cell, 0.5x Pressure Conversion Cube
+  outputs: 0.5x Plutonium Fuel Rod
+- id: 'Alternate: Polyester Fabricalt'
+  machine: Refinery
+  power: 30
+  inputs: 30x Polymer Resin, 30x Water
+  outputs: 30x Fabric
+- id: 'Alternate: Polymer Resinalt'
+  machine: Refinery
+  power: 30
+  inputs: 60x Crude Oil
+  outputs: 130x Polymer Resin, 20x Heavy Oil Residue
+- id: 'Alternate: Pure Aluminum Ingotalt'
+  machine: Smelter
+  power: 4
+  inputs: 60x Aluminum Scrap
+  outputs: 30x Aluminum Ingot
+- id: 'Alternate: Pure Caterium Ingotalt'
+  machine: Refinery
+  power: 30
+  inputs: 24x Caterium Ore, 24x Water
+  outputs: 12x Caterium Ingot
+- id: 'Alternate: Pure Copper Ingotalt'
+  machine: Refinery
+  power: 30
+  inputs: 15x Copper Ore, 10x Water
+  outputs: 37.5x Copper Ingot
+- id: 'Alternate: Pure Iron Ingotalt'
+  machine: Refinery
+  power: 30
+  inputs: 35x Iron Ore, 20x Water
+  outputs: 65x Iron Ingot
+- id: 'Alternate: Pure Quartz Crystalalt'
+  machine: Refinery
+  power: 30
+  inputs: 67.5x Raw Quartz, 37.5x Water
+  outputs: 52.5x Quartz Crystal
+- id: 'Alternate: Quartz Purificationalt'
+  machine: Refinery
+  power: 30
+  inputs: 120x Raw Quartz, 10x Nitric Acid
+  outputs: 75x Quartz Crystal, 60x Dissolved Silica
+- id: 'Alternate: Quickwire Cablealt'
+  machine: Assembler
+  power: 15
+  inputs: 7.5x Quickwire, 5x Rubber
+  outputs: 27.5x Cable
+- id: 'Alternate: Quickwire Statoralt'
+  machine: Assembler
+  power: 15
+  inputs: 16x Steel Pipe, 60x Quickwire
+  outputs: 8x Stator
+- id: 'Alternate: Radio Connection Unitalt'
+  machine: Manufacturer
+  power: 55
+  inputs: 15x Heat Sink, 7.5x High-Speed Connector, 45x Quartz Crystal
+  outputs: 3.75x Radio Control Unit
+- id: 'Alternate: Radio Control Systemalt'
+  machine: Manufacturer
+  power: 55
+  inputs: 1.5x Crystal Oscillator, 15x Circuit Board, 90x Aluminum Casing, 45x Rubber
+  outputs: 4.5x Radio Control Unit
+- id: 'Alternate: Recycled Plasticalt'
+  machine: Refinery
+  power: 30
+  inputs: 30x Rubber, 30x Fuel
+  outputs: 60x Plastic
+- id: 'Alternate: Recycled Rubberalt'
+  machine: Refinery
+  power: 30
+  inputs: 30x Plastic, 30x Fuel
+  outputs: 60x Rubber
+- id: 'Alternate: Rigor Motoralt'
+  machine: Manufacturer
+  power: 55
+  inputs: 3.75x Rotor, 3.75x Stator, 1.25x Crystal Oscillator
+  outputs: 7.5x Motor
+- id: 'Alternate: Rubber Concretealt'
+  machine: Assembler
+  power: 15
+  inputs: 100x Limestone, 20x Rubber
+  outputs: 90x Concrete
+- id: 'Alternate: Silicon Circuit Boardalt'
+  machine: Assembler
+  power: 15
+  inputs: 27.5x Copper Sheet, 27.5x Silica
+  outputs: 12.5x Circuit Board
+- id: 'Alternate: Silicon High-Speed Connectoralt'
+  machine: Manufacturer
+  power: 55
+  inputs: 90x Quickwire, 37.5x Silica, 3x Circuit Board
+  outputs: 3x High-Speed Connector
+- id: 'Alternate: Sloppy Aluminaalt'
+  machine: Refinery
+  power: 30
+  inputs: 200x Bauxite, 200x Water
+  outputs: 240x Alumina Solution
+- id: 'Alternate: Solid Steel Ingotalt'
+  machine: Foundry
+  power: 16
+  inputs: 40x Iron Ingot, 40x Coal
+  outputs: 60x Steel Ingot
+- id: 'Alternate: Steamed Copper Sheetalt'
+  machine: Refinery
+  power: 30
+  inputs: 22.5x Copper Ingot, 22.5x Water
+  outputs: 22.5x Copper Sheet
+- id: 'Alternate: Steel Canisteralt'
+  machine: Constructor
+  power: 4
+  inputs: 40x Steel Ingot
+  outputs: 40x Empty Canister
+- id: 'Alternate: Steel Cast Platealt'
+  machine: Foundry
+  power: 16
+  inputs: 15x Iron Ingot, 15x Steel Ingot
+  outputs: 45x Iron Plate
+- id: 'Alternate: Steel Rodalt'
+  machine: Constructor
+  power: 4
+  inputs: 12x Steel Ingot
+  outputs: 48x Iron Rod
+- id: 'Alternate: Steel Rotoralt'
+  machine: Assembler
+  power: 15
+  inputs: 10x Steel Pipe, 30x Wire
+  outputs: 5x Rotor
+- id: 'Alternate: Steel Screwsalt'
+  machine: Constructor
+  power: 4
+  inputs: 5x Steel Beam
+  outputs: 260x Screws
+- id: 'Alternate: Steeled Framealt'
+  machine: Assembler
+  power: 15
+  inputs: 2x Reinforced Iron Plate, 10x Steel Pipe
+  outputs: 3x Modular Frame
+- id: 'Alternate: Stitched Iron Platealt'
+  machine: Assembler
+  power: 15
+  inputs: 18.75x Iron Plate, 37.5x Wire
+  outputs: 5.625x Reinforced Iron Plate
+- id: 'Alternate: Super-State Computeralt'
+  machine: Manufacturer
+  power: 55
+  inputs: 7.2x Computer, 2.4x Electromagnetic Control Rod, 24x Battery, 60x Wire
+  outputs: 2.4x Supercomputer
+- id: 'Alternate: Tempered Caterium Ingotalt'
+  machine: Foundry
+  power: 16
+  inputs: 45x Caterium Ore, 15x Petroleum Coke
+  outputs: 22.5x Caterium Ingot
+- id: 'Alternate: Tempered Copper Ingotalt'
+  machine: Foundry
+  power: 16
+  inputs: 25x Copper Ore, 40x Petroleum Coke
+  outputs: 60x Copper Ingot
+- id: 'Alternate: Turbo Blend Fuelalt'
+  machine: Blender
+  power: 75
+  inputs: 15x Fuel, 30x Heavy Oil Residue, 22.5x Sulfur, 22.5x Petroleum Coke
+  outputs: 45x Turbofuel
+- id: 'Alternate: Turbo Diamondsalt'
+  machine: Particle Accelerator
+  power: 500
+  inputs: 600x Coal, 40x Packaged Turbofuel
+  outputs: 60x Diamonds
+- id: 'Alternate: Turbo Electric Motoralt'
+  machine: Manufacturer
+  power: 55
+  inputs: 6.5625x Motor, 8.4375x Radio Control Unit, 4.6875x Electromagnetic Control Rod, 6.5625x Rotor
+  outputs: 2.8125x Turbo Motor
+- id: 'Alternate: Turbo Heavy Fuelalt'
+  machine: Refinery
+  power: 30
+  inputs: 37.5x Heavy Oil Residue, 30x Compacted Coal
+  outputs: 30x Turbofuel
+- id: 'Alternate: Turbo Pressure Motoralt'
+  machine: Manufacturer
+  power: 55
+  inputs: 7.5x Motor, 1.875x Pressure Conversion Cube, 45x Packaged Nitrogen Gas, 15x Stator
+  outputs: 3.75x Turbo Motor
+- id: 'Alternate: Uranium Fuel Unitalt'
+  machine: Manufacturer
+  power: 55
+  inputs: 20x Encased Uranium Cell, 2x Electromagnetic Control Rod, 0.6x Crystal Oscillator, 2x Rotor
+  outputs: 0.6x Uranium Fuel Rod
+- id: 'Alternate: Wet Concretealt'
+  machine: Refinery
+  power: 30
+  inputs: 120x Limestone, 100x Water
+  outputs: 80x Concrete
+- id: Alumina Solution
+  machine: Refinery
+  power: 30
+  inputs: 120x Bauxite, 180x Water
+  outputs: 120x Alumina Solution, 50x Silica
+- id: Aluminum Casing
+  machine: Constructor
+  power: 4
+  inputs: 90x Aluminum Ingot
+  outputs: 60x Aluminum Casing
+- id: Aluminum Ingot
+  machine: Foundry
+  power: 16
+  inputs: 90x Aluminum Scrap, 75x Silica
+  outputs: 60x Aluminum Ingot
+- id: Aluminum Scrap
+  machine: Refinery
+  power: 30
+  inputs: 240x Alumina Solution, 120x Coal
+  outputs: 360x Aluminum Scrap, 120x Water
+- id: Assembly Director System
+  machine: Assembler
+  power: 15
+  inputs: 1.5x Adaptive Control Unit, 0.75x Supercomputer
+  outputs: 0.75x Assembly Director System
+- id: Automated Wiring
+  machine: Assembler
+  power: 15
+  inputs: 2.5x Stator, 50x Cable
+  outputs: 2.5x Automated Wiring
+- id: Ballistic Warp Drive
+  machine: Manufacturer
+  power: 55
+  inputs: 1x Thermal Propulsion Rocket, 5x Singularity Cell, 2x Superposition Oscillator, 40x Dark Matter Crystal
+  outputs: 1x Ballistic Warp Drive
+- id: Battery
+  machine: Blender
+  power: 75
+  inputs: 50x Sulfuric Acid, 40x Alumina Solution, 20x Aluminum Casing
+  outputs: 20x Battery, 30x Water
+- id: Bauxite
+  machine: Miner Mk.1
+  power: 5
+  inputs: 30x Bauxite
+  outputs: 30x Bauxite
+- id: Bauxite (Caterium)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 150x Caterium Ore
+  outputs: 120x Bauxite
+- id: Bauxite (Copper)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 180x Copper Ore
+  outputs: 120x Bauxite
+- id: Biochemical Sculptor
+  machine: Blender
+  power: 75
+  inputs: 0.5x Assembly Director System, 40x Ficsite Trigon, 10x Water
+  outputs: 2x Biochemical Sculptor
+- id: Biomass (Alien Protein)
+  machine: Constructor
+  power: 4
+  inputs: 15x Alien Protein
+  outputs: 1500x Biomass
+- id: Biomass (Leaves)
+  machine: Constructor
+  power: 4
+  inputs: 120x Leaves
+  outputs: 60x Biomass
+- id: Biomass (Mycelia)
+  machine: Constructor
+  power: 4
+  inputs: 15x Mycelia
+  outputs: 150x Biomass
+- id: Biomass (Wood)
+  machine: Constructor
+  power: 4
+  inputs: 60x Wood
+  outputs: 300x Biomass
+- id: Black Powder
+  machine: Assembler
+  power: 15
+  inputs: 15x Coal, 15x Sulfur
+  outputs: 30x Black Powder
+- id: Blue FICSMAS Ornament
+  machine: Smelter
+  power: 4
+  inputs: 5x FICSMAS Gift
+  outputs: 10x Blue FICSMAS Ornament
+- id: Cable
+  machine: Constructor
+  power: 4
+  inputs: 60x Wire
+  outputs: 30x Cable
+- id: Candy Cane
+  machine: Constructor
+  power: 4
+  inputs: 15x FICSMAS Gift
+  outputs: 5x Candy Cane
+- id: Caterium Ingot
+  machine: Smelter
+  power: 4
+  inputs: 45x Caterium Ore
+  outputs: 15x Caterium Ingot
+- id: Caterium Ore
+  machine: Miner Mk.1
+  power: 5
+  inputs: 30x Caterium Ore
+  outputs: 30x Caterium Ore
+- id: Caterium Ore (Copper)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 150x Copper Ore
+  outputs: 120x Caterium Ore
+- id: Caterium Ore (Quartz)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 120x Raw Quartz
+  outputs: 120x Caterium Ore
+- id: Circuit Board
+  machine: Assembler
+  power: 15
+  inputs: 15x Copper Sheet, 30x Plastic
+  outputs: 7.5x Circuit Board
+- id: Cluster Nobelisk
+  machine: Assembler
+  power: 15
+  inputs: 7.5x Nobelisk, 10x Smokeless Powder
+  outputs: 2.5x Cluster Nobelisk
+- id: Coal
+  machine: Miner Mk.1
+  power: 5
+  inputs: 30x Coal
+  outputs: 30x Coal
+- id: Coal (Iron)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 180x Iron Ore
+  outputs: 120x Coal
+- id: Coal (Limestone)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 360x Limestone
+  outputs: 120x Coal
+- id: Computer
+  machine: Manufacturer
+  power: 55
+  inputs: 10x Circuit Board, 20x Cable, 40x Plastic
+  outputs: 2.5x Computer
+- id: Concrete
+  machine: Constructor
+  power: 4
+  inputs: 45x Limestone
+  outputs: 15x Concrete
+- id: Cooling System
+  machine: Blender
+  power: 75
+  inputs: 12x Heat Sink, 12x Rubber, 30x Water, 150x Nitrogen Gas
+  outputs: 6x Cooling System
+- id: Copper FICSMAS Ornament
+  machine: Foundry
+  power: 16
+  inputs: 10x Red FICSMAS Ornament, 10x Copper Ingot
+  outputs: 5x Copper FICSMAS Ornament
+- id: Copper Ingot
+  machine: Smelter
+  power: 4
+  inputs: 30x Copper Ore
+  outputs: 30x Copper Ingot
+- id: Copper Ore
+  machine: Miner Mk.1
+  power: 5
+  inputs: 30x Copper Ore
+  outputs: 30x Copper Ore
+- id: Copper Ore (Quartz)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 100x Raw Quartz
+  outputs: 120x Copper Ore
+- id: Copper Ore (Sulfur)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 120x Sulfur
+  outputs: 120x Copper Ore
+- id: Copper Powder
+  machine: Constructor
+  power: 4
+  inputs: 300x Copper Ingot
+  outputs: 50x Copper Powder
+- id: Copper Sheet
+  machine: Constructor
+  power: 4
+  inputs: 20x Copper Ingot
+  outputs: 10x Copper Sheet
+- id: Crude Oil
+  machine: Oil Extractor
+  power: 40
+  inputs: 0.03x Crude Oil
+  outputs: 0.03x Crude Oil
+- id: Crystal Oscillator
+  machine: Manufacturer
+  power: 55
+  inputs: 18x Quartz Crystal, 14x Cable, 2.5x Reinforced Iron Plate
+  outputs: 1x Crystal Oscillator
+- id: Dark Matter Crystal
+  machine: Particle Accelerator
+  power: 1000
+  inputs: 30x Diamonds, 150x Dark Matter Residue
+  outputs: 30x Dark Matter Crystal
+- id: Dark Matter Residue
+  machine: Converter
+  power: 250
+  inputs: 50x Reanimated SAM
+  outputs: 100x Dark Matter Residue
+- id: Diamonds
+  machine: Particle Accelerator
+  power: 500
+  inputs: 600x Coal
+  outputs: 30x Diamonds
+- id: Electromagnetic Control Rod
+  machine: Assembler
+  power: 15
+  inputs: 6x Stator, 4x AI Limiter
+  outputs: 4x Electromagnetic Control Rod
+- id: Empty Canister
+  machine: Constructor
+  power: 4
+  inputs: 30x Plastic
+  outputs: 60x Empty Canister
+- id: Empty Fluid Tank
+  machine: Constructor
+  power: 4
+  inputs: 60x Aluminum Ingot
+  outputs: 60x Empty Fluid Tank
+- id: Encased Industrial Beam
+  machine: Assembler
+  power: 15
+  inputs: 18x Steel Beam, 36x Concrete
+  outputs: 6x Encased Industrial Beam
+- id: Encased Plutonium Cell
+  machine: Assembler
+  power: 15
+  inputs: 10x Plutonium Pellet, 20x Concrete
+  outputs: 5x Encased Plutonium Cell
+- id: Encased Uranium Cell
+  machine: Blender
+  power: 75
+  inputs: 50x Uranium, 15x Concrete, 40x Sulfuric Acid
+  outputs: 25x Encased Uranium Cell, 10x Sulfuric Acid
+- id: Excited Photonic Matter
+  machine: Converter
+  power: 250
+  outputs: 200x Excited Photonic Matter
+- id: Explosive Rebar
+  machine: Manufacturer
+  power: 55
+  inputs: 10x Iron Rebar, 10x Smokeless Powder, 10x Steel Pipe
+  outputs: 5x Explosive Rebar
+- id: Fabric
+  machine: Assembler
+  power: 15
+  inputs: 15x Mycelia, 75x Biomass
+  outputs: 15x Fabric
+- id: Fancy Fireworks
+  machine: Assembler
+  power: 15
+  inputs: 10x FICSMAS Tree Branch, 7.5x FICSMAS Bow
+  outputs: 2.5x Fancy Fireworks
+- id: Ficsite Ingot (Aluminum)
+  machine: Converter
+  power: 250
+  inputs: 60x Reanimated SAM, 120x Aluminum Ingot
+  outputs: 30x Ficsite Ingot
+- id: Ficsite Ingot (Caterium)
+  machine: Converter
+  power: 250
+  inputs: 45x Reanimated SAM, 60x Caterium Ingot
+  outputs: 15x Ficsite Ingot
+- id: Ficsite Ingot (Iron)
+  machine: Converter
+  power: 250
+  inputs: 40x Reanimated SAM, 240x Iron Ingot
+  outputs: 10x Ficsite Ingot
+- id: Ficsite Trigon
+  machine: Constructor
+  power: 4
+  inputs: 10x Ficsite Ingot
+  outputs: 30x Ficsite Trigon
+- id: FICSMAS Actual Snow
+  machine: Constructor
+  power: 4
+  inputs: 25x FICSMAS Gift
+  outputs: 10x FICSMAS Actual Snow
+- id: FICSMAS Bow
+  machine: Constructor
+  power: 4
+  inputs: 10x FICSMAS Gift
+  outputs: 5x FICSMAS Bow
+- id: FICSMAS Ornament Bundle
+  machine: Assembler
+  power: 15
+  inputs: 5x Copper FICSMAS Ornament, 5x Iron FICSMAS Ornament
+  outputs: 5x FICSMAS Ornament Bundle
+- id: FICSMAS Tree Branch
+  machine: Constructor
+  power: 4
+  inputs: 10x FICSMAS Gift
+  outputs: 10x FICSMAS Tree Branch
+- id: FICSMAS Wonder Star
+  machine: Assembler
+  power: 15
+  inputs: 5x FICSMAS Wreath, 20x Candy Cane
+  outputs: 1x FICSMAS Wonder Star
+- id: FICSMAS Wreath
+  machine: Assembler
+  power: 15
+  inputs: 15x FICSMAS Tree Branch, 6x FICSMAS Ornament Bundle
+  outputs: 2x FICSMAS Wreath
+- id: Ficsonium
+  machine: Particle Accelerator
+  power: 1000
+  inputs: 10x Plutonium Waste, 10x Singularity Cell, 200x Dark Matter Residue
+  outputs: 10x Ficsonium
+- id: Ficsonium Fuel Rod
+  machine: Quantum Encoder
+  power: 1000
+  inputs: 5x Ficsonium, 5x Electromagnetic Control Rod, 100x Ficsite Trigon, 50x Excited Photonic Matter
+  outputs: 2.5x Ficsonium Fuel Rod, 50x Dark Matter Residue
+- id: Fuel
+  machine: Refinery
+  power: 30
+  inputs: 60x Crude Oil
+  outputs: 40x Fuel, 30x Polymer Resin
+- id: Fused Modular Frame
+  machine: Blender
+  power: 75
+  inputs: 1.5x Heavy Modular Frame, 75x Aluminum Casing, 37.5x Nitrogen Gas
+  outputs: 1.5x Fused Modular Frame
+- id: Gas Filter
+  machine: Manufacturer
+  power: 55
+  inputs: 15x Fabric, 30x Coal, 15x Iron Plate
+  outputs: 7.5x Gas Filter
+- id: Gas Nobelisk
+  machine: Assembler
+  power: 15
+  inputs: 5x Nobelisk, 50x Biomass
+  outputs: 5x Gas Nobelisk
+- id: Heat Sink
+  machine: Assembler
+  power: 15
+  inputs: 37.5x Alclad Aluminum Sheet, 22.5x Copper Sheet
+  outputs: 7.5x Heat Sink
+- id: Heavy Modular Frame
+  machine: Manufacturer
+  power: 55
+  inputs: 10x Modular Frame, 40x Steel Pipe, 10x Encased Industrial Beam, 240x Screws
+  outputs: 2x Heavy Modular Frame
+- id: High-Speed Connector
+  machine: Manufacturer
+  power: 55
+  inputs: 210x Quickwire, 37.5x Cable, 3.75x Circuit Board
+  outputs: 3.75x High-Speed Connector
+- id: Homing Rifle Ammo
+  machine: Assembler
+  power: 15
+  inputs: 50x Rifle Ammo, 2.5x High-Speed Connector
+  outputs: 25x Homing Rifle Ammo
+- id: Iodine-Infused Filter
+  machine: Manufacturer
+  power: 55
+  inputs: 3.75x Gas Filter, 30x Quickwire, 3.75x Aluminum Casing
+  outputs: 3.75x Iodine-Infused Filter
+- id: Ionized Fuel
+  machine: Refinery
+  power: 30
+  inputs: 40x Rocket Fuel, 2.5x Power Shard
+  outputs: 40x Ionized Fuel, 5x Compacted Coal
+- id: Iron FICSMAS Ornament
+  machine: Foundry
+  power: 16
+  inputs: 15x Blue FICSMAS Ornament, 15x Iron Ingot
+  outputs: 5x Iron FICSMAS Ornament
+- id: Iron Ingot
+  machine: Smelter
+  power: 4
+  inputs: 30x Iron Ore
+  outputs: 30x Iron Ingot
+- id: Iron Ore
+  machine: Miner Mk.1
+  power: 5
+  inputs: 30x Iron Ore
+  outputs: 30x Iron Ore
+- id: Iron Ore (Limestone)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 240x Limestone
+  outputs: 120x Iron Ore
+- id: Iron Plate
+  machine: Constructor
+  power: 4
+  inputs: 30x Iron Ingot
+  outputs: 20x Iron Plate
+- id: Iron Rebar
+  machine: Constructor
+  power: 4
+  inputs: 15x Iron Rod
+  outputs: 15x Iron Rebar
+- id: Iron Rod
+  machine: Constructor
+  power: 4
+  inputs: 15x Iron Ingot
+  outputs: 15x Iron Rod
+- id: Limestone
+  machine: Miner Mk.1
+  power: 5
+  inputs: 30x Limestone
+  outputs: 30x Limestone
+- id: Limestone (Sulfur)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 20x Sulfur
+  outputs: 120x Limestone
+- id: Liquid Biofuel
+  machine: Refinery
+  power: 30
+  inputs: 90x Solid Biofuel, 45x Water
+  outputs: 60x Liquid Biofuel
+- id: Magnetic Field Generator
+  machine: Assembler
+  power: 15
+  inputs: 2.5x Versatile Framework, 1x Electromagnetic Control Rod
+  outputs: 1x Magnetic Field Generator
+- id: Modular Engine
+  machine: Manufacturer
+  power: 55
+  inputs: 2x Motor, 15x Rubber, 2x Smart Plating
+  outputs: 1x Modular Engine
+- id: Modular Frame
+  machine: Assembler
+  power: 15
+  inputs: 3x Reinforced Iron Plate, 12x Iron Rod
+  outputs: 2x Modular Frame
+- id: Motor
+  machine: Assembler
+  power: 15
+  inputs: 10x Rotor, 10x Stator
+  outputs: 5x Motor
+- id: Neural-Quantum Processor
+  machine: Quantum Encoder
+  power: 1000
+  inputs: 15x Time Crystal, 3x Supercomputer, 45x Ficsite Trigon, 75x Excited Photonic Matter
+  outputs: 3x Neural-Quantum Processor, 75x Dark Matter Residue
+- id: Nitric Acid
+  machine: Blender
+  power: 75
+  inputs: 120x Nitrogen Gas, 30x Water, 10x Iron Plate
+  outputs: 30x Nitric Acid
+- id: Nitrogen Gas (Bauxite)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 100x Bauxite
+  outputs: 120x Nitrogen Gas
+- id: Nitrogen Gas (Caterium)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 120x Caterium Ore
+  outputs: 120x Nitrogen Gas
+- id: Nobelisk
+  machine: Assembler
+  power: 15
+  inputs: 20x Black Powder, 20x Steel Pipe
+  outputs: 10x Nobelisk
+- id: Non-Fissile Uranium
+  machine: Blender
+  power: 75
+  inputs: 37.5x Uranium Waste, 25x Silica, 15x Nitric Acid, 15x Sulfuric Acid
+  outputs: 50x Non-Fissile Uranium, 15x Water
+- id: Nuclear Pasta
+  machine: Particle Accelerator
+  power: 1000
+  inputs: 100x Copper Powder, 0.5x Pressure Conversion Cube
+  outputs: 0.5x Nuclear Pasta
+- id: Nuke Nobelisk
+  machine: Manufacturer
+  power: 55
+  inputs: 2.5x Nobelisk, 10x Encased Uranium Cell, 5x Smokeless Powder, 3x AI Limiter
+  outputs: 0.5x Nuke Nobelisk
+- id: Packaged Alumina Solution
+  machine: Packager
+  power: 10
+  inputs: 120x Alumina Solution, 120x Empty Canister
+  outputs: 120x Packaged Alumina Solution
+- id: Packaged Fuel
+  machine: Packager
+  power: 10
+  inputs: 40x Fuel, 40x Empty Canister
+  outputs: 40x Packaged Fuel
+- id: Packaged Heavy Oil Residue
+  machine: Packager
+  power: 10
+  inputs: 30x Heavy Oil Residue, 30x Empty Canister
+  outputs: 30x Packaged Heavy Oil Residue
+- id: Packaged Ionized Fuel
+  machine: Packager
+  power: 10
+  inputs: 80x Ionized Fuel, 40x Empty Fluid Tank
+  outputs: 40x Packaged Ionized Fuel
+- id: Packaged Liquid Biofuel
+  machine: Packager
+  power: 10
+  inputs: 40x Liquid Biofuel, 40x Empty Canister
+  outputs: 40x Packaged Liquid Biofuel
+- id: Packaged Nitric Acid
+  machine: Packager
+  power: 10
+  inputs: 30x Nitric Acid, 30x Empty Fluid Tank
+  outputs: 30x Packaged Nitric Acid
+- id: Packaged Nitrogen Gas
+  machine: Packager
+  power: 10
+  inputs: 240x Nitrogen Gas, 60x Empty Fluid Tank
+  outputs: 60x Packaged Nitrogen Gas
+- id: Packaged Oil
+  machine: Packager
+  power: 10
+  inputs: 30x Crude Oil, 30x Empty Canister
+  outputs: 30x Packaged Oil
+- id: Packaged Rocket Fuel
+  machine: Packager
+  power: 10
+  inputs: 120x Rocket Fuel, 60x Empty Fluid Tank
+  outputs: 60x Packaged Rocket Fuel
+- id: Packaged Sulfuric Acid
+  machine: Packager
+  power: 10
+  inputs: 40x Sulfuric Acid, 40x Empty Canister
+  outputs: 40x Packaged Sulfuric Acid
+- id: Packaged Turbofuel
+  machine: Packager
+  power: 10
+  inputs: 20x Turbofuel, 20x Empty Canister
+  outputs: 20x Packaged Turbofuel
+- id: Packaged Water
+  machine: Packager
+  power: 10
+  inputs: 60x Water, 60x Empty Canister
+  outputs: 60x Packaged Water
+- id: Petroleum Coke
+  machine: Refinery
+  power: 30
+  inputs: 40x Heavy Oil Residue
+  outputs: 120x Petroleum Coke
+- id: Plastic
+  machine: Refinery
+  power: 30
+  inputs: 30x Crude Oil
+  outputs: 20x Plastic, 10x Heavy Oil Residue
+- id: Plutonium Fuel Rod
+  machine: Manufacturer
+  power: 55
+  inputs: 7.5x Encased Plutonium Cell, 4.5x Steel Beam, 1.5x Electromagnetic Control Rod, 2.5x Heat Sink
+  outputs: 0.25x Plutonium Fuel Rod
+- id: Plutonium Pellet
+  machine: Particle Accelerator
+  power: 500
+  inputs: 100x Non-Fissile Uranium, 25x Uranium Waste
+  outputs: 30x Plutonium Pellet
+- id: Power Shard (1)
+  machine: Constructor
+  power: 4
+  inputs: 7.5x Blue Power Slug
+  outputs: 7.5x Power Shard
+- id: Power Shard (2)
+  machine: Constructor
+  power: 4
+  inputs: 5x Yellow Power Slug
+  outputs: 10x Power Shard
+- id: Power Shard (5)
+  machine: Constructor
+  power: 4
+  inputs: 2.5x Purple Power Slug
+  outputs: 12.5x Power Shard
+- id: Pressure Conversion Cube
+  machine: Assembler
+  power: 15
+  inputs: 1x Fused Modular Frame, 2x Radio Control Unit
+  outputs: 1x Pressure Conversion Cube
+- id: Pulse Nobelisk
+  machine: Assembler
+  power: 15
+  inputs: 5x Nobelisk, 1x Crystal Oscillator
+  outputs: 5x Pulse Nobelisk
+- id: Quartz Crystal
+  machine: Constructor
+  power: 4
+  inputs: 37.5x Raw Quartz
+  outputs: 22.5x Quartz Crystal
+- id: Quickwire
+  machine: Constructor
+  power: 4
+  inputs: 12x Caterium Ingot
+  outputs: 60x Quickwire
+- id: Radio Control Unit
+  machine: Manufacturer
+  power: 55
+  inputs: 40x Aluminum Casing, 1.25x Crystal Oscillator, 2.5x Computer
+  outputs: 2.5x Radio Control Unit
+- id: Raw Quartz
+  machine: Miner Mk.1
+  power: 5
+  inputs: 30x Raw Quartz
+  outputs: 30x Raw Quartz
+- id: Raw Quartz (Bauxite)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 100x Bauxite
+  outputs: 120x Raw Quartz
+- id: Raw Quartz (Coal)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 240x Coal
+  outputs: 120x Raw Quartz
+- id: Reanimated SAM
+  machine: Constructor
+  power: 4
+  inputs: 120x SAM
+  outputs: 30x Reanimated SAM
+- id: Red FICSMAS Ornament
+  machine: Smelter
+  power: 4
+  inputs: 5x FICSMAS Gift
+  outputs: 5x Red FICSMAS Ornament
+- id: Reinforced Iron Plate
+  machine: Assembler
+  power: 15
+  inputs: 30x Iron Plate, 60x Screws
+  outputs: 5x Reinforced Iron Plate
+- id: Residual Fuel
+  machine: Refinery
+  power: 30
+  inputs: 60x Heavy Oil Residue
+  outputs: 40x Fuel
+- id: Residual Plastic
+  machine: Refinery
+  power: 30
+  inputs: 60x Polymer Resin, 20x Water
+  outputs: 20x Plastic
+- id: Residual Rubber
+  machine: Refinery
+  power: 30
+  inputs: 40x Polymer Resin, 40x Water
+  outputs: 20x Rubber
+- id: Rifle Ammo
+  machine: Assembler
+  power: 15
+  inputs: 15x Copper Sheet, 10x Smokeless Powder
+  outputs: 75x Rifle Ammo
+- id: Rocket Fuel
+  machine: Blender
+  power: 75
+  inputs: 60x Turbofuel, 10x Nitric Acid
+  outputs: 100x Rocket Fuel, 10x Compacted Coal
+- id: Rotor
+  machine: Assembler
+  power: 15
+  inputs: 20x Iron Rod, 100x Screws
+  outputs: 4x Rotor
+- id: Rubber
+  machine: Refinery
+  power: 30
+  inputs: 30x Crude Oil
+  outputs: 20x Rubber, 20x Heavy Oil Residue
+- id: SAM
+  machine: Miner Mk.1
+  power: 5
+  inputs: 30x SAM
+  outputs: 30x SAM
+- id: SAM Fluctuator
+  machine: Manufacturer
+  power: 55
+  inputs: 60x Reanimated SAM, 50x Wire, 30x Steel Pipe
+  outputs: 10x SAM Fluctuator
+- id: Screws
+  machine: Constructor
+  power: 4
+  inputs: 10x Iron Rod
+  outputs: 40x Screws
+- id: Shatter Rebar
+  machine: Assembler
+  power: 15
+  inputs: 10x Iron Rebar, 15x Quartz Crystal
+  outputs: 5x Shatter Rebar
+- id: Silica
+  machine: Constructor
+  power: 4
+  inputs: 22.5x Raw Quartz
+  outputs: 37.5x Silica
+- id: Singularity Cell
+  machine: Manufacturer
+  power: 55
+  inputs: 1x Nuclear Pasta, 20x Dark Matter Crystal, 100x Iron Plate, 200x Concrete
+  outputs: 10x Singularity Cell
+- id: Smart Plating
+  machine: Assembler
+  power: 15
+  inputs: 2x Reinforced Iron Plate, 2x Rotor
+  outputs: 2x Smart Plating
+- id: Smokeless Powder
+  machine: Refinery
+  power: 30
+  inputs: 20x Black Powder, 10x Heavy Oil Residue
+  outputs: 20x Smokeless Powder
+- id: Snowball
+  machine: Constructor
+  power: 4
+  inputs: 15x FICSMAS Actual Snow
+  outputs: 5x Snowball
+- id: Solid Biofuel
+  machine: Constructor
+  power: 4
+  inputs: 120x Biomass
+  outputs: 60x Solid Biofuel
+- id: Sparkly Fireworks
+  machine: Assembler
+  power: 15
+  inputs: 7.5x FICSMAS Tree Branch, 5x FICSMAS Actual Snow
+  outputs: 2.5x Sparkly Fireworks
+- id: Stator
+  machine: Assembler
+  power: 15
+  inputs: 15x Steel Pipe, 40x Wire
+  outputs: 5x Stator
+- id: Steel Beam
+  machine: Constructor
+  power: 4
+  inputs: 60x Steel Ingot
+  outputs: 15x Steel Beam
+- id: Steel Ingot
+  machine: Foundry
+  power: 16
+  inputs: 45x Iron Ore, 45x Coal
+  outputs: 45x Steel Ingot
+- id: Steel Pipe
+  machine: Constructor
+  power: 4
+  inputs: 30x Steel Ingot
+  outputs: 20x Steel Pipe
+- id: Stun Rebar
+  machine: Assembler
+  power: 15
+  inputs: 10x Iron Rebar, 50x Quickwire
+  outputs: 10x Stun Rebar
+- id: Sulfur
+  machine: Miner Mk.1
+  power: 5
+  inputs: 30x Sulfur
+  outputs: 30x Sulfur
+- id: Sulfur (Coal)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 200x Coal
+  outputs: 120x Sulfur
+- id: Sulfur (Iron)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 300x Iron Ore
+  outputs: 120x Sulfur
+- id: Sulfuric Acid
+  machine: Refinery
+  power: 30
+  inputs: 50x Sulfur, 50x Water
+  outputs: 50x Sulfuric Acid
+- id: Supercomputer
+  machine: Manufacturer
+  power: 55
+  inputs: 7.5x Computer, 3.75x AI Limiter, 5.625x High-Speed Connector, 52.5x Plastic
+  outputs: 1.875x Supercomputer
+- id: Superposition Oscillator
+  machine: Quantum Encoder
+  power: 1000
+  inputs: 30x Dark Matter Crystal, 5x Crystal Oscillator, 45x Alclad Aluminum Sheet, 125x Excited Photonic Matter
+  outputs: 5x Superposition Oscillator, 125x Dark Matter Residue
+- id: Sweet Fireworks
+  machine: Assembler
+  power: 15
+  inputs: 15x FICSMAS Tree Branch, 7.5x Candy Cane
+  outputs: 2.5x Sweet Fireworks
+- id: Synthetic Power Shard
+  machine: Quantum Encoder
+  power: 1000
+  inputs: 10x Time Crystal, 10x Dark Matter Crystal, 60x Quartz Crystal, 60x Excited Photonic Matter
+  outputs: 5x Power Shard, 60x Dark Matter Residue
+- id: Thermal Propulsion Rocket
+  machine: Manufacturer
+  power: 55
+  inputs: 2.5x Modular Engine, 1x Turbo Motor, 3x Cooling System, 1x Fused Modular Frame
+  outputs: 1x Thermal Propulsion Rocket
+- id: Time Crystal
+  machine: Converter
+  power: 250
+  inputs: 12x Diamonds
+  outputs: 6x Time Crystal
+- id: Turbo Motor
+  machine: Manufacturer
+  power: 55
+  inputs: 7.5x Cooling System, 3.75x Radio Control Unit, 7.5x Motor, 45x Rubber
+  outputs: 1.875x Turbo Motor
+- id: Turbo Rifle Ammo
+  machine: Blender
+  power: 75
+  inputs: 125x Rifle Ammo, 15x Aluminum Casing, 15x Turbofuel
+  outputs: 250x Turbo Rifle Ammo
+- id: Turbo Rifle Ammo
+  machine: Manufacturer
+  power: 55
+  inputs: 125x Rifle Ammo, 15x Aluminum Casing, 15x Packaged Turbofuel
+  outputs: 250x Turbo Rifle Ammo
+- id: Turbofuelalt
+  machine: Refinery
+  power: 30
+  inputs: 22.5x Fuel, 15x Compacted Coal
+  outputs: 18.75x Turbofuel
+- id: Unpackage Alumina Solution
+  machine: Packager
+  power: 10
+  inputs: 120x Packaged Alumina Solution
+  outputs: 120x Alumina Solution, 120x Empty Canister
+- id: Unpackage Fuel
+  machine: Packager
+  power: 10
+  inputs: 60x Packaged Fuel
+  outputs: 60x Fuel, 60x Empty Canister
+- id: Unpackage Heavy Oil Residue
+  machine: Packager
+  power: 10
+  inputs: 20x Packaged Heavy Oil Residue
+  outputs: 20x Heavy Oil Residue, 20x Empty Canister
+- id: Unpackage Ionized Fuel
+  machine: Packager
+  power: 10
+  inputs: 40x Packaged Ionized Fuel
+  outputs: 80x Ionized Fuel, 40x Empty Fluid Tank
+- id: Unpackage Liquid Biofuel
+  machine: Packager
+  power: 10
+  inputs: 60x Packaged Liquid Biofuel
+  outputs: 60x Liquid Biofuel, 60x Empty Canister
+- id: Unpackage Nitric Acid
+  machine: Packager
+  power: 10
+  inputs: 20x Packaged Nitric Acid
+  outputs: 20x Nitric Acid, 20x Empty Fluid Tank
+- id: Unpackage Nitrogen Gas
+  machine: Packager
+  power: 10
+  inputs: 60x Packaged Nitrogen Gas
+  outputs: 240x Nitrogen Gas, 60x Empty Fluid Tank
+- id: Unpackage Oil
+  machine: Packager
+  power: 10
+  inputs: 60x Packaged Oil
+  outputs: 60x Crude Oil, 60x Empty Canister
+- id: Unpackage Rocket Fuel
+  machine: Packager
+  power: 10
+  inputs: 60x Packaged Rocket Fuel
+  outputs: 120x Rocket Fuel, 60x Empty Fluid Tank
+- id: Unpackage Sulfuric Acid
+  machine: Packager
+  power: 10
+  inputs: 60x Packaged Sulfuric Acid
+  outputs: 60x Sulfuric Acid, 60x Empty Canister
+- id: Unpackage Turbofuel
+  machine: Packager
+  power: 10
+  inputs: 20x Packaged Turbofuel
+  outputs: 20x Turbofuel, 20x Empty Canister
+- id: Unpackage Water
+  machine: Packager
+  power: 10
+  inputs: 120x Packaged Water
+  outputs: 120x Water, 120x Empty Canister
+- id: Uranium
+  machine: Miner Mk.1
+  power: 5
+  inputs: 30x Uranium
+  outputs: 30x Uranium
+- id: Uranium Fuel Rod
+  machine: Manufacturer
+  power: 55
+  inputs: 20x Encased Uranium Cell, 1.2x Encased Industrial Beam, 2x Electromagnetic Control Rod
+  outputs: 0.4x Uranium Fuel Rod
+- id: Uranium Ore (Bauxite)
+  machine: Converter
+  power: 250
+  inputs: 10x Reanimated SAM, 480x Bauxite
+  outputs: 120x Uranium
+- id: Versatile Framework
+  machine: Assembler
+  power: 15
+  inputs: 2.5x Modular Frame, 30x Steel Beam
+  outputs: 5x Versatile Framework
+- id: Water
+  machine: Water Extractor
+  power: 20
+  inputs: 0.03x Water
+  outputs: 0.03x Water
+- id: Wire
+  machine: Constructor
+  power: 4
+  inputs: 15x Copper Ingot
+  outputs: 30x Wire

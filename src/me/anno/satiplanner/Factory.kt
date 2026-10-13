@@ -1,6 +1,14 @@
 package me.anno.satiplanner
 
+import me.anno.maths.Maths.sq
+import kotlin.math.log2
+import kotlin.math.pow
+
 class Factory(var type: FactoryType) {
+
+    companion object {
+        val overclockPower = log2(2.5) / log2(2.0)
+    }
 
     var index = -1
 
@@ -14,6 +22,8 @@ class Factory(var type: FactoryType) {
         get() = overclock * 0.01
     val outputMultiplier: Double
         get() = inputMultiplier * sloopMultiplier
+    val powerMultiplier: Double
+        get() = (overclock * 0.01).pow(overclockPower) * sq(sloopMultiplier)
 
     // todo find out max sloops
     val sloopMultiplier: Double

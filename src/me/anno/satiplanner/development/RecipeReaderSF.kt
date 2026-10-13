@@ -1,10 +1,12 @@
-package me.anno.satiplanner
+package me.anno.satiplanner.development
 
+import me.anno.satiplanner.FactoryType
+import me.anno.satiplanner.Resource
 import me.anno.utils.OS.res
 import me.anno.utils.structures.Iterators.toList
 import me.anno.utils.types.Strings.isBlank2
 
-fun readRecipes(): List<FactoryType> {
+fun readRecipesSF(): List<FactoryType> {
     val file = res.getChild("recipes.txt")
     val lines = file.readLinesSync(1024).toList()
     val types = ArrayList<FactoryType>()
@@ -24,8 +26,8 @@ fun readRecipes(): List<FactoryType> {
     return types
 }
 
-fun String.toResourceList(): ResourceList {
-    val result = ResourceList(4)
+fun String.toResourceList(): ArrayList<Resource> {
+    val result = ArrayList<Resource>(4)
     if (isBlank2()) return result
     val start = if (startsWith(' ')) 1 else 0
     val end = if (endsWith(" /min")) length - 5 else length
@@ -39,7 +41,7 @@ fun String.toResourceList(): ResourceList {
 }
 
 fun main() {
-    for (factory in readRecipes()) {
+    for (factory in readRecipesSF()) {
         println(factory)
     }
 }

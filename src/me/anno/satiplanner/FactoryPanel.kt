@@ -1,8 +1,11 @@
 package me.anno.satiplanner
 
+import me.anno.Time
 import me.anno.input.Input
 import me.anno.input.Key
 import me.anno.language.translation.NameDesc
+import me.anno.maths.Maths.clamp
+import me.anno.maths.Maths.dtTo01
 import me.anno.maths.Maths.sq
 import me.anno.parser.SimpleExpressionParser
 import me.anno.satiplanner.FactoryOptimizer.createSimpleFactory
@@ -17,6 +20,9 @@ import me.anno.ui.editor.files.FileNames.toAllowedFilename
 import me.anno.utils.Color.withAlpha
 import me.anno.utils.structures.lists.Lists.any2
 import me.anno.utils.structures.lists.Lists.none2
+import me.anno.utils.types.Floats.roundToIntOr
+import org.joml.Vector2d
+import org.joml.Vector2f
 import kotlin.concurrent.thread
 import kotlin.math.abs
 import kotlin.math.floor
@@ -57,8 +63,9 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
     }
 
     val statusFont = style.getFont("text")
-    var titleFont = style.getFont("text")
-    var textFont = titleFont
+    var limitFont = statusFont
+    var textFont = statusFont
+    var titleFont = statusFont.withBold(true)
 
     val unitsX = 7
     val unitsY0 = 2
@@ -79,14 +86,17 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
             true -> "✅"
             false -> "❌"
         }
-        canvas.drawText(x, y, statusFont, statusText, statusColor, bigBgColor)
+        canvas.drawText(
+            x, y, statusFont, statusText, statusColor,
+            bigBgColor.withAlpha(0)
+        )
     }
 
     fun drawPower(canvas: Canvas) {
-        val power = factories.sumOf { it.calculated * it.type.power }
+        val power = factories.sumOf { it.calculated * it.powerMultiplier * it.type.power }
         canvas.drawText(
-            x + width.shr(1), y, statusFont, "${power.format()} MW",
-            0xffffaa.withAlpha(255), bigBgColor,
+            x + width.shr(1), y, statusFont, "${power.roundToIntOr()} MW",
+            0xffffaa.withAlpha(255), bigBgColor.withAlpha(0),
             AxisAlignment.CENTER, AxisAlignment.MIN
         )
     }
@@ -162,9 +172,10 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
 
     fun drawFactories(canvas: Canvas, dx: Int, sw: Int, du: Int) {
         val scale = scale.x.toFloat()
-        titleFont = titleFont.withSize(scale * 0.5f)
+        limitFont = limitFont.withSize(scale * 0.5f)
         textFont = textFont.withSize(scale * 0.3f)
-        val titleFont = titleFont
+        val titleFont = titleFont.withSize(scale * 0.3f)
+        val limitFont = limitFont
         val textFont = textFont
 
         for (i in factories.indices) {
@@ -200,43 +211,56 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
             canvas.drawRect(x0, y0 + du, w, y1 - (y0 + du), nodeBgColor)
             canvas.drawRect(x0, y0, w, du, titleBgColor)
 
-            val titleX = x0 + du.shr(2)
-            val titleY = y0 + (du - titleFont.sizeInt).shr(1)
-            canvas.drawText(
-                // todo bug: height limit is not respected properly
-                titleX, titleY, titleFont, type.recipeName,
-                0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
-                w - du * 2, titleFont.sizeInt,
-                AxisAlignment.MIN, AxisAlignment.MIN,
-            )
+            val titleX = x0 + du.shr(3)
+            val titleY = y0 + (du - titleFont.sizeInt).shr(3)
+            if (titleFont.sizeInt > 3) {
+                canvas.drawText(
+                    titleX, titleY, titleFont, type.recipeName,
+                    0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
+                    w - du * 2, titleFont.sizeInt,
+                    AxisAlignment.MIN, AxisAlignment.MIN,
+                )
+                canvas.drawText(
+                    titleX, titleY + titleFont.sizeInt + limitFont.sizeInt.shr(2),
+                    textFont, type.factoryName,
+                    0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
+                    w - du * 2, limitFont.sizeInt,
+                    AxisAlignment.MIN, AxisAlignment.MIN,
+                )
+            }
 
-            val countY = y1 - du.shr(2) * 3
-            val hasLimit = factory.limit >= 0f
-            canvas.drawText(
-                px, countY, titleFont,
-                if (hasLimit) "> ${factory.limit} <" else factory.calculatedStr,
-                if (hasLimit) 0xffcc99.withAlpha(255) else 0xcccccc.withAlpha(255),
-                titleBgColor.withAlpha(0),
-                w, -1,
-                AxisAlignment.CENTER, AxisAlignment.MIN,
-            )
+            if (limitFont.sizeInt > 3) {
+                val countY = y1 - du.shr(2) * 3
+                val hasLimit = factory.limit >= 0f
+                canvas.drawText(
+                    px, countY, limitFont,
+                    if (hasLimit) "> ${factory.limit} <" else factory.calculatedStr,
+                    if (hasLimit) 0xffcc99.withAlpha(255) else 0xcccccc.withAlpha(255),
+                    titleBgColor.withAlpha(0),
+                    w, -1,
+                    AxisAlignment.CENTER, AxisAlignment.MIN,
+                )
+            }
 
             // draw multiplier and sloop
-            canvas.drawText(
-                x1 - sw.shr(1), y0 + du * 2 / 5, textFont, "${factory.overclock.format()}%",
-                0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
-                AxisAlignment.MAX, AxisAlignment.CENTER,
-            )
-            canvas.drawText(
-                x1 - sw.shr(1), y0 + du * 4 / 5, textFont, "${factory.sloops} Sloops",
-                0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
-                AxisAlignment.MAX, AxisAlignment.CENTER,
-            )
+            if (textFont.sizeInt > 3) {
+                canvas.drawText(
+                    x1 - sw.shr(1), y0 + du * 2 / 5, textFont, "${factory.overclock.format()}%",
+                    0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
+                    AxisAlignment.MAX, AxisAlignment.CENTER,
+                )
+                canvas.drawText(
+                    x1 - sw.shr(1), y0 + du * 4 / 5, textFont, "${factory.sloops} Sloops",
+                    0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
+                    AxisAlignment.MAX, AxisAlignment.CENTER,
+                )
+            }
 
             if (sw >= 2) {
                 val hl = textFont.sizeInt
                 val bg3 = 0x7985A0.withAlpha(255)
-                val bg2 = 0x60697F.withAlpha(255)
+                val bg2 = 0x723333.withAlpha(255)
+                val inputMultiplier = factory.inputMultiplier
                 for (i in type.inputs.indices) {
                     val y = y0 + du * (unitsY0s + i) + (du - sw).shr(1)
                     val input = factory.inputs.getOrNull(i)
@@ -244,19 +268,22 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                     val color = if (!input.isNullOrEmpty()) bg3 else bg2
                     val wl = if (i >= type.outputs.size) w - du else w.shr(1) - du
                     canvas.drawRect(x0, y, sw, sw, color, 1)
-                    canvas.drawText(
-                        x0 + du, y + sw.shr(1) - textFont.sizeInt, textFont, inputType.shortType,
-                        0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        wl, hl, AxisAlignment.MIN, AxisAlignment.MIN,
-                    )
-                    canvas.drawText(
-                        x0 + du, y + (sw + textFont.sizeInt).shr(1), textFont,
-                        "${(inputType.amount * factory.calculated).format()}/min",
-                        0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        wl, hl, AxisAlignment.MIN, AxisAlignment.MIN,
-                    )
+                    if (textFont.sizeInt > 3) {
+                        canvas.drawText(
+                            x0 + du, y + sw.shr(1) - textFont.sizeInt, textFont, inputType.shortType,
+                            0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
+                            wl, hl, AxisAlignment.MIN, AxisAlignment.MIN,
+                        )
+                        canvas.drawText(
+                            x0 + du, y + (sw + textFont.sizeInt).shr(1), textFont,
+                            "${(inputType.amount * factory.calculated * inputMultiplier).format()}/min",
+                            0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
+                            wl, hl, AxisAlignment.MIN, AxisAlignment.MIN,
+                        )
+                    }
                 }
 
+                val outputMultiplier = factory.outputMultiplier
                 for (i in type.outputs.indices) {
                     val y = y0 + du * (unitsY0s + i) + (du - sw).shr(1)
                     val output = factory.outputs.getOrNull(i)
@@ -264,17 +291,19 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                     val color = if (!output.isNullOrEmpty()) bg3 else bg2
                     val wl = if (i >= type.inputs.size) w - du else w.shr(1) - du
                     canvas.drawRect(x1 - sw, y, sw, sw, color, 1)
-                    canvas.drawText(
-                        x1 - du, y + sw.shr(1) - textFont.sizeInt, textFont, outputType.shortType,
-                        0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        wl, hl, AxisAlignment.MAX, AxisAlignment.MIN,
-                    )
-                    canvas.drawText(
-                        x1 - du, y + (sw + textFont.sizeInt).shr(1), textFont,
-                        "${(outputType.amount * factory.calculated).format()}/min",
-                        0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                        wl, hl, AxisAlignment.MAX, AxisAlignment.MIN,
-                    )
+                    if (textFont.sizeInt > 3) {
+                        canvas.drawText(
+                            x1 - du, y + sw.shr(1) - textFont.sizeInt, textFont, outputType.shortType,
+                            0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
+                            wl, hl, AxisAlignment.MAX, AxisAlignment.MIN,
+                        )
+                        canvas.drawText(
+                            x1 - du, y + (sw + textFont.sizeInt).shr(1), textFont,
+                            "${(outputType.amount * factory.calculated * outputMultiplier).format()}/min",
+                            0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
+                            wl, hl, AxisAlignment.MAX, AxisAlignment.MIN,
+                        )
+                    }
                 }
             }
 
@@ -304,9 +333,6 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
 
         validate()
 
-        drawStatus(canvas)
-        drawPower(canvas)
-
         val scale = scale.x.toFloat()
         val du = scale.toInt()
         val dx = (unitsX * 0.5f * scale).toInt()
@@ -315,6 +341,61 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
         drawLinks(canvas, dx, sw, du)
         drawFactories(canvas, dx, sw, du)
         drawDraggedLink(canvas, dx, sw, du)
+
+        drawStatus(canvas)
+        drawPower(canvas)
+    }
+
+    val velocity = Vector2f()
+    val acceleration = Vector2f()
+
+    override fun onUpdate() {
+        super.onUpdate()
+        applyMovement()
+    }
+
+    private val prevPos = Vector2d()
+    fun applyMovement() {
+        // if hovers on edge or types arrow or wasd keys, move
+        val a = acceleration
+        a.set(0f)
+        val window = window
+        if (isHovered && isInFocus && window != null) {
+            val dx = min(20, min(width, height) / 30)
+            val invDx = 1f / dx
+
+            a.x += clamp((window.mouseX - x) * invDx)
+            a.x -= clamp(((x + width) - window.mouseX) * invDx)
+
+            a.y += clamp((window.mouseY - y) * invDx)
+            a.y -= clamp(((y + height) - window.mouseY) * invDx)
+
+            val f = 2.5f
+            if (Input.isKeyDown(Key.KEY_W) || Input.isKeyDown(Key.KEY_ARROW_UP)) a.y -= f
+            if (Input.isKeyDown(Key.KEY_A) || Input.isKeyDown(Key.KEY_ARROW_LEFT)) a.x -= f
+            if (Input.isKeyDown(Key.KEY_S) || Input.isKeyDown(Key.KEY_ARROW_DOWN)) a.y += f
+            if (Input.isKeyDown(Key.KEY_D) || Input.isKeyDown(Key.KEY_ARROW_RIGHT)) a.x += f
+
+            a.mul(0.01f * min(width, height))
+        }
+
+        val dt = Time.deltaTime
+        val v = velocity.lerp(a, dtTo01(5f * dt.toFloat()))
+
+        if (Input.isLeftDown) {
+            // use actual movement, not direct movement
+            val dx = (center.x - prevPos.x).toFloat()
+            val dy = (center.y - prevPos.y).toFloat()
+            for (i in factories.indices) {
+                val factory = factories[i]
+                if (factory.isSelected) {
+                    factory.posX += dx
+                    factory.posY += dy
+                }
+            }
+        }
+        prevPos.set(center)
+        target.add(v.x * dt, v.y * dt)
     }
 
     val isDragging get() = draggedFactory != null
@@ -369,7 +450,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
 
     override fun onKeyUp(x: Float, y: Float, key: Key) {
         super.onKeyUp(x, y, key)
-        stopDragging(x, y)
+        if (key == Key.BUTTON_LEFT) stopDragging(x, y)
     }
 
     fun stopDragging(x: Float, y: Float) {

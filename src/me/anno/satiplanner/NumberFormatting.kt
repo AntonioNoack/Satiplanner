@@ -1,11 +1,13 @@
 package me.anno.satiplanner
 
+import kotlin.math.abs
 import kotlin.math.pow
 
 object NumberFormatting {
 
     fun Double.format(): String {
-        if (this > 1e9) return "Inf"
+        if (isNaN()) return "NaN"
+        if (abs(this) > 1e9) return "Inf"
         val str = toString()
         return if (str.endsWith(".0")) {
             str.substring(0, str.length - 2)

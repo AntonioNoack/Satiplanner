@@ -1,0 +1,5124 @@
+- id: A.I. Fluid Packer
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronScrew, 240x ModularFrame, 240x Plastic, 240x Rubber
+  outputs: 12x AB FluidPacker
+- id: AI Expansion Server
+  machine: QuantumEncoder
+  power: 2500
+  inputs: 4x SpaceElevatorPart 6, 8x TemporalProcessor, 16x QuantumOscillator, 160000x QuantumEnergy
+  outputs: 4x SpaceElevatorPart 12, 80000x DarkEnergy
+- id: AI Limiter
+  machine: AssemblerMk1
+  power: 15
+  inputs: 24x CateriumPlates, 18x TinnedWire
+  outputs: 6x CircuitBoardHighSpeed
+- id: AWESOME Shop
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x TinPlates, 1500x Cable, 6000x IronScrew
+  outputs: 60x ResourceSinkShop
+- id: AWESOME Sink
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x Rotor, 600x IronPlateReinforced, 1200x IronSheet, 1200x TinnedWire, 3000x IronScrew
+  outputs: 60x ResourceSink
+- id: AWESOME Storage Mk.1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 1200x IronSheet, 4800x IronScrew, 1440x TinnedWire, 600x Rotor, 900x IronPlateReinforced
+  outputs: 60x SinkStorageMk1
+- id: AWESOME Storage Mk.2
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x Motor, 900x SteelPlateReinforced, 300x ModularFrame, 4800x SteelBolt, 3000x Cement
+  outputs: 60x SinkStorageMk2
+- id: Acid-Base Mix
+  machine: ChemReactor
+  power: 50
+  inputs: 90x Salt, 120x Water
+  outputs: 45x CausticSoda, 45x LiquidHydrochloricAcid
+- id: Adaptive Control Unit
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 6x Computer, 9x SpaceElevatorPart 1, 12x HighSpeedConnector, 72x SolderWire
+  outputs: 4x SpaceElevatorPart 5
+- id: Air Collector
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x Rotor, 600x ModularFrame, 1200x TinPlates, 1200x BrassPipe, 600x Cable
+  outputs: 60x AirCollector
+- id: Air Collector extract Air
+  machine: AirCollector
+  power: 35
+  outputs: 50x Air
+- id: Air Collector extract Toxic Air via Gas Pillar
+  machine: AirCollector
+  power: 35
+  outputs: 30x ToxicAir
+- id: Air Collector extract Toxic Air via Resource Nodes
+  machine: AirCollector
+  power: 35
+  outputs: 50x ToxicAir
+- id: AlClad Belt Drive
+  machine: Blender
+  power: 75
+  inputs: 20x BeltDriveMk2, 60x AluminumPlate, 20x CoolingWater, 15x SlugSlime Low
+  outputs: 12.5x BeltDriveMk4
+- id: Alclad Aluminum Plate
+  machine: FoundryMk1
+  power: 16
+  inputs: 40x AlumniumSheet, 15x ZincPlates
+  outputs: 75x AluminumPlate
+- id: Algal Mass Extractor
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Rotor, 600x BronzePipe, 900x CopperSheet, 900x IronScrew
+  outputs: 60x BioWaterExtractor SF+
+- id: Algal Mass Extractor extract Algal Mass
+  machine: BioWaterExtractor_SF+
+  power: 20
+  outputs: 60x Res LiquidBioWater
+- id: Alien DNA Capsule
+  machine: ConstructorMk1
+  power: 4
+  inputs: 10x AlienProtein
+  outputs: 10x AlienDNACapsule
+- id: Alien Power Augmenter
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x WAT1, 6000x SAMFluctuator, 3000x Motor, 1200x Computer, 3000x CateriumHeatsink
+  outputs: 60x AlienPowerBuilding
+- id: Alien Power Matrix
+  machine: QuantumEncoder
+  power: 2500
+  inputs: 12.5x CrystalShard, 10x QuantumOscillator, 6.25x SAMFluctuator, 100000x QuantumEnergy
+  outputs: 2.5x AlienPowerFuel, 50000x DarkEnergy
+- id: All In One Cheat Building
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BP EquipmentDescriptorBeacon
+  outputs: 60x ItemCreateAndSink
+- id: 'Alternate: Adaptive Command Unit'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 1x ComputerSuper, 2x ModularFrameHeavy
+  outputs: 1x SpaceElevatorPart 5
+- id: 'Alternate: Alclad Bronze Plate'
+  machine: FoundryMk1
+  power: 16
+  inputs: 60x AluminumIngot, 22.5x BronzePlates
+  outputs: 75x AluminumPlate
+- id: 'Alternate: Alclad Busbar'
+  machine: ConstructorMk1
+  power: 4
+  inputs: 18x AluminumPlate
+  outputs: 18x CopperBusbar
+- id: 'Alternate: Alternator'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 6.5x InvarPlates, 20x HighSpeedWire
+  outputs: 7.5x Rotor
+- id: 'Alternate: Aluminum Belt Drive'
+  machine: Blender
+  power: 75
+  inputs: 6.25x BeltDriveMk3, 37.5x AluminumCasing, 15x SlugSlime Low, 20x CoolingWater
+  outputs: 12.5x BeltDriveMk4
+- id: 'Alternate: Aluminum Brass Casing'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 99.99999602635717x AlumniumSheet, 74.99999701976787x BrassIngot
+  outputs: 99.99999602635717x AluminumCasing
+- id: 'Alternate: Aluminum Fluid Tank'
+  machine: ConstructorMk1
+  power: 4
+  inputs: 30x AluminumIngot
+  outputs: 60x GasTank
+- id: 'Alternate: Aluminum Rod'
+  machine: SmelterMk1
+  power: 4
+  inputs: 10x AluminumIngot
+  outputs: 60x IronRod
+- id: 'Alternate: Automated Portable Miner'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 7.5x Rotor, 37.5x IronRod
+  outputs: 3.75x BP ItemDescriptorPortableMiner
+- id: 'Alternate: Black Magnitar™'
+  machine: FlexibleBlastFurnaceSmelter
+  power: 50
+  inputs: 45x LiquidSteel, 30x LiquidCobalt, 22.5x ColdSlag
+  outputs: 90x LiquidInvar
+- id: 'Alternate: Brass Heatsink'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 20x CateriumPlates, 20x BrassPipe
+  outputs: 10x CateriumHeatsink
+- id: 'Alternate: Brazed Busbar'
+  machine: OilRefinery
+  power: 30
+  inputs: 30x CopperSheet, 18x LiquidSolder
+  outputs: 45x CopperBusbar
+- id: 'Alternate: Brazing Rod'
+  machine: ConstructorMk1
+  power: 4
+  inputs: 10x BrassIngot
+  outputs: 5x SolderRod
+- id: 'Alternate: Brazing Wire'
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 15x LiquidNickle, 30x Air, 225x IronWire
+  outputs: 150x SolderWire
+- id: 'Alternate: Cast Bronze Ingot'
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 48x LiquidCopper, 20x LiquidTin
+  outputs: 180x BronzeIngot
+- id: 'Alternate: Cast Iron Screw'
+  machine: SmelterMk1
+  power: 4
+  inputs: 20x IronIngot
+  outputs: 40x IronScrew
+- id: 'Alternate: Cast Iron Wire'
+  machine: SmelterMk1
+  power: 4
+  inputs: 30x IronIngot
+  outputs: 45x IronWire
+- id: 'Alternate: Cast Tin Plate'
+  machine: FoundryMk1
+  power: 16
+  inputs: 20x TinIngot, 30x IronIngot
+  outputs: 30x TinPlates
+- id: 'Alternate: Caterium Circuit Board'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 50x Plastic, 6x CateriumPlates
+  outputs: 14x CircuitBoard
+- id: 'Alternate: Caterium Computer'
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 14x CircuitBoard, 40x Cable, 56x HighSpeedWire, 50x Rubber
+  outputs: 4x Computer
+- id: 'Alternate: Classic Steel Ingot'
+  machine: FoundryMk1
+  power: 16
+  inputs: 30x IronIngot, 15x CarbonDust
+  outputs: 30x SteelIngot
+- id: 'Alternate: Compact Biomass'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 20x Biofuel, 40x GenericBiomass
+  outputs: 60x CompactBiomass
+- id: 'Alternate: Compacted Iron Plate'
+  machine: ConstructorMk1
+  power: 4
+  inputs: 30x IronPlate
+  outputs: 3x IronPlateReinforced
+- id: 'Alternate: Condensed Graphene'
+  machine: OilRefinery
+  power: 30
+  inputs: 30x KLIB NaturalGas
+  outputs: 60x CarbonDust
+- id: 'Alternate: Cooling Device'
+  machine: Blender
+  power: 75
+  inputs: 7.5x Motor, 15x AluminumPlateReinforced, 180x NitrogenGas
+  outputs: 15x CoolingSystem
+- id: 'Alternate: Crystal Resonator'
+  machine: Blender
+  power: 75
+  inputs: 60x QuartzCrystal, 18x CateriumPlates, 9x CausticSoda
+  outputs: 6x CrystalOscillator
+- id: 'Alternate: DC Motor'
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 15x Rotor, 19.5x InvarPlates, 9x CobaltPlates, 24x CarbonDust
+  outputs: 15x Motor
+- id: 'Alternate: Dark Matter Condensate'
+  machine: HadronCollider
+  power: 1000
+  inputs: 120000x DarkEnergy
+  outputs: 15x DarkMatter
+- id: 'Alternate: Dark Matter Trap'
+  machine: HadronCollider
+  power: 1000
+  inputs: 20x TimeCrystal, 15x FicsiteMesh, 100000x DarkEnergy
+  outputs: 40x DarkMatter
+- id: 'Alternate: Dark Neutron Fuel'
+  machine: Blender
+  power: 75
+  inputs: 60000x RocketFuel, 6x Neutronium, 18x DarkMatter
+  outputs: 90000x IonizedFuel
+- id: 'Alternate: Dark-Kerr Crystal'
+  machine: HadronCollider
+  power: 1000
+  inputs: 20x TimeC StabilizedTimeCrystal, 80000x DarkEnergy
+  outputs: 40x DarkMatter
+- id: 'Alternate: Desalted Crude Oil'
+  machine: ChemReactor
+  power: 50
+  inputs: 75x LiquidOil
+  outputs: 30x PurifiedCrudeOil, 45x Salt
+- id: 'Alternate: Detonation Diamond'
+  machine: HadronCollider
+  power: 500
+  inputs: 240x Coal, 240x Gunpowder
+  outputs: 60x Diamond
+- id: 'Alternate: Diamond Power Fragment'
+  machine: ChemReactor
+  power: 50
+  inputs: 16x Diamond, 24x SlugSlime Mid
+  outputs: 12x PowerShardCrystal
+- id: 'Alternate: Diamond Simulant'
+  machine: Converter
+  power: 400
+  inputs: 200x PetroleumCoke, 80x Silica
+  outputs: 40x Diamond
+- id: 'Alternate: Diluted Bitumen'
+  machine: OilRefinery
+  power: 30
+  inputs: 15x Asphalt, 90x Water
+  outputs: 15x HeavyOilResidue
+- id: 'Alternate: Diluted Sulfuric Acid'
+  machine: OilRefinery
+  power: 30
+  inputs: 80x SulfurPowder, 80x Gas Steam Hot
+  outputs: 40x SulfuricAcid
+- id: 'Alternate: Direct Steel'
+  machine: FlexibleBlastFurnaceSmelter
+  power: 50
+  inputs: 120x IronIngot, 60x FlueGas, 75x Air
+  outputs: 60x LiquidSteel
+- id: 'Alternate: Distilled Oil Residue'
+  machine: ChemReactor
+  power: 50
+  inputs: 120x LiquidOil, 24x Gas Steam Hot
+  outputs: 48x HeavyOilResidue, 24x Asphalt, 120x PetroleumCoke
+- id: 'Alternate: EMF Generator'
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 4x PowerRelay, 12x SpaceElevatorPart 3, 12x TitanPipe, 48x CobaltPlates
+  outputs: 4x SpaceElevatorPart 6
+- id: 'Alternate: Electric Turbo Motor'
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 7.5x Motor, 7.5x ModularFrameLightweight, 12.5x ElectromagneticControlRod, 60x SolderWire
+  outputs: 2.5x MotorLightweight
+- id: 'Alternate: Electronic Control Rod'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 11.25x CircuitBoardHighSpeed, 100x HighSpeedWire
+  outputs: 7.5x ElectromagneticControlRod
+- id: 'Alternate: Encased Industrial Pipe'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 40x SteelPipe, 48x Cement
+  outputs: 4x SteelPlateReinforced
+- id: 'Alternate: Encoded Crystal Computer'
+  machine: QuantumEncoder
+  power: 2500
+  inputs: 50x CircuitBoard, 5x CrystalOscillator, 62.5x Cable, 75000x QuantumEnergy
+  outputs: 12.5x Computer, 25000x DarkEnergy
+- id: 'Alternate: Fastened Frame'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 10x IronPlateReinforced, 150x IronScrew
+  outputs: 20x ModularFrame
+- id: 'Alternate: Fertile Uranium'
+  machine: Blender
+  power: 75
+  inputs: 7.5x UranChloride, 10x NitricAcid, 20x Sand
+  outputs: 50x NonFissibleUranium
+- id: 'Alternate: Ficsite™ Pipe'
+  machine: ConstructorMk1
+  power: 4
+  inputs: 15x FicsiteIngot
+  outputs: 10x TitanPipe
+- id: 'Alternate: Fine Black Powder'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 20x SulfurPowder, 40x CarbonDust
+  outputs: 40x Gunpowder
+- id: 'Alternate: Flexible Framework'
+  machine: HadronCollider
+  power: 1000
+  inputs: 22.5x SteelPlate, 37.5x Rubber, 7.5x Gas Titantetrachlorid
+  outputs: 18.75x SpaceElevatorPart 2
+- id: 'Alternate: Forged Steel Bolt'
+  machine: ConstructorMk1
+  power: 4
+  inputs: 15x SteelPlate
+  outputs: 100x SteelBolt
+- id: 'Alternate: Fused Quickwire'
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 3.75x LiquidGold, 22.5x LiquidCopper
+  outputs: 225x HighSpeedWire
+- id: 'Alternate: Fused wire'
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 5x LiquidCopper, 10x LiquidGold
+  outputs: 150x Wire
+- id: 'Alternate: Fusion Welded Frame'
+  machine: Blender
+  power: 75
+  inputs: 7.5x ModularFrameHeavy, 168.75x AluminumPlate, 45x LiquidFuel, 18.75x NitricAcid
+  outputs: 3.75x ModularFrameFused
+- id: 'Alternate: Gravity Cell'
+  machine: Converter
+  power: 400
+  inputs: 1.5x SpaceElevatorPart 9, 75x DarkMatter
+  outputs: 7.5x SingularityCell
+- id: 'Alternate: Heat Exchanger'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 24x AlumniumSheet, 7.199999999999999x CateriumHeatsink
+  outputs: 12x AluminumPlateReinforced
+- id: 'Alternate: Heavy Fastened Frame'
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 16x ModularFrame, 12x SteelPlateReinforced, 300x SteelBolt, 200x IronScrew
+  outputs: 8x ModularFrameHeavy
+- id: 'Alternate: Heavy Welded Frame'
+  machine: Blender
+  power: 75
+  inputs: 7.5x ModularFrame, 30x SteelPlateReinforced, 90x LiquidFuel
+  outputs: 7.5x ModularFrameHeavy
+- id: 'Alternate: Holographic Kerr Crystal'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 25x Res KerrCrystal, 22.5x PhotovoltaicCell
+  outputs: 15x TimeC StabilizedTimeCrystal
+- id: 'Alternate: Hydro Diamond'
+  machine: HadronCollider
+  power: 500
+  inputs: 150x CarbonDust, 60x Gas Hydrogen
+  outputs: 30x Diamond
+- id: 'Alternate: Instant Bar Magnet'
+  machine: OilRefinery
+  power: 30
+  inputs: 6x PowerShardCrystal, 45x LiquidInvar
+  outputs: 78x InvarPlates, 12x SlugSlime Mid
+- id: 'Alternate: Instant Titanium Plate'
+  machine: Blender
+  power: 75
+  inputs: 180x PurifiedTitan, 135x MagnesiumGranules, 120x KLIB NaturalGas, 60x Gas Chlor
+  outputs: 30x TitanPlates
+- id: 'Alternate: Insulated Cable'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 45x Wire, 15x Rubber
+  outputs: 75x Cable
+- id: 'Alternate: Insulated Cryo Tank'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 15x GasTank, 15x Rubber
+  outputs: 15x NC CryoTankEmpty
+- id: 'Alternate: Integrated Silicon Circuit'
+  machine: QuantumEncoder
+  power: 2500
+  inputs: 200x Silica, 100x CopperSheet, 60000x QuantumEnergy
+  outputs: 80x CircuitBoard, 20000x DarkEnergy
+- id: 'Alternate: Ionized Fuel'
+  machine: OilRefinery
+  power: 30
+  inputs: 50000x RocketFuel, 10x PowerShardCrystal
+  outputs: 60000x IonizedFuel
+- id: 'Alternate: Leached Alumina'
+  machine: OilRefinery
+  power: 30
+  inputs: 40x CryoliteResidue, 25x SulfuricAcid
+  outputs: 30000x AluminaSolution, 10x Salt
+- id: 'Alternate: Leaded Copper Powder'
+  machine: Crusher
+  power: 4
+  inputs: 120x CopperIngot, 180x LeadIngot
+  outputs: 20x CopperDust
+- id: 'Alternate: Leaded Fuel'
+  machine: OilRefinery
+  power: 30
+  inputs: 15000x HeavyOilResidue, 15x CrushedLead
+  outputs: 45x LiquidFuel
+- id: 'Alternate: MOX Uranium Cell'
+  machine: HadronCollider
+  power: 4000
+  inputs: 80x NonFissibleUranium, 12x PlutoniumCell, 6x Neutronium
+  outputs: 24x UraniumCell
+- id: 'Alternate: Magnitide™ Billet'
+  machine: FoundryMk1
+  power: 16
+  inputs: 5x CobaltIngot, 10x AluminumIngot
+  outputs: 45x InvarIngot
+- id: 'Alternate: Modular Steel Frame'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 10x IronPlateReinforced, 7.5x SteelPlate
+  outputs: 5x ModularFrame
+- id: 'Alternate: Modular Turbo Engine'
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 11.25x SpaceElevatorPart 2, 0.7500000000000001x MotorLightweight, 30x Fuel
+  outputs: 3x SpaceElevatorPart 4
+- id: 'Alternate: Modular Welded Frame'
+  machine: Blender
+  power: 75
+  inputs: 22.5x IronPlateReinforced, 67.5x SteelRod, 30x Ethylene
+  outputs: 30x ModularFrame
+- id: 'Alternate: Nickel-Aluminum Coil'
+  machine: OilRefinery
+  power: 30
+  inputs: 30000x AluminaSolution, 45x CrushedNickle
+  outputs: 75x AlumniumSheet, 15x Water
+- id: 'Alternate: Nickel-Aluminum Ingot'
+  machine: OilRefinery
+  power: 30
+  inputs: 40000x AluminaSolution, 60x CrushedNickle
+  outputs: 100x AluminumIngot, 20x Water
+- id: 'Alternate: Nickel-Zinc Battery'
+  machine: ChemReactor
+  power: 50
+  inputs: 12x LiquidZinc, 15x LiquidNickle, 20x FluidCanister
+  outputs: 25x Battery
+- id: 'Alternate: Nitrate Coolant'
+  machine: Blender
+  power: 75
+  inputs: 60x NitrogenGas, 15x LiquidHydrochloricAcid, 15x CopperSheet
+  outputs: 90x CoolingWater
+- id: 'Alternate: Nitro Rocket Fuel'
+  machine: Blender
+  power: 75
+  inputs: 149.99999403953575x LiquidFuel, 74.99999701976787x NitrogenGas, 49.99999801317858x GunpowderMK2
+  outputs: 99999.99602635717x RocketFuel
+- id: 'Alternate: OC Supercomputer'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 3x ModularFrameLightweight, 5x CoolingSystem
+  outputs: 1.5x ComputerSuper
+- id: 'Alternate: PetCoke Dust'
+  machine: Crusher
+  power: 4
+  inputs: 60x PetroleumCoke
+  outputs: 30x CarbonDust
+- id: 'Alternate: Photovoltaic Cell'
+  machine: QuantumEncoder
+  power: 2500
+  inputs: 150x QuartzCrystal, 45x CopperBusbar, 30x ZincPlates, 54000x QuantumEnergy
+  outputs: 45x PhotovoltaicCell, 18000x DarkEnergy
+- id: 'Alternate: Plastic Plating'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 3x Rotor, 30x Plastic
+  outputs: 3x SpaceElevatorPart 1
+- id: 'Alternate: Plutonium Fuel Unit'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 12x PlutoniumCell, 1x PressureConversionCube
+  outputs: 1x PlutoniumFuelRod
+- id: 'Alternate: Polymer Resin'
+  machine: OilRefinery
+  power: 30
+  inputs: 30x Ethylene
+  outputs: 180x PolymerResin, 10x LiquidFuel
+- id: 'Alternate: Power Conversion Cube'
+  machine: Converter
+  power: 400
+  inputs: 1.25x TitanModularFrame, 10x SAMFluctuator
+  outputs: 6.25x PressureConversionCube
+- id: 'Alternate: Proto-Ficsonium'
+  machine: HadronCollider
+  power: 2000
+  inputs: 2x SpaceElevatorPart 9, 120x NuclearWaste, 50000x DarkEnergy
+  outputs: 10x Ficsonium
+- id: 'Alternate: Pure Coolant Oil'
+  machine: OilRefinery
+  power: 30
+  inputs: 50x Gas Hydrogen, 0.01x PackagedGas CarbonDioxide
+  outputs: 30x CoolingWater, 10x GasTank
+- id: 'Alternate: Pure Ethylene'
+  machine: OilRefinery
+  power: 30
+  inputs: 80x Gas Hydrogen, 0.02x PackagedGas CarbonDioxide
+  outputs: 60x Ethylene, 20x GasTank
+- id: 'Alternate: Pure Natural Gas'
+  machine: ChemReactor
+  power: 50
+  inputs: 48x PurifiedCrudeOil, 18x Gas Titantetrachlorid
+  outputs: 120x KLIB NaturalGas, 96x PolymerResin
+- id: 'Alternate: Pure Solder Wire'
+  machine: ConstructorMk1
+  power: 4
+  inputs: 10x SolderRod
+  outputs: 15x SolderWire
+- id: 'Alternate: Pure Steel Beam'
+  machine: ConstructorMk1
+  power: 4
+  inputs: 24x SteelIngot
+  outputs: 6x SteelPlate
+- id: 'Alternate: Pure Steel Pipe'
+  machine: ConstructorMk1
+  power: 4
+  inputs: 24x SteelIngot
+  outputs: 12x SteelPipe
+- id: 'Alternate: Pure Time Crystal'
+  machine: Converter
+  power: 400
+  inputs: 45x Diamond
+  outputs: 15x TimeCrystal
+- id: 'Alternate: Pure Tin Wire'
+  machine: ConstructorMk1
+  power: 4
+  inputs: 15x TinRod
+  outputs: 11.25x TinnedWire
+- id: 'Alternate: RF Connection Unit'
+  machine: QuantumEncoder
+  power: 2500
+  inputs: 56.25x QuartzCrystal, 30x AluminumPlateReinforced, 11.25x HighSpeedConnector, 90000x QuantumEnergy
+  outputs: 11.25x ModularFrameLightweight, 30000x DarkEnergy
+- id: 'Alternate: Radio Control System'
+  machine: Blender
+  power: 75
+  inputs: 6x CrystalOscillator, 24x Battery, 24000x AluminaSolution, 48x CoolingWater
+  outputs: 6x ModularFrameLightweight, 12x CoolingWater
+- id: 'Alternate: Recycled Caustic Soda'
+  machine: OilRefinery
+  power: 30
+  inputs: 80x CryoliteResidue, 15x LiquidHydrochloricAcid
+  outputs: 45x CausticSoda
+- id: 'Alternate: Recycled Muriatic Acid'
+  machine: OilRefinery
+  power: 30
+  inputs: 80x CryoliteResidue, 15x CausticSoda
+  outputs: 45x LiquidHydrochloricAcid
+- id: 'Alternate: Red Brass Ingot'
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 30x LiquidCopper, 45x ZincIngot, 30x LiquidTin
+  outputs: 75x BrassIngot, 75x BronzeIngot
+- id: 'Alternate: Refined Slurry'
+  machine: OilRefinery
+  power: 30
+  inputs: 30x LiquidSlag
+  outputs: 60x Gangue, 7.5x Water
+- id: 'Alternate: Resonance Crystal'
+  machine: Converter
+  power: 400
+  inputs: 15x Diamond, 30x QuartzCrystal
+  outputs: 15x TimeCrystal
+- id: 'Alternate: Rolled Bronze Pipe'
+  machine: ConstructorMk1
+  power: 4
+  inputs: 8x BronzePlates
+  outputs: 16x BronzePipe
+- id: 'Alternate: Rolled Tin Sheet'
+  machine: ConstructorMk1
+  power: 4
+  inputs: 30x TinPlates
+  outputs: 22.5x TinSheet
+- id: 'Alternate: SAM Regulator'
+  machine: QuantumEncoder
+  power: 2500
+  inputs: 112.5x SAMIngot, 2.5x ModularFrameLightweight, 90000x QuantumEnergy
+  outputs: 7.5x SAMFluctuator, 90000x DarkEnergy
+- id: 'Alternate: Salty Slag'
+  machine: FoundryMk1
+  power: 16
+  inputs: 15x Salt, 45x MagnesiumGranules
+  outputs: 30x ColdSlag
+- id: 'Alternate: Silicon High-Speed Interface'
+  machine: QuantumEncoder
+  power: 2500
+  inputs: 150x Silica, 225x HighSpeedWire, 60x CircuitBoard, 90000x QuantumEnergy
+  outputs: 22.5x HighSpeedConnector, 30000x DarkEnergy
+- id: 'Alternate: Solid Brass Ingot'
+  machine: FoundryMk1
+  power: 16
+  inputs: 20x CopperIngot, 20x ZincIngot
+  outputs: 40x BrassIngot
+- id: 'Alternate: Solid-State Brass Drive'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 8x Stator, 18x BrassPlates
+  outputs: 20x BeltDriveMk2
+- id: 'Alternate: Sour Ionized Fuel'
+  machine: Converter
+  power: 400
+  inputs: 75x TurboFuel, 7.5x CrystalShard
+  outputs: 75000x IonizedFuel
+- id: 'Alternate: Sour Packaged Rocket Fuel'
+  machine: OilRefinery
+  power: 30
+  inputs: 75x LiquidTurboFuel, 30x PackagedNitricAcid
+  outputs: 30x PackagedRocketFuel, 12x NitricAcid
+- id: 'Alternate: Sour Packaged Turbofuel'
+  machine: Blender
+  power: 75
+  inputs: 10000x HeavyOilResidue, 35x Sulfurtrixid, 100x PetroleumCoke, 0.08x PackagedWater
+  outputs: 80x TurboFuel
+- id: 'Alternate: Steel Cast Plate'
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 60x LiquidSteel, 20x Water
+  outputs: 200x IronPlate, 10x Gas Steam Hot
+- id: 'Alternate: Steel Rotor'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 24x CopperBusbar, 24x SteelPipe
+  outputs: 12x Rotor
+- id: 'Alternate: Stitched Iron Plate'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 12x IronPlate, 27x TinnedWire
+  outputs: 9x IronPlateReinforced
+- id: 'Alternate: Super-state Computer'
+  machine: QuantumEncoder
+  power: 2500
+  inputs: 12x Computer, 54x CircuitBoardHighSpeed, 150x Plastic, 108000x QuantumEnergy
+  outputs: 9x ComputerSuper, 36000x DarkEnergy
+- id: 'Alternate: Synthetic Power Shard'
+  machine: QuantumEncoder
+  power: 2500
+  inputs: 3.75x PowerShardCrystal, 3.75x TimeCrystal, 7.5x DarkMatter, 75000x QuantumEnergy
+  outputs: 7.5x CrystalShard, 37500x DarkEnergy
+- id: 'Alternate: TITAN Rocket System'
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 3x MotorLightweight, 4x SpaceElevatorPart 4, 1x TitanModularFrame, 50x PackagedIonizedFuel
+  outputs: 4x SpaceElevatorPart 8
+- id: 'Alternate: Tempered Steel Rod'
+  machine: FoundryMk1
+  power: 16
+  inputs: 60x IronRod, 25x CarbonDust
+  outputs: 25x SteelRod
+- id: 'Alternate: Titanium Stator'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 3x TitanPipe, 18x CopperBusbar
+  outputs: 18x Stator
+- id: 'Alternate: Transformer Core'
+  machine: AssemblerMk1
+  power: 15
+  inputs: 15x InvarPipe, 80x HighSpeedWire
+  outputs: 10x Stator
+- id: 'Alternate: Turbo Thermoplastic'
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 30x LiquidTurboFuel, 54x Gas Steam Hot
+  outputs: 135x Plastic, 135x Rubber
+- id: 'Alternate: Turbofuel'
+  machine: ChemReactor
+  power: 50
+  inputs: 60x LiquidFuel, 37.5x SulfuricAcid
+  outputs: 60x LiquidTurboFuel, 15x SulfurPowder
+- id: 'Alternate: Turbofuel Engine'
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 7.5x Motor, 22.5x Stator, 60x AluminumPlateReinforced, 75x TurboFuel
+  outputs: 3.75x MotorLightweight
+- id: 'Alternate: Uranium Fuel Unit'
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 15x UraniumCell, 5x SteelPlateReinforced, 5x ElectromagneticControlRod, 30x LeadSheet
+  outputs: 1x NuclearFuelRod
+- id: 'Alternate: Volatile Turbofuel'
+  machine: OilRefinery
+  power: 30
+  inputs: 48x LiquidFuel, 24x Gunpowder
+  outputs: 40x LiquidTurboFuel
+- id: 'Alternate: Water-cooled Radiator'
+  machine: OilRefinery
+  power: 30
+  inputs: 40x AluminumCasing, 30x Water
+  outputs: 10x AluminumPlateReinforced
+- id: 'Alternate: Welded Bronze Frame'
+  machine: Blender
+  power: 75
+  inputs: 75x BronzePlates, 90x BronzeBeam, 30x Ethylene
+  outputs: 30x BronzeFrame
+- id: 'Alternate: Welded Iron Plate'
+  machine: Blender
+  power: 75
+  inputs: 60x IronPlate, 45x IronWire, 15x Ethylene
+  outputs: 30x IronPlateReinforced
+- id: Alumina Solution - Acidic
+  machine: Blender
+  power: 75
+  inputs: 120x CrushedBauxite, 80x CarbonDust, 60x LiquidHydrochloricAcid
+  outputs: 120000x AluminaSolution, 160x CryoliteResidue
+- id: Alumina Solution - Basic
+  machine: Blender
+  power: 75
+  inputs: 120x CrushedBauxite, 80x CarbonDust, 60x CausticSoda
+  outputs: 40000x AluminaSolution, 320x CryoliteResidue
+- id: Aluminum Casing
+  machine: AssemblerMk1
+  power: 15
+  inputs: 30x AluminumIngot, 20x Rubber
+  outputs: 40x AluminumCasing
+- id: Apple
+  machine: FF_TreePlot
+  power: 5
+  inputs: 10x FF AppleSeed
+  outputs: 15x FF Crop Apple, 2x Leaves
+- id: Apple Pie
+  machine: FF_CookingHub
+  power: 28
+  inputs: 30x FF Crop Wheat, 40x FF Crop Apple, 10x Water
+  outputs: 0.5x FF Cooked Pie Apples
+- id: Artificial Protein
+  machine: FF_CookingHub
+  power: 28
+  inputs: 150x GenericBiomass, 60x Mycelia, 37500x FF Fertilizer
+  outputs: 5x AlienProtein
+- id: Asphalt Concrete
+  machine: AssemblerMk1
+  power: 15
+  inputs: 37.5x Gangue, 7.5x Asphalt
+  outputs: 45x Cement
+- id: N/A
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 180x Asphalt
+- id: Assembler
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Rotor, 300x IronPlateReinforced, 600x Cable, 900x IronScrew
+  outputs: 60x AssemblerMk1
+- id: Assembly Director System
+  machine: AssemblerMk1
+  power: 15
+  inputs: 3x ComputerSuper, 1.5x SpaceElevatorPart 5
+  outputs: 1.5x SpaceElevatorPart 7
+- id: Aurovite Ore (Callanite)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 320x OreCopper
+  outputs: 240x OreGold, 20000x DarkEnergy
+- id: Aurovite Ore (Kyalite)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 120x RawQuartz
+  outputs: 240x OreGold
+- id: Automated Wiring
+  machine: AssemblerMk1
+  power: 15
+  inputs: 10x Stator, 35x Cable
+  outputs: 3.75x SpaceElevatorPart 3
+- id: Ballistic Warp Drive
+  machine: QuantumEncoder
+  power: 2500
+  inputs: 7.5x SingularityCell, 1.25x SpaceElevatorPart 8, 0.6250000000000001x TitanModularFrame, 50000x QuantumEnergy
+  outputs: 1.25x SpaceElevatorPart 11, 25000x DarkEnergy
+- id: Banana
+  machine: FF_TreePlot
+  power: 5
+  inputs: 10x FF BananaSeed
+  outputs: 10x FF Crop Banana, 4x Leaves
+- id: Banana Bread
+  machine: FF_CookingHub
+  power: 28
+  inputs: 40x FF Crop Wheat, 40x FF Crop Banana, 80x Water
+  outputs: 4x FF Cooked Bread Banana
+- id: Banana Pie
+  machine: FF_CookingHub
+  power: 28
+  inputs: 30x FF Crop Wheat, 40x FF Crop Banana, 10x Water
+  outputs: 0.5x FF Cooked Pie Banana
+- id: Bar Magnet
+  machine: OilRefinery
+  power: 30
+  inputs: 67.5x InvarIngot, 6x SlugSlime High
+  outputs: 32.5x InvarPlates, 6x SlugSlime Mid
+- id: N/A
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x Gift
+- id: Basic Shelf Unit
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x IronPlate, 60x IronRod
+  outputs: 60x StackableShelf
+- id: Battery
+  machine: ChemReactor
+  power: 50
+  inputs: 12.5x SulfuricAcid, 30x Water, 15x LeadSheet
+  outputs: 30x Battery, 10x Water
+- id: Berry Pie
+  machine: FF_CookingHub
+  power: 28
+  inputs: 30x FF Crop Wheat, 40x FF Crop YosseBerry, 10x Water
+  outputs: 0.5x FF Cooked Pie Berry
+- id: Biochemical Sculptor
+  machine: Blender
+  power: 75
+  inputs: 2x SpaceElevatorPart 7, 1x TemporalProcessor, 20x SlugSlime Mineral, 25000x FF Fertilizer
+  outputs: 1x SpaceElevatorPart 10
+- id: Biomass (Leaves)
+  machine: ConstructorMk1
+  power: 4
+  inputs: 120x Leaves
+  outputs: 60x GenericBiomass
+- id: Biomass (Wood)
+  machine: ConstructorMk1
+  power: 4
+  inputs: 45x Wood
+  outputs: 120x GenericBiomass
+- id: Biomass Burner
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronPlate, 600x IronRod, 600x Cable, 240x CopperBusbar
+  outputs: 60x GeneratorBiomass Automated
+- id: Biomass Burner burn Biomass
+  machine: GeneratorBiomass_Automated
+  inputs: 10x GenericBiomass
+- id: Biomass Burner burn Leaves
+  machine: GeneratorBiomass_Automated
+  inputs: 120x Leaves
+- id: Biomass Burner burn Mycelia
+  machine: GeneratorBiomass_Automated
+  inputs: 89.99999731779107x Mycelia
+- id: Biomass Burner burn Packaged Liquid Biofuel
+  machine: GeneratorBiomass_Automated
+  inputs: 2.4x PackagedBiofuel
+- id: Biomass Burner burn Solid Biofuel
+  machine: GeneratorBiomass_Automated
+  inputs: 4x Biofuel
+- id: Biomass Burner burn Wood
+  machine: GeneratorBiomass_Automated
+  inputs: 18.000000429153452x Wood
+- id: Black Powder
+  machine: AssemblerMk1
+  power: 15
+  inputs: 30x Sulfur, 30x Coal
+  outputs: 30x Gunpowder
+- id: Blade Runners
+  inputs: 50x TinPlates, 15x ModularFrame, 12x Rotor, 150x HighSpeedWire
+  outputs: 1x BP EquipmentDescriptorJumpingStilts
+- id: Blender
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x ModularFrameHeavy, 600x Computer, 900x Motor, 3000x InvarPipe
+  outputs: 60x Blender
+- id: Block Signal
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x SteelPlate, 300x Cable, 300x Plastic
+  outputs: 60x RailroadBlockSignal
+- id: Blue FICSMAS Ornament
+  machine: SmelterMk1
+  power: 4
+  inputs: 5x Gift
+  outputs: 10x XmasBall2
+- id: Blue Slug Egg
+  inputs: 125x EggDNA Blue, 25x AlienProtein
+  outputs: 10x EggBlue
+- id: Blue Slug Slime
+  machine: FF_Composter
+  power: 10
+  inputs: 40x BlueSlug
+  outputs: 80x SlugSlime Low
+- id: Blueprint Designer Mk.1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 3000x IronRod, 6000x IronSheet, 3000x Cable, 15000x Cement
+  outputs: 60x BlueprintDesigner
+- id: Blueprint Designer Mk.2
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 3000x IronPlateReinforced, 6000x Cable, 6000x Cement, 12000x IronScrew
+  outputs: 60x BlueprintDesigner MK2
+- id: Blueprint Designer Mk.3
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 6000x SteelPipe, 6000x Cable, 9000x Cement, 6000x SteelBolt
+  outputs: 60x BlueprintDesigner MK3
+- id: Boiler Mk.1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x CopperSheet, 1200x IronPlate, 1200x IronScrew
+  outputs: 60x RP MP BoilerMk1
+- id: Boiler Mk.2
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x ModularFrameHeavy, 600x BrassPipe, 900x IronSheet, 1200x SteelBolt
+  outputs: 60x RP MP BoilerMk2
+- id: Boiler Platform
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronSheet, 600x IronRod, 600x IronScrew
+  outputs: 60x RP MP BoilerPlatform
+- id: Boiler Tier 1 using Spent Slug Slime heated with Biomass at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 20x GenericBiomass, 6x SlugSlime Mid
+  outputs: 5x FlueGas, 6x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Carbon Powder at 750°C
+  machine: RP_MP_BoilerMk1, RP_MP_CoalHeater
+  inputs: 12x CarbonDust, 12x SlugSlime Mid
+  outputs: 18x FlueGas, 12x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Coal at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_CoalHeater
+  inputs: 15x Coal, 6x SlugSlime Mid
+  outputs: 15x FlueGas, 6x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Compact Biomass at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 6x CompactBiomass, 6x SlugSlime Mid
+  outputs: 6x FlueGas, 6x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Compacted Coal at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_CoalHeater
+  inputs: 7.142857467236177x CompactedCoal, 6x SlugSlime Mid
+  outputs: 15.000000681195973x FlueGas, 6x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Ethylene Gas at 1000°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 36x Ethylene, 16x SlugSlime Mid
+  outputs: 12x FlueGas, 16x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Excited Photonic Matter at 1250°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 100000x QuantumEnergy, 20x SlugSlime Mid
+  outputs: 20x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Fabric at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 240x Fabric, 6x SlugSlime Mid
+  outputs: 30x FlueGas, 6x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Ficsonium Fuel Rod at 2000°C
+  machine: RP_MP_BoilerMk1, RP_MP_NuclearHeater
+  inputs: 1x FicsoniumFuelRod, 32x SlugSlime Mid
+  outputs: 32x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Fuel at 750°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 15x LiquidFuel, 12x SlugSlime Mid
+  outputs: 25x FlueGas, 12x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Hog Remains at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 15x HogParts, 6x SlugSlime Mid
+  outputs: 30x FlueGas, 6x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Hydrogen at 1250°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 60x Gas Hydrogen, 20x SlugSlime Mid
+  outputs: 15x Water, 20x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Ionized Fuel at 2000°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 10000x IonizedFuel, 32x SlugSlime Mid
+  outputs: 20x FlueGas, 32x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Leaves at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 240x Leaves, 6x SlugSlime Mid
+  outputs: 30x FlueGas, 6x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Liquid Biofuel at 1000°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 10x LiquidBiofuel, 16x SlugSlime Mid
+  outputs: 15x FlueGas, 16x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Mycelia at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 180.0001877548269x Mycelia, 6x SlugSlime Mid
+  outputs: 22.50002346935336x FlueGas, 6x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Natural Gas at 750°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 30x KLIB NaturalGas, 12x SlugSlime Mid
+  outputs: 10x FlueGas, 12x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Packaged Liquid Biofuel at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 7.5x PackagedBiofuel, 6x SlugSlime Mid
+  outputs: 7.5x FlueGas, 6x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Petroleum Coke at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_CoalHeater
+  inputs: 24.99999900658929x PetroleumCoke, 6x SlugSlime Mid
+  outputs: 14.999999403953574x FlueGas, 6x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Plutonium Fuel Rod at 2000°C
+  machine: RP_MP_BoilerMk1, RP_MP_NuclearHeater
+  inputs: 0.1x PlutoniumFuelRod, 32x SlugSlime Mid
+  outputs: 0.5x PlutoniumWaste, 32x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Rocket Fuel at 2000°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 14999.999403953574x RocketFuel, 32x SlugSlime Mid
+  outputs: 24.99999900658929x FlueGas, 32x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Solid Biofuel at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 8x Biofuel, 6x SlugSlime Mid
+  outputs: 10x FlueGas, 6x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Spitter Remains at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 15x SpitterParts, 6x SlugSlime Mid
+  outputs: 30x FlueGas, 6x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Sulfur Powder at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_CoalHeater
+  inputs: 30x SulfurPowder, 6x SlugSlime Mid
+  outputs: 21x Sulfurtrixid, 6x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Turbofuel at 1500°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 20x LiquidTurboFuel, 24x SlugSlime Mid
+  outputs: 25x FlueGas, 24x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Uranium Fuel Rod at 2000°C
+  machine: RP_MP_BoilerMk1, RP_MP_NuclearHeater
+  inputs: 0.2x NuclearFuelRod, 32x SlugSlime Mid
+  outputs: 3x NuclearWaste, 32x SlugSlime High
+- id: Boiler Tier 1 using Spent Slug Slime heated with Wood at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 35.999993133546226x Wood, 6x SlugSlime Mid
+  outputs: 22.499995708466393x FlueGas, 6x SlugSlime High
+- id: Boiler Tier 1 using Water heated with Biomass at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 20x GenericBiomass, 20x Water
+  outputs: 5x FlueGas, 40x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Carbon Powder at 750°C
+  machine: RP_MP_BoilerMk1, RP_MP_CoalHeater
+  inputs: 12x CarbonDust, 30x Water
+  outputs: 18x FlueGas, 60x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Coal at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_CoalHeater
+  inputs: 15x Coal, 20x Water
+  outputs: 15x FlueGas, 40x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Compact Biomass at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 6x CompactBiomass, 20x Water
+  outputs: 6x FlueGas, 40x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Compacted Coal at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_CoalHeater
+  inputs: 7.142857467236177x CompactedCoal, 20x Water
+  outputs: 15.000000681195973x FlueGas, 40x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Ethylene Gas at 1000°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 36x Ethylene, 40x Water
+  outputs: 12x FlueGas, 80x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Excited Photonic Matter at 1250°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 100000x QuantumEnergy, 50x Water
+  outputs: 100x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Fabric at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 240x Fabric, 20x Water
+  outputs: 30x FlueGas, 40x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Ficsonium Fuel Rod at 2000°C
+  machine: RP_MP_BoilerMk1, RP_MP_NuclearHeater
+  inputs: 1x FicsoniumFuelRod, 100x Water
+  outputs: 200x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Fuel at 750°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 15x LiquidFuel, 30x Water
+  outputs: 25x FlueGas, 60x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Hog Remains at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 15x HogParts, 20x Water
+  outputs: 30x FlueGas, 40x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Hydrogen at 1250°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 60x Gas Hydrogen, 50x Water
+  outputs: 15x Water, 100x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Ionized Fuel at 2000°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 10000x IonizedFuel, 100x Water
+  outputs: 20x FlueGas, 200x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Leaves at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 240x Leaves, 20x Water
+  outputs: 30x FlueGas, 40x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Liquid Biofuel at 1000°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 10x LiquidBiofuel, 40x Water
+  outputs: 15x FlueGas, 80x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Mycelia at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 180.0001877548269x Mycelia, 20x Water
+  outputs: 22.50002346935336x FlueGas, 40x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Natural Gas at 750°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 30x KLIB NaturalGas, 30x Water
+  outputs: 10x FlueGas, 60x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Packaged Liquid Biofuel at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 7.5x PackagedBiofuel, 20x Water
+  outputs: 7.5x FlueGas, 40x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Petroleum Coke at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_CoalHeater
+  inputs: 24.99999900658929x PetroleumCoke, 20x Water
+  outputs: 14.999999403953574x FlueGas, 40x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Plutonium Fuel Rod at 2000°C
+  machine: RP_MP_BoilerMk1, RP_MP_NuclearHeater
+  inputs: 0.1x PlutoniumFuelRod, 100x Water
+  outputs: 0.5x PlutoniumWaste, 200x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Rocket Fuel at 2000°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 14999.999403953574x RocketFuel, 100x Water
+  outputs: 24.99999900658929x FlueGas, 200x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Solid Biofuel at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 8x Biofuel, 20x Water
+  outputs: 10x FlueGas, 40x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Spitter Remains at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 15x SpitterParts, 20x Water
+  outputs: 30x FlueGas, 40x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Sulfur Powder at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_CoalHeater
+  inputs: 30x SulfurPowder, 20x Water
+  outputs: 21x Sulfurtrixid, 40x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Turbofuel at 1500°C
+  machine: RP_MP_BoilerMk1, RP_MP_SolutionHeater
+  inputs: 20x LiquidTurboFuel, 60x Water
+  outputs: 25x FlueGas, 120x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Uranium Fuel Rod at 2000°C
+  machine: RP_MP_BoilerMk1, RP_MP_NuclearHeater
+  inputs: 0.2x NuclearFuelRod, 100x Water
+  outputs: 3x NuclearWaste, 200x Gas Steam Hot
+- id: Boiler Tier 1 using Water heated with Wood at 500°C
+  machine: RP_MP_BoilerMk1, RP_MP_BiomassHeater
+  inputs: 35.999993133546226x Wood, 20x Water
+  outputs: 22.499995708466393x FlueGas, 40x Gas Steam Hot
+- id: Boiler Tier 2 using Spent Slug Slime heated with Biomass at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 20x GenericBiomass, 9x SlugSlime Mid
+  outputs: 5x FlueGas, 9x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Carbon Powder at 750°C
+  machine: RP_MP_BoilerMk2, RP_MP_CoalHeater
+  inputs: 12x CarbonDust, 18x SlugSlime Mid
+  outputs: 18x FlueGas, 18x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Coal at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_CoalHeater
+  inputs: 15x Coal, 9x SlugSlime Mid
+  outputs: 15x FlueGas, 9x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Compact Biomass at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 6x CompactBiomass, 9x SlugSlime Mid
+  outputs: 6x FlueGas, 9x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Compacted Coal at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_CoalHeater
+  inputs: 7.142857467236177x CompactedCoal, 9x SlugSlime Mid
+  outputs: 15.000000681195973x FlueGas, 9x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Ethylene Gas at 1000°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 36x Ethylene, 24x SlugSlime Mid
+  outputs: 12x FlueGas, 24x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Excited Photonic Matter at 1250°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 100000x QuantumEnergy, 30x SlugSlime Mid
+  outputs: 30x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Fabric at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 240x Fabric, 9x SlugSlime Mid
+  outputs: 30x FlueGas, 9x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Ficsonium Fuel Rod at 2000°C
+  machine: RP_MP_BoilerMk2, RP_MP_NuclearHeater
+  inputs: 1x FicsoniumFuelRod, 48x SlugSlime Mid
+  outputs: 48x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Fuel at 750°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 15x LiquidFuel, 18x SlugSlime Mid
+  outputs: 25x FlueGas, 18x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Hog Remains at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 15x HogParts, 9x SlugSlime Mid
+  outputs: 30x FlueGas, 9x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Hydrogen at 1250°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 60x Gas Hydrogen, 30x SlugSlime Mid
+  outputs: 15x Water, 30x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Ionized Fuel at 2000°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 10000x IonizedFuel, 48x SlugSlime Mid
+  outputs: 20x FlueGas, 48x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Leaves at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 240x Leaves, 9x SlugSlime Mid
+  outputs: 30x FlueGas, 9x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Liquid Biofuel at 1000°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 10x LiquidBiofuel, 24x SlugSlime Mid
+  outputs: 15x FlueGas, 24x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Mycelia at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 180.0001877548269x Mycelia, 9x SlugSlime Mid
+  outputs: 22.50002346935336x FlueGas, 9x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Natural Gas at 750°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 30x KLIB NaturalGas, 18x SlugSlime Mid
+  outputs: 10x FlueGas, 18x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Packaged Liquid Biofuel at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 7.5x PackagedBiofuel, 9x SlugSlime Mid
+  outputs: 7.5x FlueGas, 9x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Petroleum Coke at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_CoalHeater
+  inputs: 24.99999900658929x PetroleumCoke, 9x SlugSlime Mid
+  outputs: 14.999999403953574x FlueGas, 9x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Plutonium Fuel Rod at 2000°C
+  machine: RP_MP_BoilerMk2, RP_MP_NuclearHeater
+  inputs: 0.1x PlutoniumFuelRod, 48x SlugSlime Mid
+  outputs: 0.5x PlutoniumWaste, 48x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Rocket Fuel at 2000°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 14999.999403953574x RocketFuel, 48x SlugSlime Mid
+  outputs: 24.99999900658929x FlueGas, 48x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Solid Biofuel at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 8x Biofuel, 9x SlugSlime Mid
+  outputs: 10x FlueGas, 9x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Spitter Remains at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 15x SpitterParts, 9x SlugSlime Mid
+  outputs: 30x FlueGas, 9x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Sulfur Powder at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_CoalHeater
+  inputs: 30x SulfurPowder, 9x SlugSlime Mid
+  outputs: 21x Sulfurtrixid, 9x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Turbofuel at 1500°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 20x LiquidTurboFuel, 36x SlugSlime Mid
+  outputs: 25x FlueGas, 36x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Uranium Fuel Rod at 2000°C
+  machine: RP_MP_BoilerMk2, RP_MP_NuclearHeater
+  inputs: 0.2x NuclearFuelRod, 48x SlugSlime Mid
+  outputs: 3x NuclearWaste, 48x SlugSlime High
+- id: Boiler Tier 2 using Spent Slug Slime heated with Wood at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 35.999993133546226x Wood, 9x SlugSlime Mid
+  outputs: 22.499995708466393x FlueGas, 9x SlugSlime High
+- id: Boiler Tier 2 using Water heated with Biomass at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 20x GenericBiomass, 30x Water
+  outputs: 5x FlueGas, 60x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Carbon Powder at 750°C
+  machine: RP_MP_BoilerMk2, RP_MP_CoalHeater
+  inputs: 12x CarbonDust, 45x Water
+  outputs: 18x FlueGas, 90x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Coal at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_CoalHeater
+  inputs: 15x Coal, 30x Water
+  outputs: 15x FlueGas, 60x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Compact Biomass at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 6x CompactBiomass, 30x Water
+  outputs: 6x FlueGas, 60x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Compacted Coal at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_CoalHeater
+  inputs: 7.142857467236177x CompactedCoal, 30x Water
+  outputs: 15.000000681195973x FlueGas, 60x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Ethylene Gas at 1000°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 36x Ethylene, 60x Water
+  outputs: 12x FlueGas, 120x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Excited Photonic Matter at 1250°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 100000x QuantumEnergy, 75x Water
+  outputs: 150x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Fabric at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 240x Fabric, 30x Water
+  outputs: 30x FlueGas, 60x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Ficsonium Fuel Rod at 2000°C
+  machine: RP_MP_BoilerMk2, RP_MP_NuclearHeater
+  inputs: 1x FicsoniumFuelRod, 150x Water
+  outputs: 300x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Fuel at 750°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 15x LiquidFuel, 45x Water
+  outputs: 25x FlueGas, 90x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Hog Remains at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 15x HogParts, 30x Water
+  outputs: 30x FlueGas, 60x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Hydrogen at 1250°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 60x Gas Hydrogen, 75x Water
+  outputs: 15x Water, 150x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Ionized Fuel at 2000°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 10000x IonizedFuel, 150x Water
+  outputs: 20x FlueGas, 300x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Leaves at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 240x Leaves, 30x Water
+  outputs: 30x FlueGas, 60x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Liquid Biofuel at 1000°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 10x LiquidBiofuel, 60x Water
+  outputs: 15x FlueGas, 120x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Mycelia at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 180.0001877548269x Mycelia, 30x Water
+  outputs: 22.50002346935336x FlueGas, 60x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Natural Gas at 750°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 30x KLIB NaturalGas, 45x Water
+  outputs: 10x FlueGas, 90x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Packaged Liquid Biofuel at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 7.5x PackagedBiofuel, 30x Water
+  outputs: 7.5x FlueGas, 60x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Petroleum Coke at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_CoalHeater
+  inputs: 24.99999900658929x PetroleumCoke, 30x Water
+  outputs: 14.999999403953574x FlueGas, 60x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Plutonium Fuel Rod at 2000°C
+  machine: RP_MP_BoilerMk2, RP_MP_NuclearHeater
+  inputs: 0.1x PlutoniumFuelRod, 150x Water
+  outputs: 0.5x PlutoniumWaste, 300x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Rocket Fuel at 2000°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 14999.999403953574x RocketFuel, 150x Water
+  outputs: 24.99999900658929x FlueGas, 300x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Solid Biofuel at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 8x Biofuel, 30x Water
+  outputs: 10x FlueGas, 60x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Spitter Remains at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 15x SpitterParts, 30x Water
+  outputs: 30x FlueGas, 60x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Sulfur Powder at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_CoalHeater
+  inputs: 30x SulfurPowder, 30x Water
+  outputs: 21x Sulfurtrixid, 60x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Turbofuel at 1500°C
+  machine: RP_MP_BoilerMk2, RP_MP_SolutionHeater
+  inputs: 20x LiquidTurboFuel, 90x Water
+  outputs: 25x FlueGas, 180x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Uranium Fuel Rod at 2000°C
+  machine: RP_MP_BoilerMk2, RP_MP_NuclearHeater
+  inputs: 0.2x NuclearFuelRod, 150x Water
+  outputs: 3x NuclearWaste, 300x Gas Steam Hot
+- id: Boiler Tier 2 using Water heated with Wood at 500°C
+  machine: RP_MP_BoilerMk2, RP_MP_BiomassHeater
+  inputs: 35.999993133546226x Wood, 30x Water
+  outputs: 22.499995708466393x FlueGas, 60x Gas Steam Hot
+- id: Brass Belt Drive
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 8x Stator, 20x LiquidBrass, 36x Air
+  outputs: 20x BeltDriveMk2
+- id: Brass Pipes
+  machine: AssemblerMk1
+  power: 15
+  inputs: 15x BrassPlates, 7.5x CopperRod
+  outputs: 12.5x BrassPipe
+- id: Brass Plates
+  machine: ConstructorMk1
+  power: 4
+  inputs: 25x BrassIngot
+  outputs: 18x BrassPlates
+- id: Bread
+  machine: FF_CookingHub
+  power: 28
+  inputs: 60x FF Crop Wheat, 80x Water
+  outputs: 4x FF Cooked Bread
+- id: Bronze Beam
+  machine: ConstructorMk1
+  power: 4
+  inputs: 22.5x BronzeIngot
+  outputs: 7.5x BronzeBeam
+- id: Bronze Frame
+  machine: AssemblerMk1
+  power: 15
+  inputs: 10x BronzeBeam, 24x BronzePipe
+  outputs: 5x BronzeFrame
+- id: Bronze Ingot
+  machine: FoundryMk1
+  power: 16
+  inputs: 36x CopperIngot, 15x TinIngot
+  outputs: 45x BronzeIngot
+- id: Bronze Pipes
+  machine: FoundryMk1
+  power: 16
+  inputs: 24x CopperIngot, 15x TinIngot
+  outputs: 36x BronzePipe
+- id: Bronze Plates
+  machine: ConstructorMk1
+  power: 4
+  inputs: 30x BronzeIngot
+  outputs: 24x BronzePlates
+- id: Buffer Stop
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x SteelPipe, 300x SteelPlateReinforced, 1200x Cement
+  outputs: 60x RailroadEndStop
+- id: Cable
+  machine: ConstructorMk1
+  power: 4
+  inputs: 60x Wire
+  outputs: 30x Cable
+- id: Callanite Ore (Larrussite)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 300x Stone
+  outputs: 240x OreCopper
+- id: Callanite Ore (Sulfur)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 120x Sulfur
+  outputs: 240x OreCopper, 20000x DarkEnergy
+- id: Candy Cane
+  machine: ConstructorMk1
+  power: 4
+  inputs: 15x Gift
+  outputs: 5x CandyCane
+- id: Candy Cane Basher
+  inputs: 1.5x BP EquipmentDescriptorShockShank, 18.75x CandyCane, 11.25x Gift
+  outputs: 0.7500000000000001x BP EquipmentDescriptorCandyCane
+- id: Carbon Powder
+  machine: Crusher
+  power: 4
+  inputs: 60x Coal
+  outputs: 40x CarbonDust
+- id: Carrot
+  machine: FF_CropPlot
+  power: 5
+  inputs: 10x FF CarrotSeed
+  outputs: 10x FF Crop Carrot, 4x Leaves
+- id: Cast Aluminum Coil
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 90000x AluminaSolution, 90x MagnesiumGranules, 30x Water
+  outputs: 160x AlumniumSheet, 60x AluminumIngot, 30x Gas Steam Hot
+- id: Cast Aluminum Ingot
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 60000x AluminaSolution, 90x Silica, 20x Water
+  outputs: 120x AluminumIngot, 40x AlumniumSheet, 30x Gas Steam Hot
+- id: Cast Brass Ingot
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 40x LiquidBrass, 15x Water
+  outputs: 50x BrassIngot, 15x Gas Steam Hot
+- id: Cast Caterium Ingot
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 80x LiquidGold, 40x Water
+  outputs: 240x GoldIngot, 40x Gas Steam Hot
+- id: Cast Cobalt Ingot
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 90x LiquidCobalt, 60x Water
+  outputs: 240x CobaltIngot, 60x Gas Steam Hot
+- id: Cast Copper Ingot
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 48x LiquidCopper, 24x Water
+  outputs: 144x CopperIngot, 24x Gas Steam Hot
+- id: Cast Iron Ingot
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 60x LiquidIron, 60x Water
+  outputs: 180x IronIngot, 60x Gas Steam Hot
+- id: Cast Lead Ingot
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 40x LiquidLead, 40x Water
+  outputs: 180x LeadIngot, 40x Gas Steam Hot
+- id: Cast Magnitar™ Billet
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 45x LiquidInvar, 60x Water
+  outputs: 135x InvarIngot, 30x Gas Steam Hot
+- id: Cast Solder
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 18x LiquidSolder, 90x Wire, 30x Air
+  outputs: 90x SolderWire, 15x SolderRod
+- id: Cast Steel Ingot
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 37.5x Gangue, 30x LiquidSteel, 30x Air
+  outputs: 90x SteelIngot, 30x FlueGas, 37.5x ColdSlag
+- id: Cast Steel Pipe
+  machine: FoundryMk1
+  power: 16
+  inputs: 30x SteelIngot, 24x Sand
+  outputs: 45x SteelPipe
+- id: Cast Steel Rod
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 20x LiquidSteel, 20x Water
+  outputs: 37.5x SteelRod, 20x Gas Steam Hot, 20x ColdSlag
+- id: Cast Tin Ingot
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 60x LiquidTin, 20x Water
+  outputs: 180x TinIngot, 20x Gas Steam Hot
+- id: Cast Zinc Ingot
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 90x LiquidZinc, 60x Water
+  outputs: 180x ZincIngot, 60x Gas Steam Hot
+- id: Caterium Heatsink
+  machine: AssemblerMk1
+  power: 15
+  inputs: 28x CateriumPlates, 10x CopperBusbar
+  outputs: 10x CateriumHeatsink
+- id: Caterium Ingot
+  machine: SmelterMk1
+  power: 4
+  inputs: 40x CrushedCaterium
+  outputs: 40x GoldIngot
+- id: Caterium Plate
+  machine: ConstructorMk1
+  power: 4
+  inputs: 60x GoldIngot
+  outputs: 36x CateriumPlates
+- id: Ceiling Light
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x Cable, 300x Glass, 360x IronScrew, 300x QuartzCrystal, 300x IronPlate
+  outputs: 60x CeilingLight
+- id: Chainsaw
+  inputs: 5x IronPlateReinforced, 25x IronRod, 160x IronScrew, 15x Cable
+  outputs: 1x Chainsaw
+- id: Chemical Reactor
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x Motor, 900x SteelPlateReinforced, 300x ModularFrameHeavy, 1200x BrassPlates
+  outputs: 60x ChemReactor
+- id: Chlorine Gas (Kerr Crystal)
+  machine: Converter
+  power: 300
+  inputs: 15x SAMIngot, 30x Res KerrCrystal
+  outputs: 90x Gas Chlor
+- id: Chlorine Gas (Siterite)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 360x OreIron
+  outputs: 60x Gas Chlor
+- id: Circuit Board
+  machine: AssemblerMk1
+  power: 15
+  inputs: 37.5x Plastic, 20x SolderWire
+  outputs: 10x CircuitBoard
+- id: Clean Pipeline Mk.1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x CopperSheet, 60x IronWire
+  outputs: 60x Pipeline NoIndicator
+- id: Clean Pipeline Mk.2
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x BrassPipe, 60x SteelBolt
+  outputs: 60x PipelineMK2 NoIndicator
+- id: Clean Pipeline Mk.3
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x InvarPipe, 60x Rubber
+  outputs: 60x PipelineMk3 NoIndicator
+- id: Cluster Nobelisk
+  machine: AssemblerMk1
+  power: 15
+  inputs: 7.5x NobeliskExplosive, 10x GunpowderMK2
+  outputs: 2.5x NobeliskCluster
+- id: Coal (Callanite)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 180x OreCopper
+  outputs: 240x Coal, 20000x DarkEnergy
+- id: Coal (Siterite)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 300x OreIron
+  outputs: 240x Coal
+- id: Coal-Powered Generator
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x ModularFrame, 120x Motor, 600x BronzePipe, 1200x SteelBolt
+  outputs: 60x GeneratorCoal
+- id: Coal-Powered Generator burn Carbon Powder
+  machine: GeneratorCoal
+  inputs: 30x Water, 8x CarbonDust
+- id: Coal-Powered Generator burn Coal
+  machine: GeneratorCoal
+  inputs: 30x Water, 20x Coal
+- id: Coal-Powered Generator burn Petroleum Coke
+  machine: GeneratorCoal
+  inputs: 30x Water, 33.33333421636513x PetroleumCoke
+- id: Coarse Sand
+  machine: Crusher
+  power: 4
+  inputs: 60x Gangue
+  outputs: 30x Sand
+- id: N/A
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Plastic
+- id: Cobalt Ingot
+  machine: FoundryMk1
+  power: 16
+  inputs: 45x CrushedCobalt, 27x MagnesiumGranules
+  outputs: 30x CobaltIngot
+- id: Cobalt Plates
+  machine: ConstructorMk1
+  power: 4
+  inputs: 30x CobaltIngot
+  outputs: 15x CobaltPlates
+- id: 'Compost: Apple'
+  machine: FF_Composter
+  power: 10
+  inputs: 30x FF Crop Apple, 15x Water
+  outputs: 15000x FF Fertilizer
+- id: 'Compost: Banana'
+  machine: FF_Composter
+  power: 10
+  inputs: 30x FF Crop Banana, 15x Water
+  outputs: 15000x FF Fertilizer
+- id: 'Compost: Biofuel'
+  machine: FF_Composter
+  power: 10
+  inputs: 10x Biofuel, 15x Water
+  outputs: 15000x FF Fertilizer
+- id: 'Compost: Biomass'
+  machine: FF_Composter
+  power: 10
+  inputs: 20x GenericBiomass, 15x Water
+  outputs: 15000x FF Fertilizer
+- id: 'Compost: Carrot'
+  machine: FF_Composter
+  power: 10
+  inputs: 30x FF Crop Carrot, 15x Water
+  outputs: 15000x FF Fertilizer
+- id: 'Compost: Corn'
+  machine: FF_Composter
+  power: 10
+  inputs: 30x FF Crop Corn, 15x Water
+  outputs: 15000x FF Fertilizer
+- id: 'Compost: Cotton'
+  machine: FF_Composter
+  power: 10
+  inputs: 30x FF Crop Cotton, 15x Water
+  outputs: 15000x FF Fertilizer
+- id: 'Compost: Leaves'
+  machine: FF_Composter
+  power: 10
+  inputs: 60x Leaves, 15x Water
+  outputs: 15000x FF Fertilizer
+- id: 'Compost: Mycelia'
+  machine: FF_Composter
+  power: 10
+  inputs: 30x Mycelia, 15x Water
+  outputs: 15000x FF Fertilizer
+- id: 'Compost: Potato'
+  machine: FF_Composter
+  power: 10
+  inputs: 30x FF Crop Potato, 15x Water
+  outputs: 15000x FF Fertilizer
+- id: 'Compost: Pumpkin'
+  machine: FF_Composter
+  power: 10
+  inputs: 30x FF Crop Pumpkin, 15x Water
+  outputs: 15000x FF Fertilizer
+- id: 'Compost: Wheat'
+  machine: FF_Composter
+  power: 10
+  inputs: 30x FF Crop Wheat, 15x Water
+  outputs: 15000x FF Fertilizer
+- id: 'Compost: Yosse'
+  machine: FF_Composter
+  power: 10
+  inputs: 30x FF Crop YosseBerry, 15x Water
+  outputs: 15000x FF Fertilizer
+- id: Composter
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x ModularFrame, 3000x BronzePipe, 900x Rotor, 3000x Cable
+  outputs: 60x FF Composter
+- id: Computer
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 15x CircuitBoard, 10x SolderRod, 37.5x Plastic
+  outputs: 2.5x Computer
+- id: Concentrated Slug Slime
+  machine: OilRefinery
+  power: 30
+  inputs: 120x SlugSlime Low
+  outputs: 12x SlugSlime High
+- id: Concrete
+  machine: ConstructorMk1
+  power: 4
+  inputs: 45x Gangue
+  outputs: 15x Cement
+- id: N/A
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cement
+- id: N/A
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cement
+- id: Condensed Neutrium Gas
+  machine: Converter
+  power: 750
+  inputs: 37.5x CopperDust
+  outputs: 7.5x Neutronium
+- id: Constructor
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronPlate, 120x Cable, 600x IronScrew
+  outputs: 60x ConstructorMk1
+- id: Converter
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x ModularFrameFused, 3000x CoolingSystem, 3000x CrystalOscillator, 6000x SAMFluctuator
+  outputs: 60x Converter
+- id: Converter Platform
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronSheet, 600x IronRod, 600x IronScrew
+  outputs: 60x RP MP ConverterPlatform
+- id: Conveyor Belt Mk.1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x IronScrew, 60x IronPlate
+  outputs: 60x ConveyorBeltMk1
+- id: Conveyor Belt Mk.2
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BeltDriveMk1, 60x IronSheet
+  outputs: 60x ConveyorBeltMk2
+- id: Conveyor Belt Mk.3
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BeltDriveMk2, 60x SteelPlate
+  outputs: 60x ConveyorBeltMk3
+- id: Conveyor Belt Mk.4
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BeltDriveMk3, 60x Rubber
+  outputs: 60x ConveyorBeltMk4
+- id: Conveyor Belt Mk.5
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BeltDriveMk4, 120x SteelBolt
+  outputs: 60x ConveyorBeltMk5
+- id: Conveyor Belt Mk.6
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x FicsiteMesh, 60x TimeCrystal
+  outputs: 60x ConveyorBeltMk6
+- id: Conveyor Ceiling Mount
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronRod, 120x IronPlate, 120x Cement
+  outputs: 60x ConveyorCeilingAttachment
+- id: Conveyor Lift Floor Hole
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronRod, 120x IronPlate, 120x Cement
+  outputs: 60x FoundationPassthrough Lift
+- id: Conveyor Lift Mk.1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x IronScrew, 60x IronPlate
+  outputs: 60x ConveyorLiftMk1
+- id: Conveyor Lift Mk.2
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BeltDriveMk1, 60x IronSheet
+  outputs: 60x ConveyorLiftMk2
+- id: Conveyor Lift Mk.3
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BeltDriveMk2, 60x SteelPlate
+  outputs: 60x ConveyorLiftMk3
+- id: Conveyor Lift Mk.4
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BeltDriveMk3, 60x Rubber
+  outputs: 60x ConveyorLiftMk4
+- id: Conveyor Lift Mk.5
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BeltDriveMk4, 120x SteelBolt
+  outputs: 60x ConveyorLiftMk5
+- id: Conveyor Lift Mk.6
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x FicsiteMesh, 120x TimeCrystal
+  outputs: 60x ConveyorLiftMk6
+- id: Conveyor Merger
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronPlate, 120x IronSheet, 300x IronScrew
+  outputs: 60x ConveyorAttachmentMerger
+- id: Conveyor Pole
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cement, 120x IronScrew, 60x IronRod
+  outputs: 60x ConveyorPole
+- id: Conveyor Rate Splitter
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronPlate, 120x Cable
+  outputs: 60x SplitterBalance
+- id: Conveyor Splitter
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronPlate, 120x IronSheet, 300x IronScrew
+  outputs: 60x ConveyorAttachmentSplitter
+- id: Conveyor Throughput Monitor
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 240x IronPlateReinforced, 600x QuartzCrystal, 60x CrystalOscillator
+  outputs: 60x ConveyorMonitor
+- id: Conveyor Wall Hole
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronRod, 120x IronPlate, 120x Cement
+  outputs: 60x ConveyorWallHole
+- id: Conveyor Wall Mount
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cement, 120x IronScrew, 60x IronRod
+  outputs: 60x ConveyorPoleWall
+- id: Cooking Hub
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x ModularFrame, 900x Rotor, 3000x Glass, 6000x IronScrew
+  outputs: 60x FF CookingHub
+- id: Coolant
+  machine: Blender
+  power: 75
+  inputs: 40x Water, 40x Ethylene, 20x Salt
+  outputs: 80x CoolingWater
+- id: Cooling System
+  machine: Blender
+  power: 75
+  inputs: 20x AluminumPlateReinforced, 40x Rubber, 60x CoolingWater, 100x NitrogenGas
+  outputs: 10x CoolingSystem, 20x CoolingWater
+- id: Copper Busbars
+  machine: ConstructorMk1
+  power: 4
+  inputs: 24x CopperRod
+  outputs: 15x CopperBusbar
+- id: Copper FICSMAS Ornament
+  machine: FoundryMk1
+  power: 16
+  inputs: 10x XmasBall1, 10x CopperIngot
+  outputs: 5x XmasBall3
+- id: Copper Ingot
+  machine: SmelterMk1
+  power: 4
+  inputs: 48x CrushedCopper
+  outputs: 48x CopperIngot
+- id: Copper Powder
+  machine: Crusher
+  power: 4
+  inputs: 299.9999880790715x CopperIngot
+  outputs: 24.99999900658929x CopperDust
+- id: Copper Rod
+  machine: ConstructorMk1
+  power: 4
+  inputs: 12x CopperIngot
+  outputs: 18x CopperRod
+- id: Copper Sheet
+  machine: ConstructorMk1
+  power: 4
+  inputs: 24x CopperIngot
+  outputs: 30x CopperSheet
+- id: Corn
+  machine: FF_CropPlot
+  power: 5
+  inputs: 10x FF CornSeed
+  outputs: 10x FF Crop Corn, 4x Leaves
+- id: Corn Muffin
+  machine: FF_CookingHub
+  power: 28
+  inputs: 30x FF Crop Wheat, 20x FF Crop Corn, 10x Water
+  outputs: 1x FF Cooked Muffin Corn
+- id: Cotton
+  machine: FF_CropPlot
+  power: 5
+  inputs: 10x FF CottonSeed
+  outputs: 10x FF Crop Cotton, 4x Leaves
+- id: Cotton Fabric
+  machine: AssemblerMk1
+  power: 15
+  inputs: 80x FF Crop Cotton, 40x Mycelia
+  outputs: 20x Fabric
+- id: Crafting Bench
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 180x IronPlate, 300x IronRod
+  outputs: 60x WorkBench
+- id: Crop Plot
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12000x FF Dirt, 1500x IronRod, 1500x IronScrew, 1200x IronPlate
+  outputs: 60x FF CropPlot
+- id: Crushed Aurovite
+  machine: Crusher
+  power: 4
+  inputs: 60x OreGold
+  outputs: 60x CrushedAurovite, 22.5x Gangue
+- id: Crushed Bauxite
+  machine: SorterMk1
+  power: 15
+  inputs: 180x CrushedCrotinium, 45x CausticSoda
+  outputs: 180x CrushedBauxite, 30x CrushedCobalt, 30x Sand
+- id: Crushed Callanite
+  machine: Crusher
+  power: 4
+  inputs: 60x OreCopper
+  outputs: 60x CrushedCallanite, 25x Gangue
+- id: Crushed Caterium
+  machine: SorterMk1
+  power: 15
+  inputs: 120x CrushedAurovite
+  outputs: 80x CrushedCaterium, 40x CrushedCopper, 30x Gangue
+- id: Crushed Cobalt
+  machine: SorterMk1
+  power: 15
+  inputs: 120x CrushedCrotinium
+  outputs: 90x CrushedCobalt, 30x CrushedMagnesium, 30x Sand
+- id: Crushed Copper
+  machine: SorterMk1
+  power: 15
+  inputs: 120x CrushedCallanite
+  outputs: 96x CrushedCopper, 80x CrushedMagnesium, 40x Gangue
+- id: Crushed Copper (Aurovite)
+  machine: SorterMk1
+  power: 15
+  inputs: 180x CrushedAurovite, 20x Water
+  outputs: 96x CrushedCopper, 64x CrushedCaterium, 16x Gangue
+- id: Crushed Iron
+  machine: SorterMk1
+  power: 15
+  inputs: 120x CrushedSiterite
+  outputs: 90x CrushedIron, 60x CrushedTin, 40x Gangue
+- id: Crushed Larrussite
+  machine: Crusher
+  power: 4
+  inputs: 60x Stone
+  outputs: 40x CrushedLarrussite, 40x Gangue
+- id: Crushed Lead
+  machine: SorterMk1
+  power: 15
+  inputs: 120x CrushedLarrussite, 60x Air
+  outputs: 100x CrushedLead, 20x Silica
+- id: Crushed Lead (Aurovite)
+  machine: SorterMk1
+  power: 15
+  inputs: 240x CrushedAurovite, 30x SulfuricAcid
+  outputs: 150x CrushedLead, 30x CrushedCaterium
+- id: Crushed Magnesium
+  machine: SorterMk1
+  power: 15
+  inputs: 180x CrushedCallanite, 90x Water
+  outputs: 150x CrushedMagnesium, 30x CrushedCopper, 45x Gangue
+- id: Crushed Magnesium (Montanion)
+  machine: SorterMk1
+  power: 15
+  inputs: 120x CrushedCrotinium, 15x LiquidHydrochloricAcid
+  outputs: 90x CrushedMagnesium, 30x CrushedCobalt
+- id: Crushed Montanion
+  machine: Crusher
+  power: 4
+  inputs: 60x OreBauxite
+  outputs: 60x CrushedCrotinium, 20x Sand
+- id: Crushed Nickel
+  machine: SorterMk1
+  power: 15
+  inputs: 240x CrushedCallanite, 60x Water
+  outputs: 180x CrushedNickle, 60x CrushedMagnesium
+- id: Crushed Silica
+  machine: Crusher
+  power: 4
+  inputs: 60x RawQuartz
+  outputs: 60x Silica, 40x Sand
+- id: Crushed Siterite
+  machine: Crusher
+  power: 4
+  inputs: 60x OreIron
+  outputs: 60x CrushedSiterite, 25x Gangue
+- id: Crushed Tin
+  machine: SorterMk1
+  power: 15
+  inputs: 180x CrushedSiterite, 37.5x Air
+  outputs: 135x CrushedTin, 67.5x CrushedIron, 60x Gangue
+- id: Crushed Zinc
+  machine: SorterMk1
+  power: 15
+  inputs: 120x CrushedLarrussite
+  outputs: 96x CrushedZinc, 48x Sand, 60x Gangue
+- id: Crusher
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronWire, 300x Cable, 600x IronScrew, 600x Cement
+  outputs: 60x Crusher
+- id: Crusher Module
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x BronzeFrame, 1500x Diamond, 6000x Cable, 300x BP ItemDescriptorPortableMiner
+  outputs: 60x Module Crusher
+- id: Crusher Module replace product with Carbon Powder
+  machine: Module_Crusher, ModularMiner_01
+  power: 25
+  outputs: 80x CarbonDust
+- id: Crusher Module replace product with Crushed Aurovite
+  machine: Module_Crusher, ModularMiner_01
+  power: 25
+  outputs: 60x CrushedAurovite, 20x Gangue
+- id: Crusher Module replace product with Crushed Callanite
+  machine: Module_Crusher, ModularMiner_01
+  power: 25
+  outputs: 60x CrushedCallanite, 20x Gangue
+- id: Crusher Module replace product with Crushed Larrussite
+  machine: Module_Crusher, ModularMiner_01
+  power: 25
+  outputs: 60x CrushedLarrussite, 20x Gangue
+- id: Crusher Module replace product with Crushed Montanion
+  machine: Module_Crusher, ModularMiner_01
+  power: 25
+  outputs: 120x CrushedCrotinium, 40x Sand
+- id: Crusher Module replace product with Crushed Siterite
+  machine: Module_Crusher, ModularMiner_01
+  power: 25
+  outputs: 60x CrushedSiterite, 20x Gangue
+- id: Crusher Module replace product with Salt
+  machine: Module_Crusher, ModularMiner_01
+  power: 25
+  outputs: 60x Salt, 20x Gangue
+- id: Crusher Module replace product with Sand
+  machine: Module_Crusher, ModularMiner_01
+  power: 25
+  outputs: 80x Sand
+- id: Crusher Module replace product with Sand
+  machine: Module_Crusher, ModularMiner_01
+  power: 25
+  outputs: 80x Sand
+- id: Crusher Module replace product with Sand
+  machine: Module_Crusher, ModularMiner_01
+  power: 25
+  outputs: 80x Sand
+- id: Crusher Module replace product with Sulfur Powder
+  machine: Module_Crusher, ModularMiner_01, Module_Fluid
+  power: 25
+  inputs: 15x SlugSlime Low
+  outputs: 209.99999061226887x SulfurPowder, 69.99999443690027x Gangue
+- id: Crusher Module replace product with Sulfur Powder
+  machine: Module_Crusher, ModularMiner_01, Module_Fluid
+  power: 25
+  inputs: 15x LiquidHydrochloricAcid
+  outputs: 120x SulfurPowder, 40x Gangue
+- id: Crusher Module replace product with Sulfur Powder
+  machine: Module_Crusher, ModularMiner_01, Module_Fluid
+  power: 25
+  inputs: 30x Water
+  outputs: 89.99999731779107x SulfurPowder, 30x Gangue
+- id: Cryolite Residue
+  machine: SorterMk1
+  power: 15
+  inputs: 180x RawQuartz, 60x Sand
+  outputs: 240x CryoliteResidue, 45x Salt
+- id: Crystal Oscillator
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 60x QuartzCrystal, 26.666666666666664x Glass, 20x Cable
+  outputs: 4x CrystalOscillator
+- id: Cured Plastic
+  machine: OilRefinery
+  power: 30
+  inputs: 120x PolymerResin, 20x LiquidFuel
+  outputs: 60x Plastic
+- id: Cured Rubber
+  machine: OilRefinery
+  power: 30
+  inputs: 120x PolymerResin, 20x LiquidFuel
+  outputs: 60x Rubber
+- id: Cyber Wagon
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x IronPlateReinforced
+  outputs: 60x CyberWagon
+- id: Dark Matter Crystal
+  machine: HadronCollider
+  power: 1000
+  inputs: 10x Diamond, 15x FicsiteMesh, 80000x DarkEnergy
+  outputs: 20x DarkMatter
+- id: Data Cable
+  machine: AssemblerMk1
+  power: 15
+  inputs: 7.5x SpaceElevatorPart 3, 72x TimeC StabilizedTimeCrystal
+  outputs: 60x TimeC Cable
+- id: Diamond Mining Head
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x BP ItemDescriptorPortableMiner, 300x MotorLightweight, 2400x AluminumCasing, 1200x Diamond, 1200x SteelBolt
+  outputs: 60x Module Drill T3
+- id: Diluted White Slug Slime
+  machine: FF_Composter
+  power: 10
+  inputs: 30x WhiteSlug, 3x SlugSlime Mid
+  outputs: 120x SlugSlime Low
+- id: Dimensional Depot Uploader
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x WAT2, 600x SAMFluctuator, 600x ModularFrame, 6000x Wire
+  outputs: 60x CentralStorage
+- id: Display Sign
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronPlateReinforced, 300x QuartzCrystal
+  outputs: 60x StandaloneWidgetSign Medium
+- id: Distilled Fuel
+  machine: ChemReactor
+  power: 50
+  inputs: 90x PurifiedCrudeOil, 30x Water
+  outputs: 90x LiquidFuel, 45x HeavyOilResidue, 30x PolymerResin
+- id: Distilled Natural Gas
+  machine: ChemReactor
+  power: 50
+  inputs: 60x PurifiedCrudeOil
+  outputs: 75x KLIB NaturalGas, 20x HeavyOilResidue, 20x Asphalt
+- id: Distilled Silica
+  machine: ChemReactor
+  power: 50
+  inputs: 120x DissolvedSilica, 60x Gangue
+  outputs: 270x Silica, 90x Salt, 120x Water
+- id: Doggo Cage (Empty)
+  inputs: 42x IronRod, 60x IronPlate
+  outputs: 3x FF DoggoCageEmpty
+- id: Doggo Chow
+  machine: FF_CookingHub
+  power: 28
+  inputs: 35x FF Crop YosseBerry, 35x Mycelia, 25x Water
+  outputs: 1x FF DoggoChow
+- id: Doggo House
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 30000x Glass, 15000x SteelBolt, 3000x ModularFrame, 12000x BrassPipe, 3000x Rotor
+  outputs: 60x FF DoggoHouse
+- id: Double Wall Outlet Mk.1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 240x Wire, 120x IronScrew, 60x CopperRod
+  outputs: 60x PowerPoleWallDouble
+- id: Double Wall Outlet Mk.2
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 240x HighSpeedWire, 300x IronScrew, 60x CopperRod
+  outputs: 60x PowerPoleWallDoubleMk2
+- id: Double Wall Outlet Mk.3
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x HighSpeedConnector, 300x SteelBolt, 60x CopperRod
+  outputs: 60x PowerPoleWallDoubleMk3
+- id: Drone
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BP ItemDescriptorPortableMiner, 300x ModularFrameLightweight, 1500x AluminumPlate, 600x Motor, 3000x FanBlade
+  outputs: 60x DroneTransport
+- id: Drone Port
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x ModularFrameHeavy, 1500x ModularFrameLightweight, 3000x AluminumCasing, 1200x Motor, 3000x SteelBolt
+  outputs: 60x DroneStation
+- id: EDM Fluctuator
+  machine: Converter
+  power: 400
+  inputs: 60x DarkMatter
+  outputs: 10x SAMFluctuator
+- id: EP Control Rod
+  machine: AssemblerMk1
+  power: 15
+  inputs: 13.5x InvarPipe, 6.5x InvarPlates
+  outputs: 5x ElectromagneticControlRod
+- id: Electric Locomotive
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x ModularFrameHeavy, 720x Motor, 1500x SteelPipe, 1200x IronSheet
+  outputs: 60x Locomotive
+- id: Electrolysis - Chlorine Gas
+  machine: ChemReactor
+  power: 50
+  inputs: 149.99999403953575x LiquidHydrochloricAcid, 12.499999503294646x CopperBusbar
+  outputs: 99.99999602635717x Gas Chlor, 99.99999602635717x Gas Hydrogen
+- id: Elevator Floor Stop
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x IronPlateReinforced, 3000x Cement, 600x IronSheet, 600x Cable, 1500x IronScrew
+  outputs: 60x ElevatorFloorStop
+- id: Empty Canister
+  machine: ConstructorMk1
+  power: 4
+  inputs: 30x Plastic
+  outputs: 60x FluidCanister
+- id: Empty Cryo Tank
+  machine: AssemblerMk1
+  power: 15
+  inputs: 60x Glass, 30x Plastic
+  outputs: 30x NC CryoTankEmpty
+- id: Empty Fluid Tank
+  machine: ConstructorMk1
+  power: 4
+  inputs: 30x SteelIngot
+  outputs: 30x GasTank
+- id: Empty Platform
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 1500x SteelPlate, 3000x Cement
+  outputs: 60x TrainPlatformEmpty
+- id: Encased Industrial Beam
+  machine: AssemblerMk1
+  power: 15
+  inputs: 18x SteelPlate, 60x Cement
+  outputs: 6x SteelPlateReinforced
+- id: Encased Plutonium Cell
+  machine: HadronCollider
+  power: 2000
+  inputs: 200x NonFissibleUranium, 6x TitanPipe
+  outputs: 6x PlutoniumCell
+- id: Encased Uranium Cell
+  machine: ChemReactor
+  power: 50
+  inputs: 30x UranChloride, 20x Water, 20x Cement
+  outputs: 5x UraniumCell, 15x UranChloride, 40x LiquidHydrochloricAcid
+- id: Energetic Dark Matter
+  machine: Converter
+  power: 750
+  inputs: 25x SAMIngot
+  outputs: 50000x DarkEnergy
+- id: Enriched Apple
+  machine: FF_TreePlot
+  power: 5
+  inputs: 30x FF AppleSeed, 30x Water
+  outputs: 30x FF Crop Apple, 12x Leaves
+- id: Enriched Banana
+  machine: FF_TreePlot
+  power: 5
+  inputs: 30x FF BananaSeed, 30x Water
+  outputs: 30x FF Crop Banana, 12x Leaves
+- id: Enriched Carrots
+  machine: FF_CropPlot
+  power: 5
+  inputs: 30x FF CarrotSeed, 30x Water
+  outputs: 30x FF Crop Carrot, 18x Leaves
+- id: Enriched Corn
+  machine: FF_CropPlot
+  power: 5
+  inputs: 30x FF CornSeed, 30x Water
+  outputs: 30x FF Crop Corn, 18x Leaves
+- id: Enriched Cotton
+  machine: FF_CropPlot
+  power: 5
+  inputs: 30x FF CottonSeed, 30x Water
+  outputs: 30x FF Crop Cotton, 12x Leaves
+- id: Enriched Mycelia
+  machine: FF_MyceliaPlot
+  power: 5
+  inputs: 30x FF MyceliaSeed, 30x Water
+  outputs: 30x Mycelia, 12x Leaves
+- id: Enriched Potato
+  machine: FF_CropPlot
+  power: 5
+  inputs: 30x FF PotatoSeed, 30x Water
+  outputs: 30x FF Crop Potato, 12x Leaves
+- id: Enriched Pumpkin
+  machine: FF_CropPlot
+  power: 5
+  inputs: 30x FF PumpkinSeed, 30x Water
+  outputs: 30x FF Crop Pumpkin, 12x Leaves
+- id: Enriched Wheat
+  machine: FF_CropPlot
+  power: 5
+  inputs: 30x FF WheatSeed, 30x Water
+  outputs: 30x FF Crop Wheat, 12x Leaves
+- id: Enriched Yosse Berry
+  machine: FF_CropPlot
+  power: 5
+  inputs: 30x FF YosseSeed, 30x Water
+  outputs: 30x FF Crop YosseBerry, 12x Leaves
+- id: Equipment Workshop
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 180x IronPlate, 300x IronRod
+  outputs: 60x Workshop
+- id: Excited Photonic Matter
+  machine: Converter
+  power: 750
+  outputs: 50000x QuantumEnergy
+- id: Explorer
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x Motor, 3000x BrassPlates, 3000x SteelPipe, 6000x SteelRod, 6000x QuartzCrystal
+  outputs: 60x Explorer
+- id: Explorer Vehicle Path
+  machine: BP_EquipmentDescriptorBuildGun
+  outputs: 60x VehiclePath Explorer
+- id: Explosive Rebar
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 10x SpikedRebar, 10x GunpowderMK2, 10x SteelPipe
+  outputs: 5x Rebar Explosive
+- id: N/A
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronPlate
+- id: N/A
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronPlate
+- id: N/A
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronPlate
+- id: FICSMAS Actual Snow
+  machine: ConstructorMk1
+  power: 4
+  inputs: 25x Gift
+  outputs: 10x Snow
+- id: FICSMAS Bow
+  machine: ConstructorMk1
+  power: 4
+  inputs: 10x Gift
+  outputs: 5x XmasBow
+- id: FICSMAS Candy Cane
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x CandyCane, 60x XmasBow
+  outputs: 60x CandyCaneDecor
+- id: FICSMAS Data Cartridge Day 1
+  inputs: 5x Gift
+  outputs: 5x XmasDataCartridge1
+- id: FICSMAS Data Cartridge Day 14
+  inputs: 70x Gift
+  outputs: 5x XmasDataCartridge4
+- id: FICSMAS Data Cartridge Day 4
+  inputs: 20x Gift
+  outputs: 5x XmasDataCartridge2
+- id: FICSMAS Data Cartridge Day 8
+  inputs: 40x Gift
+  outputs: 5x XmasDataCartridge3
+- id: FICSMAS Decoration
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x XmasWreath, 60x XmasBow
+  outputs: 60x WreathDecor
+- id: FICSMAS Gift Tree
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 3000x Gift, 6000x XmasBranch, 1800x XmasBall1, 1800x XmasBall2
+  outputs: 60x TreeGiftProducer
+- id: FICSMAS Ornament Bundle
+  machine: AssemblerMk1
+  power: 15
+  inputs: 5x XmasBall3, 5x XmasBall4
+  outputs: 5x XmasBallCluster
+- id: FICSMAS Power Light
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x Cable, 60x XmasBallCluster
+  outputs: 60x xmassLights
+- id: FICSMAS Snow Cannon
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x XmasBow, 6000x Snow, 1200x XmasBall3
+  outputs: 60x SnowCannon
+- id: FICSMAS Snow Dispenser
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x CandyCane, 6000x Snow, 1200x XmasBall4
+  outputs: 60x SnowDispenser
+- id: FICSMAS Snowman
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 3000x Snow, 180x CandyCane, 60x XmasBow, 180x XmasBall1, 120x XmasBall2
+  outputs: 60x Snowman
+- id: FICSMAS Tree Branch
+  machine: ConstructorMk1
+  power: 4
+  inputs: 10x Gift
+  outputs: 10x XmasBranch
+- id: FICSMAS Wonder Star
+  machine: AssemblerMk1
+  power: 15
+  inputs: 5x XmasWreath, 20x CandyCane
+  outputs: 1x XmasStar
+- id: FICSMAS Wreath
+  machine: AssemblerMk1
+  power: 15
+  inputs: 15x XmasBranch, 6x XmasBallCluster
+  outputs: 2x XmasWreath
+- id: Fabric
+  machine: AssemblerMk1
+  power: 15
+  inputs: 20x GenericBiomass, 5x Mycelia
+  outputs: 10x Fabric
+- id: Factory Cart Vehicle Path
+  machine: BP_EquipmentDescriptorBuildGun
+  outputs: 60x VehiclePath FactoryCart
+- id: Factory Cart™
+  inputs: 12x IronPlateReinforced, 12x IronRod, 6x Rotor
+  outputs: 3x GolfCart
+- id: Fan Blades
+  machine: AssemblerMk1
+  power: 15
+  inputs: 12x BrassPlates, 22.5x IronRod
+  outputs: 7.5x FanBlade
+- id: Fancy Fireworks
+  machine: AssemblerMk1
+  power: 15
+  inputs: 10x XmasBranch, 7.5x XmasBow
+  outputs: 2.5x Fireworks Projectile 02
+- id: Farming Platform Mk1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 6000x IronScrew, 6000x IronSheet, 3000x CopperSheet
+  outputs: 60x FF FarmingPlatformMk2
+- id: Farming Platform Mk2
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 3000x BrassPlates, 3000x IronRod, 1800x IronScrew
+  outputs: 60x FF FarmingPlatformMk3
+- id: FaxIT Signal Booster
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 1200x ModularFrameLightweight, 300x TimeC QuantumProcessor, 900x TimeC Cable, 6000x SteelBolt
+  outputs: 60x CS Tower
+- id: FaxIt Double Wall Socket
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronRod, 300x TimeC Cable, 120x PhotonPairConverter
+  outputs: 60x CS PoleWallDouble
+- id: FaxIt Fluid Copier
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x BronzePipe, 600x SAMFluctuator, 180x PhotonPairConverter, 600x IronScrew
+  outputs: 60x CS Output Fluid
+- id: FaxIt Fluid Scanner
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x BronzePipe, 300x SAMFluctuator, 360x PhotonPairConverter, 600x IronScrew
+  outputs: 60x CS Input Fluid
+- id: FaxIt Solid Copier
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x IronPlateReinforced, 600x SAMFluctuator, 180x PhotonPairConverter, 600x IronScrew
+  outputs: 60x CS Output Solid
+- id: FaxIt Solid Scanner
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x IronPlateReinforced, 300x SAMFluctuator, 360x PhotonPairConverter, 600x IronScrew
+  outputs: 60x CS InputSolid
+- id: FaxIt Storage Nexus
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 1500x ModularFrame, 2400x PhotonPairConverter, 1800x TimeC QuantumProcessor, 12000x IronScrew
+  outputs: 60x CS Core
+- id: FaxIt Telecom Pole
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronRod, 300x TimeC Cable, 120x PhotonPairConverter, 300x Cement
+  outputs: 60x CS PoleStand
+- id: FaxIt Telecom Tower
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x SteelPlate, 1200x TimeC Cable, 240x PhotonPairConverter, 900x Cement
+  outputs: 60x CS PoleStand 2
+- id: FaxIt Wall Socket
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronRod, 300x TimeC Cable, 120x PhotonPairConverter
+  outputs: 60x Cs PoleWall
+- id: Faxit Cable
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x TimeC Cable
+  outputs: 60x CS Cable 4
+- id: Faxit Cable - Blue
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x TimeC Cable
+  outputs: 60x CS Cable
+- id: Faxit Cable - Red
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x TimeC Cable
+  outputs: 60x CS Cable 3
+- id: Faxit Cable - Yellow
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x TimeC Cable
+  outputs: 60x CS Cable 5
+- id: Faxit Cable- Green
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x TimeC Cable
+  outputs: 60x CS Cable 2
+- id: Fertilised Apple
+  machine: FF_TreePlot
+  power: 5
+  inputs: 50x FF AppleSeed, 10000x FF Fertilizer
+  outputs: 50x FF Crop Apple, 20x Leaves
+- id: Fertilized Banana
+  machine: FF_TreePlot
+  power: 5
+  inputs: 50x FF BananaSeed, 10000x FF Fertilizer
+  outputs: 50x FF Crop Banana, 20x Leaves
+- id: Fertilized Carrots
+  machine: FF_CropPlot
+  power: 5
+  inputs: 50x FF CarrotSeed, 10000x FF Fertilizer
+  outputs: 50x FF Crop Carrot, 20x Leaves
+- id: Fertilized Corn
+  machine: FF_CropPlot
+  power: 5
+  inputs: 50x FF CornSeed, 10000x FF Fertilizer
+  outputs: 50x FF Crop Corn, 20x Leaves
+- id: Fertilized Cotton
+  machine: FF_CropPlot
+  power: 5
+  inputs: 50x FF CottonSeed, 10000x FF Fertilizer
+  outputs: 50x FF Crop Cotton, 20x Leaves
+- id: Fertilized Mycelia
+  machine: FF_MyceliaPlot
+  power: 5
+  inputs: 50x FF MyceliaSeed, 10000x FF Fertilizer
+  outputs: 50x Mycelia, 20x Leaves
+- id: Fertilized Potato
+  machine: FF_CropPlot
+  power: 5
+  inputs: 50x FF PotatoSeed, 10000x FF Fertilizer
+  outputs: 50x FF Crop Potato, 20x Leaves
+- id: Fertilized Pumpkin
+  machine: FF_CropPlot
+  power: 5
+  inputs: 50x FF PumpkinSeed, 10000x FF Fertilizer
+  outputs: 50x FF Crop Pumpkin, 20x Leaves
+- id: Fertilized Wheat
+  machine: FF_CropPlot
+  power: 5
+  inputs: 50x FF WheatSeed, 10000x FF Fertilizer
+  outputs: 50x FF Crop Wheat, 20x Leaves
+- id: Fertilized Yosse Berry
+  machine: FF_CropPlot
+  power: 5
+  inputs: 50x FF YosseSeed, 10000x FF Fertilizer
+  outputs: 50x FF Crop YosseBerry, 20x Leaves
+- id: Ficsite™ Ingot (Aluminum)
+  machine: Converter
+  power: 400
+  inputs: 80x SAMIngot, 120x AluminumIngot
+  outputs: 40x FicsiteIngot
+- id: Ficsite™ Ingot (Bronze)
+  machine: Converter
+  power: 400
+  inputs: 50x SAMIngot, 120x BronzeIngot
+  outputs: 20x FicsiteIngot
+- id: Ficsite™ Ingot (Caterium)
+  machine: Converter
+  power: 400
+  inputs: 60x SAMIngot, 120x GoldIngot
+  outputs: 30x FicsiteIngot
+- id: Ficsite™ Ingot (Iron)
+  machine: Converter
+  power: 400
+  inputs: 40x SAMIngot, 120x IronIngot
+  outputs: 10x FicsiteIngot
+- id: Ficsite™ Trigon
+  machine: ConstructorMk1
+  power: 4
+  inputs: 10x FicsiteIngot
+  outputs: 30x FicsiteMesh
+- id: Ficsonium
+  machine: HadronCollider
+  power: 2000
+  inputs: 3.75x SingularityCell, 15x PlutoniumWaste, 20x Neutronium
+  outputs: 7.5x Ficsonium
+- id: Ficsonium Fuel Rod
+  machine: QuantumEncoder
+  power: 2500
+  inputs: 3.75x Ficsonium, 7.5x ElectromagneticControlRod, 56.25x FicsiteMesh, 150000x QuantumEnergy
+  outputs: 7.5x FicsoniumFuelRod, 75000x DarkEnergy
+- id: Filtrator
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Rotor, 300x TinPlates, 600x BronzePipe, 900x TinnedWire, 600x IronScrew
+  outputs: 60x Cleaner 2
+- id: Filtrator filter Algal Mass
+  machine: Cleaner2
+  power: 10
+  inputs: 30x Res LiquidBioWater
+  outputs: 60x GenericBiomass
+- id: Filtrator filter Flue Gas
+  machine: Cleaner2
+  power: 10
+  inputs: 50x FlueGas, 30x Gangue
+  outputs: 21x Sulfurtrixid, 18x Sulfur, 12x ColdSlag
+- id: Filtrator filter Slug Slime
+  machine: Cleaner2
+  power: 10
+  inputs: 180x SlugSlime Low
+  outputs: 3x PowerShardCrystal
+- id: Filtrator filter Tailings Slurry
+  machine: Cleaner2
+  power: 10
+  inputs: 80x LiquidSlag
+  outputs: 40x CrushedIron, 40x CrushedCopper, 20x CrushedTin, 20x ColdSlag
+- id: Filtrator filter Wastewater
+  machine: Cleaner2
+  power: 10
+  inputs: 60x Wastewater
+  outputs: 40x Water, 30x CrushedZinc, 30x CrushedCaterium, 30x CrushedNickle, 30x CrushedCobalt
+- id: Fissile Uranium
+  machine: Blender
+  power: 75
+  inputs: 60x OreUranium, 30x Cement, 120x Gas Chlor
+  outputs: 15x UraniumCell, 45x UranChloride
+- id: Flexible Blast Furnace
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x BronzeFrame, 3000x HighSpeedWire, 1200x BronzePipe, 1500x Cable
+  outputs: 60x FlexibleBlastFurnaceSmelter
+- id: Flint Glass
+  machine: FoundryMk1
+  power: 16
+  inputs: 45x Silica, 11.25x LeadSheet
+  outputs: 60x Glass
+- id: Flood Light Tower
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x Cable, 300x Glass, 360x IronScrew, 300x QuartzCrystal, 300x IronPlate
+  outputs: 60x FloodlightPole
+- id: Flue Gas Stack
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 360x BronzePipe, 600x IronPlate, 600x IronScrew, 300x IronSheet
+  outputs: 60x RP MP Co2Cooler
+- id: Flue Gas Stack sinking Air
+  machine: RP_MP_Co2Cooler
+  inputs: 75x Air
+  outputs: 75000x None
+- id: Flue Gas Stack sinking Flue Gas
+  machine: RP_MP_Co2Cooler
+  inputs: 75x FlueGas
+  outputs: 75000x None
+- id: Flue Gas Stack sinking Natural Gas
+  machine: RP_MP_Co2Cooler
+  inputs: 75x KLIB NaturalGas
+  outputs: 75000x None
+- id: Flue Gas Stack sinking Toxic Air
+  machine: RP_MP_Co2Cooler
+  inputs: 75x ToxicAir
+  outputs: 75000x None
+- id: Fluid Buffer
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x ModularFrame, 600x CopperSheet, 600x IronSheet, 1500x IronScrew
+  outputs: 60x PipeStorageTank
+- id: Fluid Freight Platform
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x ModularFrameHeavy, 1800x SteelPlate, 3000x Cement, 900x Motor
+  outputs: 0.06x TrainDockingStationLiquid
+- id: Fluid Module
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 1800x BrassPipe, 1200x Cable, 1200x CopperSheet, 1500x IronScrew
+  outputs: 60x Module Fluid
+- id: Fluid Module use Energized Slug Slime to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x SlugSlime High
+  outputs: 209.99999061226887x Res KerrCrystal
+- id: Fluid Module use Energized Slug Slime to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x SlugSlime High
+  outputs: 839.9999624490755x OreUranium
+- id: Fluid Module use Muriatic Acid to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x LiquidHydrochloricAcid
+  outputs: 120x FF Dirt Fertilized
+- id: Fluid Module use Muriatic Acid to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x LiquidHydrochloricAcid
+  outputs: 120x Sulfur
+- id: Fluid Module use Muriatic Acid to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x LiquidHydrochloricAcid
+  outputs: 120x RawQuartz
+- id: Fluid Module use Muriatic Acid to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x LiquidHydrochloricAcid
+  outputs: 120x OreIron
+- id: Fluid Module use Muriatic Acid to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x LiquidHydrochloricAcid
+  outputs: 240x OreBauxite
+- id: Fluid Module use Muriatic Acid to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x LiquidHydrochloricAcid
+  outputs: 120x Coal
+- id: Fluid Module use Muriatic Acid to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x LiquidHydrochloricAcid
+  outputs: 120x OreGold
+- id: Fluid Module use Muriatic Acid to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x LiquidHydrochloricAcid
+  outputs: 120x OreCopper
+- id: Fluid Module use Muriatic Acid to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x LiquidHydrochloricAcid
+  outputs: 120x SAM
+- id: Fluid Module use Muriatic Acid to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x LiquidHydrochloricAcid
+  outputs: 120x Stone
+- id: Fluid Module use Muriatic Acid to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x LiquidHydrochloricAcid
+  outputs: 120x FF Dirt Wet
+- id: Fluid Module use Muriatic Acid to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x LiquidHydrochloricAcid
+  outputs: 120x FF Dirt
+- id: Fluid Module use Nitric Acid to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x NitricAcid
+  outputs: 480x OreUranium
+- id: Fluid Module use Slug Slime to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 30x SlugSlime Low
+  outputs: 89.99999731779107x Res KerrCrystal
+- id: Fluid Module use Slug Slime to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x SlugSlime Low
+  outputs: 209.99999061226887x FF Dirt Fertilized
+- id: Fluid Module use Slug Slime to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x SlugSlime Low
+  outputs: 209.99999061226887x Sulfur
+- id: Fluid Module use Slug Slime to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x SlugSlime Low
+  outputs: 209.99999061226887x RawQuartz
+- id: Fluid Module use Slug Slime to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x SlugSlime Low
+  outputs: 209.99999061226887x OreIron
+- id: Fluid Module use Slug Slime to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x SlugSlime Low
+  outputs: 419.99998122453775x OreBauxite
+- id: Fluid Module use Slug Slime to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x SlugSlime Low
+  outputs: 209.99999061226887x Coal
+- id: Fluid Module use Slug Slime to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x SlugSlime Low
+  outputs: 209.99999061226887x OreGold
+- id: Fluid Module use Slug Slime to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x SlugSlime Low
+  outputs: 209.99999061226887x OreCopper
+- id: Fluid Module use Slug Slime to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x SlugSlime Low
+  outputs: 209.99999061226887x SAM
+- id: Fluid Module use Slug Slime to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x SlugSlime Low
+  outputs: 209.99999061226887x Stone
+- id: Fluid Module use Slug Slime to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x SlugSlime Low
+  outputs: 209.99999061226887x FF Dirt Wet
+- id: Fluid Module use Slug Slime to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 15x SlugSlime Low
+  outputs: 209.99999061226887x FF Dirt
+- id: Fluid Module use Sulfuric Acid to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 30x SulfuricAcid
+  outputs: 359.9999892711643x OreUranium
+- id: Fluid Module use Water to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 30x Water
+  outputs: 89.99999731779107x FF Dirt Fertilized
+- id: Fluid Module use Water to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 30x Water
+  outputs: 89.99999731779107x Sulfur
+- id: Fluid Module use Water to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 30x Water
+  outputs: 89.99999731779107x RawQuartz
+- id: Fluid Module use Water to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 30x Water
+  outputs: 89.99999731779107x OreIron
+- id: Fluid Module use Water to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 30x Water
+  outputs: 179.99999463558214x OreBauxite
+- id: Fluid Module use Water to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 30x Water
+  outputs: 89.99999731779107x Coal
+- id: Fluid Module use Water to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 30x Water
+  outputs: 89.99999731779107x OreGold
+- id: Fluid Module use Water to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 30x Water
+  outputs: 89.99999731779107x OreCopper
+- id: Fluid Module use Water to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 30x Water
+  outputs: 89.99999731779107x SAM
+- id: Fluid Module use Water to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 30x Water
+  outputs: 89.99999731779107x Stone
+- id: Fluid Module use Water to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 30x Water
+  outputs: 89.99999731779107x FF Dirt Wet
+- id: Fluid Module use Water to boost Modular Miner
+  machine: Module_Fluid, ModularMiner_01
+  power: 10
+  inputs: 30x Water
+  outputs: 89.99999731779107x FF Dirt
+- id: Fluid Tank Module
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x BronzeFrame, 3000x SteelBolt, 3000x IronSheet, 1500x BronzePipe
+  outputs: 60x Hatchery Tank Module
+- id: Fluid Truck
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x ModularFrameHeavy, 120x Motor, 1500x Rubber, 1200x IronSheet
+  outputs: 60x FluidTruck
+- id: Fluid Truck Station
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x ModularFrame, 1200x Stator, 1200x Rubber, 3000x Plastic
+  outputs: 60x FluidTruckStation
+- id: Foundry
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x Wire, 300x IronPlateReinforced, 600x Cable, 900x Cement
+  outputs: 60x FoundryMk1
+- id: Freight Car
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x ModularFrameHeavy, 900x SteelPipe, 600x IronSheet
+  outputs: 60x FreightWagon
+- id: Freight Platform
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x ModularFrameHeavy, 1800x SteelPlate, 3000x Cement, 900x Motor
+  outputs: 60x TrainDockingStation
+- id: Fuel-Powered Generator
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x IronPlate, 720x IronRod, 900x Cable, 240x CopperBusbar
+  outputs: 60x GeneratorFuel
+- id: Fuel-Powered Generator burn Fuel
+  machine: GeneratorFuel
+  inputs: 40x LiquidFuel
+- id: Fuel-Powered Generator burn Ionized Fuel
+  machine: GeneratorFuel
+  inputs: 3000x IonizedFuel
+- id: Fuel-Powered Generator burn Liquid Biofuel
+  machine: GeneratorFuel
+  inputs: 7.5x LiquidBiofuel
+- id: Fuel-Powered Generator burn Rocket Fuel
+  machine: GeneratorFuel
+  inputs: 4500.000107288363x RocketFuel
+- id: Fuel-Powered Generator burn Turbofuel
+  machine: GeneratorFuel
+  inputs: 15x LiquidTurboFuel
+- id: Full Booster Module
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x ModularFrameHeavy, 300x CrystalShard, 3000x HighSpeedWire, 600x Computer
+  outputs: 60x Module Energy Mk2
+- id: Fused Modular Frame
+  machine: Blender
+  power: 75
+  inputs: 2.5x ModularFrameHeavy, 150x AluminumCasing, 60x NitrogenGas
+  outputs: 2.5x ModularFrameFused
+- id: Gas Filter
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 30x Fabric, 60x CarbonDust, 30x IronPlate
+  outputs: 15x Filter
+- id: Gas Mask
+  inputs: 150x Fabric, 30x BrassPipe, 60x IronWire
+  outputs: 3x BP EquipmentDescriptorGasmask
+- id: Gas Nobelisk
+  machine: AssemblerMk1
+  power: 15
+  inputs: 5x NobeliskExplosive, 50x GenericBiomass
+  outputs: 5x NobeliskGas
+- id: Gas Vent Platform
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronSheet, 600x IronRod, 600x IronScrew
+  outputs: 60x RP MP CoolingPlatform
+- id: Geothermal Generator
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x ModularFrameHeavy, 900x Motor, 1800x FanBlade, 2400x HighSpeedWire
+  outputs: 60x GeneratorGeoThermal
+- id: Giant FICSMAS Tree
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 6000x XmasBranch, 3000x IronPlateReinforced, 30000x Cement
+  outputs: 60x XMassTree
+- id: N/A
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 180x Glass
+- id: Golden Factory Cart™
+  inputs: 45x GoldIngot, 12x IronRod, 6x Rotor
+  outputs: 3x GolfCartGold
+- id: Grain Meal
+  machine: Crusher
+  power: 4
+  inputs: 30x FF WheatSeed, 30x FF CornSeed
+  outputs: 60x SnailFood Tier 1
+- id: Greenhouse Module
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 6000x Glass, 1200x BronzeFrame, 3000x IronScrew, 1200x LeadSheet
+  outputs: 60x FF PlotMod Greenhouse
+- id: N/A
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x SteelPlate
+- id: HV Generator
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x ModularFrameHeavy, 900x ElectromagneticControlRod, 1500x Motor, 6000x HighSpeedWire
+  outputs: 60x RP MP HVGenerator
+- id: Half Booster Module
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x BronzeFrame, 900x PowerShardCrystal, 3000x HighSpeedWire, 900x Cable
+  outputs: 60x Module Energy
+- id: Handcrafted Concrete
+  inputs: 60x Stone
+  outputs: 24x Cement
+- id: Handcrushed Aurovite
+  inputs: 15x OreGold
+  outputs: 15x CrushedAurovite
+- id: Handcrushed Callanite
+  inputs: 25x OreCopper
+  outputs: 25x CrushedCallanite
+- id: Handcrushed Gangue
+  inputs: 60x OreIron
+  outputs: 150x Gangue
+- id: Handcrushed Larrussite
+  inputs: 15x Stone
+  outputs: 15x CrushedLarrussite
+- id: Handcrushed Siterite
+  inputs: 25x OreIron
+  outputs: 25x CrushedSiterite
+- id: Hard Magnetic Core
+  machine: FoundryMk1
+  power: 16
+  inputs: 30x InvarIngot, 5x CobaltPlates
+  outputs: 15x InvarPipe
+- id: Hardened Mining Head
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x BP ItemDescriptorPortableMiner, 1800x SteelPlate, 3000x IronWire, 3000x SteelBolt
+  outputs: 60x Module Drill T2
+- id: Harvester Module
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x Rotor, 1200x BronzeFrame, 3000x IronScrew
+  outputs: 60x FF PlotMod Harvester
+- id: Hatcher Protein
+  machine: ConstructorMk1
+  power: 4
+  inputs: 20x HatcherParts
+  outputs: 20x AlienProtein
+- id: Hazard Storage Box
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronPlate, 120x IronRod, 240x IronScrew
+  outputs: 60x StorageHazard
+- id: Hazmat Filter
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 20x Filter, 40x HighSpeedWire, 5x AluminumCasing
+  outputs: 5x HazmatFilter
+- id: Hazmat Suit
+  inputs: 187.5x Rubber, 187.5x Fabric, 93.75x LeadSheet, 93.75x AluminumPlate
+  outputs: 1.875x BP EquipmentDescriptorHazmatSuit
+- id: Heavy Ethylene Gas
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 30x HeavyOilResidue, 90x Gas Steam Hot
+  outputs: 90x Ethylene, 180x PolymerResin
+- id: Heavy Modular Frame
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 10x ModularFrame, 15x SteelPlateReinforced, 37.5x BrassPipe, 225x SteelBolt
+  outputs: 5x ModularFrameHeavy
+- id: Heavy Neutrium Gas
+  machine: HadronCollider
+  power: 2000
+  inputs: 80x OreUranium
+  outputs: 40x Neutronium
+- id: High Pressure Diamond
+  machine: ConstructorMk1
+  power: 4
+  inputs: 30x CarbonDust
+  outputs: 2x Diamond
+- id: High-Speed Connector
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 150x HighSpeedWire, 22.5x CircuitBoard, 11.25x CobaltPlates
+  outputs: 7.5x HighSpeedConnector
+- id: Hog Protein
+  machine: ConstructorMk1
+  power: 4
+  inputs: 20x HogParts
+  outputs: 20x AlienProtein
+- id: Homing Rifle Ammo
+  machine: AssemblerMk1
+  power: 15
+  inputs: 50x CartridgeStandard, 2.5x HighSpeedConnector
+  outputs: 25x CartridgeSmartProjectile
+- id: Hoverpack
+  inputs: 7.5x Motor, 5x ModularFrame, 8x FanBlade, 20x BrassPlates, 75x SteelBolt
+  outputs: 0.5x BP EquipmentDescriptorHoverPack
+- id: Huge FaxIT Disk
+  machine: QuantumEncoder
+  power: 2500
+  inputs: 1.5x Faxit DimensionalDrive Mk3, 3.75x TemporalProcessor, 11.25x TimeCrystal, 75000x QuantumEnergy
+  outputs: 0.7500000000000001x Faxit DimensionalDrive Mk4, 37500x DarkEnergy
+- id: Humidity Module
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x BronzeFrame, 1200x BronzePipe, 1200x IronRod, 1500x IronScrew
+  outputs: 60x Hatchery Humidity Module
+- id: Hypertube
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BrassPipe, 60x IronScrew, 60x Glass
+  outputs: 60x PipeHyper
+- id: Hypertube Branch
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cement, 120x IronScrew, 60x IronRod
+  outputs: 60x HypertubeTJunction
+- id: Hypertube Entrance
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x BrassPipe, 300x IronScrew, 300x SteelPlateReinforced, 300x Cable
+  outputs: 60x PipeHyperStart
+- id: Hypertube Floor Hole
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronRod, 120x IronPlate, 120x Cement
+  outputs: 60x FoundationPassthrough Hypertube
+- id: Hypertube Junction
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cement, 120x IronScrew, 60x IronRod
+  outputs: 60x HyperTubeJunction
+- id: Hypertube Support
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cement, 120x IronScrew, 60x IronRod
+  outputs: 60x PipeHyperSupport
+- id: Hypertube Wall Hole
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cement, 120x IronScrew, 60x IronRod
+  outputs: 60x HyperTubeWallHole
+- id: Hypertube Wall Support
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cement, 120x IronScrew, 60x IronRod
+  outputs: 60x HyperTubeWallSupport
+- id: Impure Caterium Ingot
+  machine: SmelterMk1
+  power: 4
+  inputs: 40x CrushedAurovite
+  outputs: 24x GoldIngot
+- id: Impure Copper Ingot
+  machine: SmelterMk1
+  power: 4
+  inputs: 24x CrushedCallanite
+  outputs: 24x CopperIngot
+- id: Impure Iron Ingot
+  machine: SmelterMk1
+  power: 4
+  inputs: 30x CrushedSiterite
+  outputs: 30x IronIngot
+- id: Impure Tin Ingot
+  machine: SmelterMk1
+  power: 4
+  inputs: 30x CrushedSiterite
+  outputs: 15x TinIngot
+- id: Incubator Module
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x BronzeFrame, 1500x Glass, 1200x IronRod, 1500x IronScrew
+  outputs: 60x Hatchery Small Module
+- id: Industrial Fluid Buffer
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x ModularFrame, 1500x SteelPlate, 1500x Plastic, 3000x SteelBolt
+  outputs: 60x IndustrialTank
+- id: Industrial Storage Container
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x ModularFrame, 300x SteelRod, 600x IronSheet, 1500x SteelBolt
+  outputs: 60x StorageContainerMk2
+- id: Iron FICSMAS Ornament
+  machine: FoundryMk1
+  power: 16
+  inputs: 15x XmasBall2, 15x IronIngot
+  outputs: 5x XmasBall4
+- id: Iron Ingot
+  machine: SmelterMk1
+  power: 4
+  inputs: 30x CrushedIron
+  outputs: 30x IronIngot
+- id: Iron Plate
+  machine: ConstructorMk1
+  power: 4
+  inputs: 30x IronIngot
+  outputs: 20x IronPlate
+- id: Iron Rebar
+  machine: ConstructorMk1
+  power: 4
+  inputs: 15x IronRod
+  outputs: 15x SpikedRebar
+- id: Iron Rod
+  machine: ConstructorMk1
+  power: 4
+  inputs: 15x IronIngot
+  outputs: 15x IronRod
+- id: Iron Sheet
+  machine: ConstructorMk1
+  power: 4
+  inputs: 40x IronPlate
+  outputs: 50x IronSheet
+- id: Iron Wire
+  machine: ConstructorMk1
+  power: 4
+  inputs: 20x IronRod
+  outputs: 30x IronWire
+- id: Irrigation Module
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x Rotor, 1500x CopperSheet, 1800x IronScrew
+  outputs: 60x FF PlotMod Irrigation
+- id: Jetpack
+  inputs: 200x Plastic, 200x SteelPipe, 150x IronSheet, 250x SteelBolt
+  outputs: 1x BP EquipmentDescriptorJetPack
+- id: Jetpack burns Packaged Fuel
+  machine: BP_EquipmentDescriptorJetPack
+  inputs: 299.9999955296517x Fuel
+- id: Jetpack burns Packaged Ionized Fuel
+  machine: BP_EquipmentDescriptorJetPack
+  inputs: 428.5714267467966x PackagedIonizedFuel
+- id: Jetpack burns Packaged Liquid Biofuel
+  machine: BP_EquipmentDescriptorJetPack
+  inputs: 750.0000167638067x PackagedBiofuel
+- id: Jetpack burns Packaged Rocket Fuel
+  machine: BP_EquipmentDescriptorJetPack
+  inputs: 240x PackagedRocketFuel
+- id: Jetpack burns Packaged Turbofuel
+  machine: BP_EquipmentDescriptorJetPack
+  inputs: 199.99999205271433x TurboFuel
+- id: Jetpack burns Solid Biofuel
+  machine: BP_EquipmentDescriptorJetPack
+  inputs: 171.42857434798265x Biofuel
+- id: Jump Pad
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x IronScrew, 600x IronPlate, 300x Rotor
+  outputs: 60x JumpPadAdjustable
+- id: Junction Bent Cross
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12x CopperSheet, 60x IronScrew, 24x BronzePipe
+  outputs: 12x PipeJunc-BentCross
+- id: Junction BentT
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12x CopperSheet, 60x IronScrew, 24x BronzePipe
+  outputs: 12x PipeJunc-BentT
+- id: Junction DoubleT
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12x CopperSheet, 60x IronScrew, 24x BronzePipe
+  outputs: 12x PipeJunc-DT
+- id: Junction Fork
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12x CopperSheet, 60x IronScrew, 24x BronzePipe
+  outputs: 12x PipeJunc-Fork
+- id: Junction L Corner
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12x CopperSheet, 60x IronScrew, 24x BronzePipe
+  outputs: 12x PipeJunc-L
+- id: Junction Star Cross
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12x CopperSheet, 60x IronScrew, 24x BronzePipe
+  outputs: 12x PipeStar-Cross
+- id: Junction Star Tri
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12x CopperSheet, 60x IronScrew, 24x BronzePipe
+  outputs: 12x PipeStar-Tri
+- id: Junction Tri
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x CopperSheet
+  outputs: 12x PipeJunc-Tri
+- id: Kerr Crystal (Kyalite)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 240x RawQuartz
+  outputs: 60x Res KerrCrystal, 40000x DarkEnergy
+- id: Kyalite Ore (Larrussite)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 480x Stone
+  outputs: 240x RawQuartz
+- id: Kyalite Ore (Montanion)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 240x OreBauxite
+  outputs: 240x RawQuartz, 20000x DarkEnergy
+- id: Label Sign (2 m)
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronPlate, 120x QuartzCrystal
+  outputs: 60x StandaloneWidgetSign Small
+- id: Label Sign (3 m)
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 180x IronPlate, 180x QuartzCrystal
+  outputs: 60x StandaloneWidgetSign SmallWide
+- id: Label Sign (4 m)
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 240x IronPlate, 240x QuartzCrystal
+  outputs: 60x StandaloneWidgetSign SmallVeryWide
+- id: Large Billboard
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 720x SteelPlateReinforced, 1200x CopperSheet, 300x CrystalOscillator
+  outputs: 60x StandaloneWidgetSign Huge
+- id: Large FaxIT Disk
+  machine: Blender
+  power: 75
+  inputs: 9x Faxit DimensionalDrive Mk2, 15x PowerRelay, 30000x AluminaSolution, 30x CoolingWater
+  outputs: 3x Faxit DimensionalDrive Mk3
+- id: Larrusite Ore (Siterite)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 240x OreIron
+  outputs: 240x Stone, 20000x DarkEnergy
+- id: Larrussite Ore (Coal)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 160x Coal
+  outputs: 240x Stone
+- id: Lead Ingot
+  machine: SmelterMk1
+  power: 4
+  inputs: 30x CrushedLead
+  outputs: 45x LeadIngot
+- id: Lead Sheet
+  machine: ConstructorMk1
+  power: 4
+  inputs: 22.5x LeadIngot
+  outputs: 7.5x LeadSheet
+- id: Light Control Panel
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x Cable, 900x IronPlate, 1200x IronScrew, 300x ModularFrame
+  outputs: 60x LightsControlPanel
+- id: Light Ethylene Gas
+  machine: OilRefinery
+  power: 30
+  inputs: 50x KLIB NaturalGas
+  outputs: 60x Ethylene
+- id: Lime Slug Slime
+  machine: FF_Composter
+  power: 10
+  inputs: 15x Lime
+  outputs: 7.5x SlugSlime Mid
+- id: Liquid Biofuel
+  machine: ChemReactor
+  power: 50
+  inputs: 24x Biofuel, 45x Water
+  outputs: 30x LiquidBiofuel
+- id: Lookout Tower
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 1500x IronRod, 1200x IronSheet, 3000x IronScrew, 1200x Wire
+  outputs: 60x LookoutTower
+- id: MAM
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronPlateReinforced, 600x Cable, 1800x Wire, 600x TinPlates, 1500x IronWire
+  outputs: 60x Mam
+- id: MV Generator
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x ModularFrame, 600x Rotor, 1500x TinnedWire, 1200x Cable
+  outputs: 60x RP MP MVGenerator
+- id: Magnesium Granules
+  machine: Crusher
+  power: 4
+  inputs: 80x CrushedMagnesium
+  outputs: 72x MagnesiumGranules
+- id: Magnetic Field Generator
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 3x PowerRelay, 6x TitanPipe, 14.625x InvarPlates
+  outputs: 1.5x SpaceElevatorPart 6
+- id: Main Portal
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x MotorLightweight, 600x ModularFrameLightweight, 1200x QuantumOscillator, 600x SAMFluctuator, 600x FicsiteMesh
+  outputs: 60x Portal
+- id: Manufacturer
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 240x Motor, 240x ModularFrameHeavy, 1500x BrassPlates, 1200x SteelPlateReinforced, 3000x SteelBolt
+  outputs: 60x ManufacturerMk1
+- id: Medical Storage Box
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronPlate, 120x IronRod, 240x IronScrew
+  outputs: 60x StorageMedkit
+- id: Medium FaxIT Disk
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 3x Faxit DimensionalDrive Mk1, 6x PhotonPairConverter, 7.5x HighSpeedConnector
+  outputs: 1.5x Faxit DimensionalDrive Mk2
+- id: N/A
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x SteelPlate
+- id: Mini Water Extractor
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x Rotor, 1200x CopperSheet, 900x Cable, 1200x IronScrew
+  outputs: 60x AB MiniExtractor
+- id: Modular Engine
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 7.5x SpaceElevatorPart 2, 7.5x Motor, 10x CircuitBoard, 50x Rubber
+  outputs: 2.5x SpaceElevatorPart 4
+- id: Modular Frame
+  machine: AssemblerMk1
+  power: 15
+  inputs: 7.5x IronPlateReinforced, 7.5x BronzeBeam
+  outputs: 6x ModularFrame
+- id: Modular Miner
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x IronPlate, 300x Cable, 600x TinPlates, 600x Cement, 1200x IronScrew
+  outputs: 60x ModularMiner
+- id: Modular Miner extract Aurovite Ore
+  machine: ModularMiner_01
+  power: 2
+  outputs: 60x OreGold
+- id: Modular Miner extract Callanite Ore
+  machine: ModularMiner_01
+  power: 2
+  outputs: 60x OreCopper
+- id: Modular Miner extract Coal
+  machine: ModularMiner_01
+  power: 2
+  outputs: 60x Coal
+- id: Modular Miner extract Dirt
+  machine: ModularMiner_01
+  power: 2
+  outputs: 60x FF Dirt
+- id: Modular Miner extract Kyalite
+  machine: ModularMiner_01
+  power: 2
+  outputs: 60x RawQuartz
+- id: Modular Miner extract Larrussite Ore
+  machine: ModularMiner_01
+  power: 2
+  outputs: 60x Stone
+- id: Modular Miner extract Loam
+  machine: ModularMiner_01
+  power: 2
+  outputs: 60x FF Dirt Wet
+- id: Modular Miner extract Montanion Ore
+  machine: ModularMiner_01
+  power: 2
+  outputs: 120x OreBauxite
+- id: Modular Miner extract Peat
+  machine: ModularMiner_01
+  power: 2
+  outputs: 60x FF Dirt Fertilized
+- id: Modular Miner extract SAM
+  machine: ModularMiner_01
+  power: 2
+  outputs: 60x SAM
+- id: Modular Miner extract Siterite Ore
+  machine: ModularMiner_01
+  power: 2
+  outputs: 60x OreIron
+- id: Molten Brass
+  machine: FlexibleBlastFurnaceSmelter
+  power: 50
+  inputs: 32x CrushedZinc, 20x LiquidCopper
+  outputs: 80x LiquidBrass
+- id: Molten Caterium
+  machine: FlexibleBlastFurnaceSmelter
+  power: 50
+  inputs: 160x CrushedCaterium
+  outputs: 80x LiquidGold, 10x LiquidSlag
+- id: Molten Cobalt
+  machine: FlexibleBlastFurnaceSmelter
+  power: 50
+  inputs: 90x CrushedCobalt, 40x Gas Hydrogen
+  outputs: 45x LiquidCobalt, 45x LiquidSlag
+- id: Molten Copper
+  machine: FlexibleBlastFurnaceSmelter
+  power: 50
+  inputs: 120x CrushedCopper
+  outputs: 60x LiquidCopper
+- id: Molten Iron
+  machine: FlexibleBlastFurnaceSmelter
+  power: 50
+  inputs: 120x CrushedIron
+  outputs: 60x LiquidIron
+- id: Molten Lead
+  machine: FlexibleBlastFurnaceSmelter
+  power: 50
+  inputs: 120x CrushedLead
+  outputs: 60x LiquidLead
+- id: Molten Magnitar™
+  machine: FlexibleBlastFurnaceSmelter
+  power: 50
+  inputs: 20x CrushedCobalt, 20x LiquidNickle, 40x LiquidIron
+  outputs: 60x LiquidInvar, 40x LiquidSlag
+- id: Molten Nickel
+  machine: FlexibleBlastFurnaceSmelter
+  power: 50
+  inputs: 90x CrushedNickle, 30x Gas Hydrogen
+  outputs: 45x LiquidNickle, 30x LiquidSlag
+- id: Molten Solder
+  machine: FlexibleBlastFurnaceSmelter
+  power: 50
+  inputs: 30x LiquidTin, 60x CrushedLead
+  outputs: 36x LiquidSolder
+- id: Molten Steel
+  machine: FlexibleBlastFurnaceSmelter
+  power: 50
+  inputs: 40x LiquidIron, 20x CarbonDust, 20x Gas Steam Hot
+  outputs: 40x LiquidSteel, 20x FlueGas
+- id: Molten Tin
+  machine: FlexibleBlastFurnaceSmelter
+  power: 50
+  inputs: 120x CrushedTin
+  outputs: 60x LiquidTin
+- id: Molten Zinc
+  machine: FlexibleBlastFurnaceSmelter
+  power: 50
+  inputs: 120x CrushedZinc
+  outputs: 60x LiquidZinc, 20x LiquidSlag
+- id: Monochrome Crushed Bauxite
+  machine: SorterMk1
+  power: 15
+  inputs: 120x CrushedCrotinium, 120x RawQuartz, 30x SlugSlime Mineral
+  outputs: 300x CrushedBauxite
+- id: Monochrome Crushed Caterium
+  machine: SorterMk1
+  power: 15
+  inputs: 120x CrushedAurovite, 120x CrushedCrotinium, 30x SlugSlime Mineral
+  outputs: 300x CrushedCaterium
+- id: Monochrome Crushed Copper
+  machine: SorterMk1
+  power: 15
+  inputs: 120x CrushedCallanite, 90x CrushedAurovite, 30x SlugSlime Mineral
+  outputs: 300x CrushedCopper
+- id: Monochrome Crushed Iron
+  machine: SorterMk1
+  power: 15
+  inputs: 120x CrushedSiterite, 120x CrushedLarrussite, 30x SlugSlime Mineral
+  outputs: 300x CrushedIron
+- id: Monochrome Crushed Lead
+  machine: SorterMk1
+  power: 15
+  inputs: 100x CrushedLarrussite, 90x CrushedAurovite, 30x SlugSlime Mineral
+  outputs: 300x CrushedLead
+- id: Monochrome Crushed Magnesium
+  machine: SorterMk1
+  power: 15
+  inputs: 240x CrushedCallanite, 240x CrushedCrotinium, 30x SlugSlime Mineral
+  outputs: 300x CrushedMagnesium
+- id: Monochrome Crushed Zinc
+  machine: SorterMk1
+  power: 15
+  inputs: 120x CrushedLarrussite, 80x CarbonDust, 30x SlugSlime Mineral
+  outputs: 300x CrushedZinc
+- id: Montanion Ore (Aurovite)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 320x OreGold
+  outputs: 240x OreBauxite
+- id: Montanion Ore (Kerr Crystal)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 80x Res KerrCrystal
+  outputs: 240x OreBauxite, 20000x DarkEnergy
+- id: Motor
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 15x Rotor, 15x Stator, 25x IronSheet, 150x SteelBolt
+  outputs: 10x Motor
+- id: Mycelia
+  machine: FF_MyceliaPlot
+  power: 5
+  inputs: 15x FF MyceliaSeed
+  outputs: 15x Mycelia, 6x Leaves
+- id: Mycelia Plot
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12000x FF Dirt, 1500x IronRod, 1500x IronScrew, 1200x IronPlate
+  outputs: 60x FF MyceliaPlot
+- id: Neural-Quantum Processor
+  machine: QuantumEncoder
+  power: 2500
+  inputs: 5x ComputerSuper, 12.5x TimeCrystal, 75x FicsiteMesh, 100000x QuantumEnergy
+  outputs: 2.5x TemporalProcessor, 50000x DarkEnergy
+- id: Nitric Acid
+  machine: Blender
+  power: 75
+  inputs: 120x NitrogenGas, 60x Water, 10x IronSheet
+  outputs: 30x NitricAcid
+- id: Nitrogen Gas (Sulfur)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 120x Sulfur
+  outputs: 60x NitrogenGas
+- id: Nitrogen Gas (Uranium)
+  machine: Converter
+  power: 300
+  inputs: 15x SAMIngot, 15x OreUranium
+  outputs: 90x NitrogenGas
+- id: Nobelisk
+  machine: AssemblerMk1
+  power: 15
+  inputs: 30x Gunpowder, 10x BronzePipe
+  outputs: 10x NobeliskExplosive
+- id: Nobelisk Detonator
+  inputs: 60x BP EquipmentDescriptorObjectScanner, 900x BronzePlates, 3000x Cable
+  outputs: 60x BP EquipmentDescriptorNobeliskDetonator
+- id: Non-Fissile Uranium
+  machine: ChemReactor
+  power: 50
+  inputs: 22.5x NuclearWaste, 25x SulfuricAcid, 10x NitricAcid
+  outputs: 100x NonFissibleUranium, 37.5x Salt, 10x Water
+- id: Nuclear Heater
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x ModularFrameFused, 1200x ElectromagneticControlRod, 1500x InvarPipe, 3000x BrassPlates, 3000x SteelBolt
+  outputs: 60x RP MP NuclearHeater
+- id: Nuclear Pasta
+  machine: HadronCollider
+  power: 1000
+  inputs: 0.5x PressureConversionCube, 20x CopperDust, 6x Neutronium
+  outputs: 0.5x SpaceElevatorPart 9
+- id: Nuclear Power Plant
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x ComputerSuper, 1500x ModularFrameHeavy, 6000x AluminumPlate, 12000x Cable, 15000x Cement
+  outputs: 60x GeneratorNuclear
+- id: Nuclear Power Plant burn Ficsonium Fuel Rod
+  machine: GeneratorNuclear
+  inputs: 4x FicsoniumFuelRod, 60x CoolingWater
+- id: Nuclear Power Plant burn Plutonium Fuel Rod
+  machine: GeneratorNuclear
+  inputs: 0.4x PlutoniumFuelRod, 60x CoolingWater
+  outputs: 4x PlutoniumWaste
+- id: Nuclear Power Plant burn Uranium Fuel Rod
+  machine: GeneratorNuclear
+  inputs: 0.8x NuclearFuelRod, 60x CoolingWater
+  outputs: 24x NuclearWaste
+- id: Nuke Nobelisk
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 2.5x NobeliskExplosive, 10x UraniumCell, 5x GunpowderMK2, 3x CircuitBoardHighSpeed
+  outputs: 0.5x NobeliskNuke
+- id: Nutritional Inhaler
+  inputs: 3x Shroom, 6x Berry, 15x Nut
+  outputs: 3x Medkit
+- id: Object Scanner
+  inputs: 6x IronPlateReinforced, 30x Wire, 75x IronScrew
+  outputs: 1.5x BP EquipmentDescriptorObjectScanner
+- id: Oil Extractor
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x ModularFrame, 600x Motor, 1200x SteelPipe, 1500x BrassPlates, 3000x SteelBolt
+  outputs: 60x OilPump
+- id: Oil Extractor extract Crude Oil
+  machine: OilPump
+  power: 40
+  outputs: 90x LiquidOil
+- id: Packaged Air
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x GasTank, 120x Air
+  outputs: 0.06x PackagedAir
+- id: Packaged Algal Mass
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x FluidCanister, 60x Res LiquidBioWater
+  outputs: 0.06x PackagedLiquidBioWater
+- id: Packaged Alumina Solution
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60000x AluminaSolution, 60x FluidCanister
+  outputs: 60x PackagedAlumina
+- id: Packaged Caustic Soda
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x FluidCanister, 60x CausticSoda
+  outputs: 60x PackagedCausticSoda
+- id: Packaged Chlorine Gas
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x GasTank, 120x Gas Chlor
+  outputs: 0.06x PackagedGas Chlor
+- id: Packaged Coolant
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x NC CryoTankEmpty, 60x CoolingWater
+  outputs: 60x PackagedCoolingWater
+- id: Packaged Energized Slug Slime
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x NC CryoTankEmpty, 60x SlugSlime High
+  outputs: 60x PackagedSlugSlime High
+- id: Packaged Ethylene Gas
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x GasTank, 120x Ethylene
+  outputs: 0.06x PackagedMethane
+- id: Packaged Flue Gas
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x GasTank, 120x FlueGas
+  outputs: 0.06x PackagedGas CarbonDioxide
+- id: Packaged Fuel
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x LiquidFuel, 60x FluidCanister
+  outputs: 60x Fuel
+- id: Packaged Heavy Oil Residue
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x HeavyOilResidue, 60x FluidCanister
+  outputs: 60x PackagedOilResidue
+- id: Packaged Hydrogen
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x GasTank, 120x Gas Hydrogen
+  outputs: 0.06x PackagedGas Hydrogen
+- id: Packaged Ionized Fuel
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 120000x IonizedFuel, 60x GasTank
+  outputs: 60x PackagedIonizedFuel
+- id: Packaged Liquid Biofuel
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x LiquidBiofuel, 60x FluidCanister
+  outputs: 60x PackagedBiofuel
+- id: Packaged Muriatic Acid
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x FluidCanister, 60x LiquidHydrochloricAcid
+  outputs: 0.06x PackagedLiquidHydrochloricAcid
+- id: Packaged Natural Gas
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x GasTank, 120x KLIB NaturalGas
+  outputs: 0.06x PackagedNaturalGas
+- id: Packaged Nitric Acid
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x NitricAcid, 60x GasTank
+  outputs: 60x PackagedNitricAcid
+- id: Packaged Nitrogen Gas
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 120x NitrogenGas, 60x GasTank
+  outputs: 60x PackagedNitrogenGas
+- id: Packaged Oil
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x LiquidOil, 60x FluidCanister
+  outputs: 0.06x PackagedOil
+- id: Packaged Purified Crude Oil
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x FluidCanister, 60x PurifiedCrudeOil
+  outputs: 60x PackagedPurifiedCrudeOil
+- id: Packaged Rocket Fuel
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 120000x RocketFuel, 60x GasTank
+  outputs: 60x PackagedRocketFuel
+- id: Packaged Slug Slime
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x NC CryoTankEmpty, 60x SlugSlime Low
+  outputs: 60x PackagedSlugSlime Low
+- id: Packaged Sour Gas
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x GasTank, 120x Sulfurtrixid
+  outputs: 0.06x PackagedSulfurtrixid
+- id: Packaged Spent Slug Slime
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x NC CryoTankEmpty, 60x SlugSlime Mid
+  outputs: 60x PackagedSlugSlime Mid
+- id: Packaged Steam
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x GasTank, 120x Gas Steam Hot
+  outputs: 0.06x PackagedGas Steam Hot
+- id: Packaged Steam
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x GasTank, 120x Gas Steam
+  outputs: 0.06x PackagedGas Steam
+- id: Packaged Sulfuric Acid
+  machine: Packager
+  power: 10
+  inputs: 60x SulfuricAcid, 60x FluidCanister
+  outputs: 60x PackagedSulfuricAcid
+- id: Packaged TiCl Gas
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x GasTank, 120x Gas Titantetrachlorid
+  outputs: 0.06x PackagedGas Titantetrachlorid
+- id: Packaged Toxic Air
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x GasTank, 120x ToxicAir
+  outputs: 0.06x PackagedToxicAir
+- id: Packaged Turbofuel
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x LiquidTurboFuel, 60x FluidCanister
+  outputs: 60x TurboFuel
+- id: Packaged Universal Paint
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x NC CryoTankEmpty, 60x SlugSlime Mineral
+  outputs: 60x PackagedSlugSlime Mineral
+- id: Packaged Wastewater
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x FluidCanister, 60x Wastewater
+  outputs: 0.06x PackagedLiquidDirtyWater
+- id: Packaged Water
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x Water, 60x FluidCanister
+  outputs: 0.06x PackagedWater
+- id: Parachute
+  inputs: 30x Fabric, 15x Cable
+  outputs: 1.5x Parachute
+- id: Particle Accelerator
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 1200x ComputerSuper, 1500x ModularFrameFused, 1500x TitanPipe, 4500x CoolingSystem, 6000x ElectromagneticControlRod
+  outputs: 60x HadronCollider
+- id: Path Signal
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x SteelPlate, 300x Cable, 300x Plastic
+  outputs: 60x RailroadPathSignal
+- id: Personal Storage Box
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronPlate, 120x IronRod, 240x IronScrew
+  outputs: 60x StoragePlayer
+- id: Personnel Elevator
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronRod, 300x Glass, 120x Cable, 120x IronScrew
+  outputs: 60x Elevator
+- id: Petroleum Coke
+  machine: OilRefinery
+  power: 30
+  inputs: 30x HeavyOilResidue
+  outputs: 150x PetroleumCoke
+- id: Photon Pair Converter
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 7.5x Diamond, 30x TimeC Cable, 24x TimeC StabilizedTimeCrystal, 22.5x CateriumHeatsink
+  outputs: 6x PhotonPairConverter
+- id: Photonic Processor
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 3.75x PhotonPairConverter, 3.75x Computer, 9.375x Cable
+  outputs: 1.875x TimeC QuantumProcessor
+- id: Pink Slug Slime
+  machine: FF_Composter
+  power: 10
+  inputs: 6x Pink, 30x SlugSlime Low
+  outputs: 12x SlugSlime High
+- id: Pipeline Balancer
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12x CopperSheet, 60x IronScrew, 24x BronzePipe
+  outputs: 12x PipeBalancer
+- id: Pipeline Bend 180
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12x CopperSheet, 60x IronScrew, 24x BronzePipe
+  outputs: 12x PipeBend-180
+- id: Pipeline Bend 45
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12x CopperSheet, 60x IronScrew, 24x BronzePipe
+  outputs: 12x PipeBend-45
+- id: Pipeline Bend 60
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12x CopperSheet, 60x IronScrew, 24x BronzePipe
+  outputs: 12x PipeBend-60
+- id: Pipeline Bend 90
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12x CopperSheet, 60x IronScrew, 24x BronzePipe
+  outputs: 12x PipeBend-90
+- id: Pipeline Cap Cross
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12x CopperSheet, 60x IronScrew, 24x BronzePipe
+  outputs: 12x PipeCap-Cross
+- id: Pipeline Floor Hole
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronRod, 120x IronPlate, 120x Cement
+  outputs: 60x FoundationPassthrough Pipe
+- id: Pipeline Junction
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x CopperSheet
+  outputs: 60x PipelineJunction Cross
+- id: Pipeline Mk.1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x CopperSheet, 60x IronWire
+  outputs: 60x Pipeline
+- id: Pipeline Mk.2
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x BrassPipe, 60x SteelBolt
+  outputs: 60x PipelineMK2
+- id: Pipeline Mk.3
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x InvarPipe, 60x Rubber
+  outputs: 60x PipelineMk3
+- id: Pipeline Pump Mk.1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x CopperSheet, 120x Rotor, 1200x IronScrew
+  outputs: 60x PipelinePump
+- id: Pipeline Pump Mk.2
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x SteelBolt, 360x BrassPipe, 240x Motor
+  outputs: 60x PipelinePumpMK2
+- id: Pipeline Support
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cement, 120x IronScrew, 60x IronRod
+  outputs: 60x PipelineSupport
+- id: Pipeline T-Junction
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x CopperSheet
+  outputs: 60x PipelineJunction T
+- id: Pipeline Wall Hole
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cement, 120x IronScrew, 60x IronRod
+  outputs: 60x PipelineSupportWallHole
+- id: Pipeline Wall Support
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cement, 120x IronScrew, 60x IronRod
+  outputs: 60x PipelineSupportWall
+- id: Plutonium Fuel Rod
+  machine: AssemblerMk1
+  power: 15
+  inputs: 4x PlutoniumCell, 2.5x ElectromagneticControlRod
+  outputs: 0.25x PlutoniumFuelRod
+- id: Polarization Frame
+  machine: AssemblerMk1
+  power: 15
+  inputs: 48x TinSheet, 48x Glass
+  outputs: 16x TimeC Case
+- id: Poled Kerr Crystal
+  machine: AssemblerMk1
+  power: 15
+  inputs: 24x Res KerrCrystal, 12x TimeC Case
+  outputs: 12x TimeC StabilizedTimeCrystal
+- id: Polyethylene
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 44.99999821186072x Ethylene
+  outputs: 62.49999751647323x Plastic, 62.49999751647323x Rubber
+- id: Portable Miner
+  inputs: 3x IronPlate, 6x IronRod
+  outputs: 1.5x BP ItemDescriptorPortableMiner
+- id: Portrait Sign
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 240x IronPlateReinforced, 600x QuartzCrystal
+  outputs: 60x StandaloneWidgetSign Portrait
+- id: Potato
+  machine: FF_CropPlot
+  power: 5
+  inputs: 10x FF PotatoSeed
+  outputs: 10x FF Crop Potato, 4x Leaves
+- id: Power Fragment (1)
+  machine: AssemblerMk1
+  power: 15
+  inputs: 100x EggDNA Blue, 10x Diamond
+  outputs: 10x PowerShardCrystal
+- id: Power Fragment (2)
+  machine: AssemblerMk1
+  power: 15
+  inputs: 100x EggDNA Yellow, 10x Diamond
+  outputs: 20x PowerShardCrystal
+- id: Power Fragment (3)
+  machine: AssemblerMk1
+  power: 15
+  inputs: 100x EggDNA Purple, 10x Diamond
+  outputs: 30x PowerShardCrystal
+- id: Power Line
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x Cable
+  outputs: 60x PowerLine
+- id: Power Management Relay
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 7.5x ElectromagneticControlRod, 4.5x SpaceElevatorPart 3, 15x Battery, 37.5x Plastic
+  outputs: 6x PowerRelay
+- id: Power Pole Mk.1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 240x Wire, 120x IronScrew, 60x CopperRod
+  outputs: 60x PowerPoleMk1
+- id: Power Pole Mk.2
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 240x HighSpeedWire, 300x IronScrew, 60x CopperRod
+  outputs: 60x PowerPoleMk2
+- id: Power Pole Mk.3
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x HighSpeedConnector, 300x SteelBolt, 60x CopperRod
+  outputs: 60x PowerPoleMk3
+- id: Power Storage
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x Motor, 600x SteelPlate, 1500x IronScrew, 900x Cable
+  outputs: 60x PowerStorageMk1
+- id: Power Switch
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x CopperRod, 600x Cable, 600x SteelPlate
+  outputs: 60x PowerSwitch
+- id: Power Tower
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x SteelPlate, 900x Cable, 1200x IronScrew, 1200x Cement
+  outputs: 60x PowerTower
+- id: Power Tower Platform
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x SteelPlate, 900x Cable, 1200x IronScrew, 1200x Cement, 600x IronSheet
+  outputs: 60x PowerTowerPlatform
+- id: N/A
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x XmasStar
+- id: Pressure Conversion Cube
+  machine: Converter
+  power: 400
+  inputs: 2x ModularFrameFused, 5x SAMFluctuator
+  outputs: 2.5x PressureConversionCube
+- id: Priority Merger
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronPlateReinforced, 60x CrystalOscillator, 60x Computer
+  outputs: 60x ConveyorAttachmentMergerPriority
+- id: Priority Power Switch
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x CopperRod, 300x Cable, 600x SteelPlate, 600x CircuitBoardHighSpeed
+  outputs: 60x PriorityPowerSwitch
+- id: Programmable Splitter
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 1200x SteelBolt, 120x BeltDriveMk2, 60x ComputerSuper, 1200x ZincPlates
+  outputs: 60x ConveyorAttachmentSplitterProgrammable
+- id: Protein Inhaler
+  inputs: 3x AlienProtein, 30x Nut
+  outputs: 3x Medkit
+- id: Protein Meal
+  machine: FF_CookingHub
+  power: 28
+  inputs: 2.5x AlienProtein, 30x SnailFood Tier 2
+  outputs: 7.5x SnailFood Tier 20
+- id: Pulse Nobelisk
+  machine: AssemblerMk1
+  power: 15
+  inputs: 4x NobeliskExplosive, 1x CrystalOscillator
+  outputs: 4x NobeliskShockwave
+- id: Pumpkin
+  machine: FF_CropPlot
+  power: 5
+  inputs: 10x FF PumpkinSeed
+  outputs: 10x FF Crop Pumpkin, 4x Leaves
+- id: Pumpkin Pie
+  machine: FF_CookingHub
+  power: 28
+  inputs: 30x FF Crop Wheat, 40x FF Crop Pumpkin, 10x Water
+  outputs: 0.5x FF Cooked Pie Pumpkin
+- id: Pure Hydrogen
+  machine: OilRefinery
+  power: 30
+  inputs: 90x ToxicAir, 75x CarbonDust
+  outputs: 90x Gas Hydrogen
+- id: Pure Rutile
+  machine: SorterMk1
+  power: 15
+  inputs: 600x CrushedSiterite, 30x SulfuricAcid
+  outputs: 60x PurifiedTitan, 120x CrushedIron
+- id: Purified Crude Oil
+  machine: FlexibleBlastFurnaceSmelter
+  power: 50
+  inputs: 90x LiquidOil, 45x Sand
+  outputs: 45x PurifiedCrudeOil, 30x FlueGas
+- id: Purple Slug Egg
+  inputs: 250x EggDNA Purple, 50x AlienProtein
+  outputs: 10x EggPurple
+- id: Purple Slug Slime
+  machine: FF_Composter
+  power: 10
+  inputs: 20x Purple
+  outputs: 80x SlugSlime Low
+- id: Quantum Encoder
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 1500x TitanModularFrame, 2400x MotorLightweight, 2400x PhotonPairConverter, 2400x ModularFrameLightweight, 3000x ComputerSuper, 3000x TitanPipe, 4500x ElectromagneticControlRod, 4500x CoolingSystem, 12000x TimeCrystal, 12000x FicsiteMesh
+  outputs: 60x QuantumEncoder
+- id: Quantum Oscillator
+  machine: QuantumEncoder
+  power: 2500
+  inputs: 4x CrystalOscillator, 6x ModularFrameLightweight, 20x DarkMatter, 160000x QuantumEnergy
+  outputs: 8x QuantumOscillator, 80000x DarkEnergy
+- id: Quartz Crystal
+  machine: SorterMk1
+  power: 15
+  inputs: 120x RawQuartz
+  outputs: 100x QuartzCrystal, 40x Salt, 80x Sand
+- id: Quickwire
+  machine: ConstructorMk1
+  power: 4
+  inputs: 12x GoldIngot
+  outputs: 80x HighSpeedWire
+- id: Radar Tower
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 30000x SteelBolt, 12000x SteelRod, 3000x CrystalOscillator, 15000x IronSheet, 6000x Cement
+  outputs: 60x RadarTower
+- id: Radiator
+  machine: OilRefinery
+  power: 30
+  inputs: 75x AluminumPlate, 30x CoolingWater
+  outputs: 15x AluminumPlateReinforced, 15x CoolingWater
+- id: Radio Control Unit
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 3x CrystalOscillator, 3.75x Computer, 30x AluminumCasing
+  outputs: 4.5x ModularFrameLightweight
+- id: Railway
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x SteelPlate, 60x SteelPipe, 240x SteelBolt
+  outputs: 60x RailroadTrack
+- id: Reanimated SAM
+  machine: ConstructorMk1
+  power: 4
+  inputs: 120x SAM
+  outputs: 30x SAMIngot
+- id: Rebar Gun
+  inputs: 6x IronPlateReinforced, 16x IronRod, 100x IronScrew
+  outputs: 1x RebarGunProjectile
+- id: Red FICSMAS Ornament
+  machine: SmelterMk1
+  power: 4
+  inputs: 5x Gift
+  outputs: 5x XmasBall1
+- id: Red Slug Slime
+  machine: FF_Composter
+  power: 10
+  inputs: 12x Red
+  outputs: 12x SlugSlime High
+- id: Refinery
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x Motor, 600x SteelPlateReinforced, 1800x SteelPipe, 1200x CopperSheet
+  outputs: 60x OilRefinery
+- id: Reformer
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x BronzeFrame, 600x IronPlateReinforced, 900x BronzePipe, 1200x CateriumHeatsink
+  outputs: 60x SoldifierAndCooler
+- id: Reinforced Iron Plate
+  machine: AssemblerMk1
+  power: 15
+  inputs: 20x TinPlates, 37.5x IronScrew
+  outputs: 5x IronPlateReinforced
+- id: Resid Magnesium
+  machine: ConstructorMk1
+  power: 4
+  inputs: 48x CryoliteResidue
+  outputs: 27x MagnesiumGranules
+- id: Residual Coolant
+  machine: Blender
+  power: 75
+  inputs: 15x KLIB NaturalGas, 7.5x CausticSoda, 15x CryoliteResidue
+  outputs: 45x CoolingWater
+- id: Residual Hydrogen
+  machine: SoldifierAndCooler
+  power: 25
+  inputs: 80x FlueGas, 30x Gas Steam Hot
+  outputs: 40x Gas Hydrogen, 10x Sulfur
+- id: Residual Silica
+  machine: ConstructorMk1
+  power: 4
+  inputs: 48x CryoliteResidue
+  outputs: 27x Silica
+- id: Resource Node
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BP EquipmentDescriptorBeacon
+  outputs: 60x KBFL DEBUG DESC ResourceNodes
+- id: Resource Node Stone
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BP EquipmentDescriptorBeacon
+  outputs: 60x KBFL DEBUG DESC ResourceNodes 2
+- id: Resource Well Core
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BP EquipmentDescriptorBeacon
+  outputs: 60x KBFL DEBUG DESC ResourceWells Core
+- id: Resource Well Crack
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BP EquipmentDescriptorBeacon
+  outputs: 60x KBFL DEBUG DESC ResourceWells Core Crack
+- id: Resource Well Extractor
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x InvarPipe, 600x AluminumCasing, 600x Rubber
+  outputs: 60x FrackingExtractor
+- id: Resource Well Extractor extract Water
+  machine: FrackingExtractor
+  outputs: 45x Water
+- id: Resource Well Pressurizer
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x ModularFrameHeavy, 3000x Motor, 6000x InvarPipe, 6000x AlumniumSheet, 6000x Rubber
+  outputs: 60x FrackingSmasher
+- id: Resource Well Sat
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x BP EquipmentDescriptorBeacon
+  outputs: 60x KBFL DEBUG DESC ResourceWells Core Crack Sat
+- id: Rifle
+  inputs: 8x Motor, 50x BrassPipe, 100x Rubber, 300x IronScrew
+  outputs: 2x BP EquipmentDescriptorRifle
+- id: Rifle Ammo
+  machine: AssemblerMk1
+  power: 15
+  inputs: 8x BrassPipe, 12x GunpowderMK2
+  outputs: 60x CartridgeStandard
+- id: Rocket Fuel
+  machine: Blender
+  power: 75
+  inputs: 120x LiquidFuel, 15x NitricAcid, 30x SulfurPowder
+  outputs: 60000x RocketFuel
+- id: Rotor
+  machine: AssemblerMk1
+  power: 15
+  inputs: 22.5x CopperBusbar, 60x IronWire
+  outputs: 7.5x Rotor
+- id: Rubberized Belt Drive
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 10x BeltDriveMk1, 7.5x SolderRod, 15x SteelPipe, 50x Rubber
+  outputs: 6.25x BeltDriveMk3
+- id: SAM Fluctuator
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 100x SAMIngot, 2.5x BronzeFrame, 7.5x CateriumHeatsink
+  outputs: 10x SAMFluctuator
+- id: SPWN
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 1200x SteelPipe, 300x ModularFrame, 6000x GenericBiomass, 1200x SAMIngot
+  outputs: 60x PortalPotty
+- id: Salt (Kyalite)
+  machine: SorterMk1
+  power: 15
+  inputs: 180x RawQuartz, 45x Water
+  outputs: 90x Salt, 45x Silica, 30x Sand
+- id: Satellite Portal
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x MotorLightweight, 600x QuantumOscillator, 1500x SAMFluctuator, 3000x FicsiteMesh
+  outputs: 60x PortalSatellite
+- id: Screws
+  machine: ConstructorMk1
+  power: 4
+  inputs: 20x IronRod
+  outputs: 50x IronScrew
+- id: Seed Extractor!
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 1200x Cable, 900x BronzeFrame, 2400x CopperSheet, 3000x IronScrew
+  outputs: 60x SFP SeedExtractor
+- id: Seed Extractor! extract Dirt
+  machine: SFP_SeedExtractor
+  power: 25
+  inputs: 30x FF Dirt
+  outputs: 30x FF WheatSeed, 30x FF CornSeed, 30x FF PotatoSeed, 30x FF CarrotSeed
+- id: Seed Extractor! extract Loam
+  machine: SFP_SeedExtractor
+  power: 25
+  inputs: 30x FF Dirt Wet
+  outputs: 30x FF AppleSeed, 30x FF MyceliaSeed, 30x FF CottonSeed
+- id: Seed Extractor! extract Peat
+  machine: SFP_SeedExtractor
+  power: 25
+  inputs: 30x FF Dirt Fertilized
+  outputs: 30x FF YosseSeed, 30x FF BananaSeed, 30x FF PumpkinSeed
+- id: Shatter Rebar
+  machine: AssemblerMk1
+  power: 15
+  inputs: 10x SpikedRebar, 20x QuartzCrystal
+  outputs: 5x Rebar Spreadshot
+- id: Silica (Larrusite)
+  machine: SorterMk1
+  power: 15
+  inputs: 180x CrushedLarrussite, 80x Air
+  outputs: 120x Silica, 80x CrushedZinc, 40x Sand
+- id: Simple Power Shard
+  machine: ChemReactor
+  power: 50
+  inputs: 7.5x PowerShardCrystal, 15x SlugSlime High
+  outputs: 3.75x CrystalShard
+- id: Singularity Cell
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 5x PressureConversionCube, 200x DarkMatter, 20x TitanPlates
+  outputs: 15x SingularityCell
+- id: Slag Concrete
+  machine: AssemblerMk1
+  power: 15
+  inputs: 33.75x ColdSlag, 11.25x Gangue
+  outputs: 22.5x Cement
+- id: Slag Sand
+  machine: Crusher
+  power: 4
+  inputs: 30x ColdSlag
+  outputs: 60x Sand
+- id: Sloppy Glass
+  machine: SmelterMk1
+  power: 4
+  inputs: 30x Sand
+  outputs: 20x Glass
+- id: Slug Hatchery
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x BronzeFrame, 1200x BronzePipe, 1200x IronRod, 1500x IronScrew
+  outputs: 60x Hatchery
+- id: Slug Hatchery hatch Blue Slug
+  machine: Hatchery
+  power: 5
+  inputs: 30x EggBlue
+  outputs: 30x BlueSlug, 30x YellowSlug, 30x WhiteSlug
+- id: Slug Hatchery hatch Copper Slug
+  machine: Hatchery
+  power: 5
+  inputs: 12x Copper, 90x Water
+  outputs: 12x Copper
+- id: Slug Hatchery hatch Golden Slug
+  machine: Hatchery
+  power: 5
+  inputs: 12x Golden, 90x Water
+  outputs: 12x Golden
+- id: Slug Hatchery hatch Iron Slug
+  machine: Hatchery
+  power: 5
+  inputs: 12x Iron, 90x Water
+  outputs: 12x Iron
+- id: Slug Hatchery hatch Lime Slug
+  machine: Hatchery
+  power: 5
+  inputs: 12x Lime, 30x Water
+  outputs: 12x Lime, 12x WhiteSlug, 12x Red
+- id: Slug Hatchery hatch Orange Slug
+  machine: Hatchery
+  power: 5
+  inputs: 6x Orange
+  outputs: 6x Orange, 6x Pink, 6x Copper
+- id: Slug Hatchery hatch Pink Slug
+  machine: Hatchery
+  power: 5
+  inputs: 6x Pink, 40x SlugSlime Low
+  outputs: 6x Pink, 6x Orange, 6x Iron
+- id: Slug Hatchery hatch Purple Slug
+  machine: Hatchery
+  power: 5
+  inputs: 15x EggPurple
+  outputs: 15x Purple, 15x WhiteSlug, 15x Lime
+- id: Slug Hatchery hatch Red Slug
+  machine: Hatchery
+  power: 5
+  inputs: 6x Red
+  outputs: 6x Red, 6x Orange, 6x Pink
+- id: Slug Hatchery hatch Turquoise Slug
+  machine: Hatchery
+  power: 5
+  inputs: 12x Turquise, 20x CoolingWater
+  outputs: 12x Turquise, 12x Red, 12x Pink
+- id: Slug Hatchery hatch White Slug
+  machine: Hatchery
+  power: 5
+  inputs: 12x EggWhite
+  outputs: 12x WhiteSlug, 12x Turquise, 12x Lime
+- id: Slug Hatchery hatch Yellow Slug
+  machine: Hatchery
+  power: 5
+  inputs: 15x EggYellow
+  outputs: 15x YellowSlug, 15x BlueSlug, 15x WhiteSlug
+- id: Slug Terrarium
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x BronzeFrame, 1800x Glass, 2400x IronRod, 3000x IronScrew, 4500x FF Dirt
+  outputs: 60x Terrarium
+- id: Slug Terrarium breed Blue Slug
+  machine: Breeder
+  power: 20
+  inputs: 2.4x BlueSlug, 6x SnailFood Tier 1
+  outputs: 12x EggBlue
+- id: Slug Terrarium breed Copper Slug
+  machine: Breeder
+  power: 20
+  inputs: 1.2000000000000002x Copper, 3x SnailFood Tier 6
+  outputs: 3x Copper
+- id: Slug Terrarium breed Golden Slug
+  machine: Breeder
+  power: 20
+  inputs: 1.2000000000000002x Golden, 3x SnailFood Tier 7
+  outputs: 3x Golden
+- id: Slug Terrarium breed Iron Slug
+  machine: Breeder
+  power: 20
+  inputs: 1.2000000000000002x Iron, 3x SnailFood Tier 6
+  outputs: 3x Iron
+- id: Slug Terrarium breed Lime Slug
+  machine: Breeder
+  power: 20
+  inputs: 1.2000000000000002x Lime, 3x SnailFood Tier 3
+  outputs: 6x Lime
+- id: Slug Terrarium breed Orange Slug
+  machine: Breeder
+  power: 20
+  inputs: 1.2000000000000002x Orange, 3x SnailFood Tier 20
+  outputs: 3x Orange
+- id: Slug Terrarium breed Pink Slug
+  machine: Breeder
+  power: 20
+  inputs: 1.2000000000000002x Pink, 3x SnailFood Tier 20
+  outputs: 6x Pink
+- id: Slug Terrarium breed Purple Slug
+  machine: Breeder
+  power: 20
+  inputs: 1.2000000000000002x Purple, 6x SnailFood Tier 2
+  outputs: 3x EggPurple
+- id: Slug Terrarium breed Red Slug
+  machine: Breeder
+  power: 20
+  inputs: 1.2000000000000002x Red, 6x SnailFood Tier 20
+  outputs: 3x Red
+- id: Slug Terrarium breed Turquoise Slug
+  machine: Breeder
+  power: 20
+  inputs: 1.2000000000000002x Turquise, 6x SnailFood Tier 3
+  outputs: 6x Turquise
+- id: Slug Terrarium breed White Slug
+  machine: Breeder
+  power: 20
+  inputs: 1.2000000000000002x WhiteSlug, 3x SnailFood Tier 2
+  outputs: 3x EggWhite
+- id: Slug Terrarium breed Yellow Slug
+  machine: Breeder
+  power: 20
+  inputs: 1.2000000000000002x YellowSlug, 3x SnailFood Tier 1
+  outputs: 6x EggYellow
+- id: Small Billboard
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 180x SteelPlateReinforced, 240x CopperSheet, 60x CrystalOscillator
+  outputs: 60x StandaloneWidgetSign Large
+- id: Small FaxIT Disk
+  machine: AssemblerMk1
+  power: 15
+  inputs: 60x TimeC StabilizedTimeCrystal, 11.25x SpaceElevatorPart 1
+  outputs: 0.7500000000000001x Faxit DimensionalDrive Mk1
+- id: Smart Plating
+  machine: AssemblerMk1
+  power: 15
+  inputs: 3.75x Rotor, 12x BronzePlates
+  outputs: 2.25x SpaceElevatorPart 1
+- id: Smart Splitter
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronPlate, 60x CircuitBoardHighSpeed, 300x IronScrew
+  outputs: 60x ConveyorAttachmentSplitterSmart
+- id: Smelter
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x Wire, 300x IronPlate, 120x Cable, 120x IronRod
+  outputs: 60x SmelterMk1
+- id: Smelter Module
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 240x BronzeFrame, 300x IronPlateReinforced, 6000x HighSpeedWire, 3000x Cable
+  outputs: 60x Module Smelter
+- id: Smelter Module replace product with Caterium Ingot
+  machine: SmelterModule, ModularMiner_01
+  power: 20
+  outputs: 60x GoldIngot, 20x LiquidSlag
+- id: Smelter Module replace product with Copper Ingot
+  machine: SmelterModule, ModularMiner_01
+  power: 20
+  outputs: 60x CopperIngot, 20x LiquidSlag
+- id: Smelter Module replace product with Crushed Gangue
+  machine: SmelterModule, ModularMiner_01
+  power: 20
+  outputs: 60x Gangue, 20x LiquidSlag
+- id: Smelter Module replace product with Crushed Gangue
+  machine: SmelterModule, ModularMiner_01
+  power: 20
+  outputs: 60x Gangue, 20x LiquidSlag
+- id: Smelter Module replace product with Crushed Gangue
+  machine: SmelterModule, ModularMiner_01
+  power: 20
+  outputs: 60x Gangue, 20x LiquidSlag
+- id: Smelter Module replace product with Iron Ingot
+  machine: SmelterModule, ModularMiner_01
+  power: 20
+  outputs: 60x IronIngot, 20x LiquidSlag
+- id: Smelter Module replace product with Zinc Ingot
+  machine: SmelterModule, ModularMiner_01
+  power: 20
+  outputs: 60x ZincIngot, 20x LiquidSlag
+- id: Smokeless Powder
+  machine: OilRefinery
+  power: 30
+  inputs: 45x Gunpowder, 30x Ethylene
+  outputs: 30x GunpowderMK2
+- id: Smooth Belt Drive
+  machine: AssemblerMk1
+  power: 15
+  inputs: 15x TinSheet, 3.75x Rotor
+  outputs: 18.75x BeltDriveMk1
+- id: Snowball
+  machine: ConstructorMk1
+  power: 4
+  inputs: 15x Snow
+  outputs: 5x SnowballProjectile
+- id: Soft Magnetic Core
+  machine: FoundryMk1
+  power: 16
+  inputs: 22.5x InvarIngot, 15x GoldIngot
+  outputs: 11.25x InvarPipe
+- id: Solar Cell
+  machine: FoundryMk1
+  power: 16
+  inputs: 67.5x Silica, 22.5x ZincPlates
+  outputs: 11.25x PhotovoltaicCell
+- id: Solar Panel Mk1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 90x Glass, 150x PhotovoltaicCell, 72x IronRod, 60x Cable
+  outputs: 6x SolarPanel Mk1
+- id: Solar Panel Mk2
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x Glass, 600x PhotovoltaicCell, 60x SteelPipe, 60x Cable, 30x Motor
+  outputs: 6x SolarPanel Mk2 New
+- id: Solid Biofuel
+  machine: ConstructorMk1
+  power: 4
+  inputs: 120x GenericBiomass
+  outputs: 60x Biofuel
+- id: Solid Biomass Heater
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronPlateReinforced, 300x TinPlates, 1200x Wire, 60x Cable
+  outputs: 60x RP MP BiomassHeater
+- id: Solid Coal Heater
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x ModularFrame, 600x BrassPlates, 3000x Wire, 1500x Cable
+  outputs: 60x RP MP CoalHeater
+- id: Solution Heater
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x ModularFrameHeavy, 900x CopperRod, 1200x BrassPipe, 3000x IronSheet, 3000x SteelBolt
+  outputs: 60x RP MP SolutionHeater
+- id: Sorter
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronPlateReinforced, 600x IronRod, 1200x IronWire, 1200x IronScrew
+  outputs: 60x Sorter
+- id: Sour Gas
+  machine: OilRefinery
+  power: 30
+  inputs: 40x SulfurPowder, 15x Gas Hydrogen
+  outputs: 35x Sulfurtrixid
+- id: Space Elevator
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 1500x BronzeFrame, 4500x ModularFrame, 12000x TinPlates, 30000x Cement, 30000x IronScrew
+  outputs: 60x SpaceElevator
+- id: Sparkly Fireworks
+  machine: AssemblerMk1
+  power: 15
+  inputs: 7.5x XmasBranch, 5x Snow
+  outputs: 2.5x Fireworks Projectile 03
+- id: Spent Orange Slime
+  machine: FF_Composter
+  power: 10
+  inputs: 15x Orange
+  outputs: 30x SlugSlime Mid
+- id: Spitter Protein
+  machine: ConstructorMk1
+  power: 4
+  inputs: 20x SpitterParts
+  outputs: 20x AlienProtein
+- id: Square Sign (0.5 m)
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x IronPlate, 60x QuartzCrystal
+  outputs: 60x StandaloneWidgetSign Square Tiny
+- id: Square Sign (1 m)
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 60x IronPlateReinforced, 300x QuartzCrystal
+  outputs: 60x StandaloneWidgetSign Square Small
+- id: Square Sign (2 m)
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 180x IronPlateReinforced, 600x QuartzCrystal
+  outputs: 60x StandaloneWidgetSign Square
+- id: Stackable Conveyor Pole
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cement, 120x IronScrew, 60x IronRod
+  outputs: 60x ConveyorPoleStackable
+- id: Stackable Hypertube Support
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cement, 120x IronScrew, 60x IronRod
+  outputs: 60x HyperPoleStackable
+- id: Stackable Junction Box
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12x CopperSheet, 60x IronScrew, 24x BronzePipe
+  outputs: 12x PipeJunc Box
+- id: Stackable Pipeline Support
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cement, 120x IronScrew, 60x IronRod
+  outputs: 60x PipeSupportStackable
+- id: Standard Mining Head
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x BP ItemDescriptorPortableMiner, 900x IronRod, 1500x IronScrew
+  outputs: 60x Module Drill T1
+- id: Stator
+  machine: AssemblerMk1
+  power: 15
+  inputs: 18x SteelPipe, 36x TinnedWire
+  outputs: 6x Stator
+- id: Steam Stack
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x BronzePipe, 900x IronPlate, 1200x IronScrew, 600x IronSheet
+  outputs: 60x RP MP SteamCooler
+- id: Steam Stack sinking Steam
+  machine: RP_MP_SteamCooler
+  inputs: 150x Gas Steam
+  outputs: 150000x None
+- id: Steam Stack sinking Steam
+  machine: RP_MP_SteamCooler
+  inputs: 150x Gas Steam Hot
+  outputs: 150000x None
+- id: Steam Turbine Mk.1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x IronRod, 600x FanBlade, 900x BrassPipe, 300x ModularFrame
+  outputs: 60x RP MP TurbineMk1
+- id: Steam Turbine Mk.2
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x SteelPlate, 1200x FanBlade, 1200x InvarPipe, 300x ModularFrameHeavy
+  outputs: 60x RP MP TurbineMk2
+- id: Steel Beam
+  machine: FoundryMk1
+  power: 16
+  inputs: 60x SteelIngot, 20x ZincIngot
+  outputs: 22.5x SteelPlate
+- id: Steel Bolt
+  machine: ConstructorMk1
+  power: 4
+  inputs: 12.5x SteelRod
+  outputs: 37.5x SteelBolt
+- id: N/A
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x SteelPlate
+- id: Stinger Protein
+  machine: ConstructorMk1
+  power: 4
+  inputs: 20x StingerParts
+  outputs: 20x AlienProtein
+- id: Storage Container
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x IronScrew, 300x IronRod, 300x IronPlate
+  outputs: 60x StorageContainerMk1
+- id: Street Light
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x Cable, 120x Glass, 180x IronScrew, 120x QuartzCrystal, 180x IronSheet
+  outputs: 60x StreetLight
+- id: Stun Rebar
+  machine: AssemblerMk1
+  power: 15
+  inputs: 10x SpikedRebar, 50x HighSpeedWire
+  outputs: 10x Rebar Stunshot
+- id: Sulfur (Coal)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 480x Coal
+  outputs: 240x Sulfur
+- id: Sulfur Powder
+  machine: Crusher
+  power: 4
+  inputs: 45x Sulfur
+  outputs: 30x SulfurPowder
+- id: Sulfuric Acid
+  machine: ChemReactor
+  power: 50
+  inputs: 52.5x Sulfurtrixid, 37.5x Water
+  outputs: 37.5x SulfuricAcid
+- id: Super Conductor Platform
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x TitanModularFrame, 1500x TitanPipe, 3000x HighSpeedWire, 1500x AluminumPlate
+  outputs: 60x RP MP SuperPlatform
+- id: Super HV Generator
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x TitanModularFrame, 1200x ModularFrameLightweight, 1500x MotorLightweight, 4500x ElectromagneticControlRod
+  outputs: 60x RP MP SuperGenerator
+- id: Super HV Turbine
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x TitanModularFrame, 1200x ComputerSuper, 4500x TitanPipe, 9000x HighSpeedWire
+  outputs: 60x RP MP SuperTurbine
+- id: Supercharged Slug Slime
+  machine: HadronCollider
+  power: 1250
+  inputs: 30x SlugSlime Mid
+  outputs: 30x SlugSlime High
+- id: Supercomputer
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 7.5x Computer, 7.5x CircuitBoardHighSpeed, 3.75x HighSpeedConnector, 9.375x CateriumHeatsink
+  outputs: 3.75x ComputerSuper
+- id: Sweet Fireworks
+  machine: AssemblerMk1
+  power: 15
+  inputs: 15x XmasBranch, 7.5x CandyCane
+  outputs: 2.5x Fireworks Projectile 01
+- id: Sweet Fuel
+  machine: ChemReactor
+  power: 50
+  inputs: 60x HeavyOilResidue, 60x Water
+  outputs: 120x LiquidFuel, 30x Sulfur
+- id: Sweet Meal
+  machine: FF_CookingHub
+  power: 28
+  inputs: 5x FF Cooked Bread, 20x FF Crop Corn, 10x Water
+  outputs: 15x SnailFood Tier 3
+- id: Syngas Hydrogen
+  machine: ChemReactor
+  power: 50
+  inputs: 50x KLIB NaturalGas, 30x Gas Steam Hot
+  outputs: 80x Gas Hydrogen, 80x FlueGas
+- id: Synthetic Diamond
+  machine: HadronCollider
+  power: 500
+  inputs: 300x Coal, 25x NitrogenGas
+  outputs: 40x Diamond
+- id: Synthetic Fabric
+  machine: OilRefinery
+  power: 30
+  inputs: 90x PolymerResin, 15x Gas Steam Hot
+  outputs: 30x Fabric
+- id: Synthetic Quartz Crystal
+  machine: ChemReactor
+  power: 50
+  inputs: 60x Silica, 25x Water, 5x CausticSoda
+  outputs: 50x QuartzCrystal
+- id: TITAN Frame
+  machine: HadronCollider
+  power: 2000
+  inputs: 3x TitanPlates, 1x ModularFrameFused
+  outputs: 0.6250000000000001x TitanModularFrame
+- id: N/A
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 180x Asphalt
+- id: Temperature Module
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x BronzeFrame, 600x CateriumHeatsink, 1500x CopperSheet, 3000x SteelBolt, 600x CopperRod
+  outputs: 60x Hatchery Temperature Module
+- id: The HUB
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 1200x OreIron
+  outputs: 60x TradingPost
+- id: Therapeutic Inhaler
+  inputs: 45x Mycelia, 3x AlienProtein, 3x Shroom
+  outputs: 3x Medkit
+- id: Thermal Propulsion Rocket
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 1.5x MotorLightweight, 6x SpaceElevatorPart 4, 6x CoolingSystem, 60x PackagedRocketFuel
+  outputs: 3x SpaceElevatorPart 8
+- id: Thermal Silica
+  machine: FoundryMk1
+  power: 16
+  inputs: 30x Sand, 27x MagnesiumGranules
+  outputs: 45x Silica
+- id: TiCl Gas
+  machine: OilRefinery
+  power: 30
+  inputs: 60x PurifiedTitan, 60x Gas Chlor
+  outputs: 45x Gas Titantetrachlorid, 15x PurifiedTitan
+- id: Time Crystal
+  machine: Converter
+  power: 400
+  inputs: 20x Diamond, 5x PhotovoltaicCell
+  outputs: 10x TimeCrystal
+- id: Time Module
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 600x BronzeFrame, 1500x Glass, 1500x BronzePipe, 3000x IronScrew, 1500x Fabric
+  outputs: 60x Hatchery Night Module
+- id: Tin Ingot
+  machine: SmelterMk1
+  power: 4
+  inputs: 15x CrushedTin
+  outputs: 15x TinIngot
+- id: Tin Plate
+  machine: AssemblerMk1
+  power: 15
+  inputs: 30x TinIngot, 20x IronPlate
+  outputs: 40x TinPlates
+- id: Tin Rod
+  machine: ConstructorMk1
+  power: 4
+  inputs: 30x TinIngot
+  outputs: 15x TinRod
+- id: Tin Sheet
+  machine: AssemblerMk1
+  power: 15
+  inputs: 20x TinIngot, 20x CopperSheet
+  outputs: 40x TinSheet
+- id: Tinned Wire
+  machine: AssemblerMk1
+  power: 15
+  inputs: 60x Wire, 45x TinRod
+  outputs: 90x TinnedWire
+- id: Titanium Pipe
+  machine: ConstructorMk1
+  power: 4
+  inputs: 2x TitanPlates
+  outputs: 3x TitanPipe
+- id: Titanium Plate
+  machine: Blender
+  power: 75
+  inputs: 36x Gas Titantetrachlorid, 120x Gas Hydrogen, 180x IronPlate
+  outputs: 12x TitanPlates, 36x LiquidHydrochloricAcid
+- id: Toxic Hydrogen
+  machine: ChemReactor
+  power: 50
+  inputs: 120x ToxicAir, 60x Air, 30x Fabric
+  outputs: 30x Gas Hydrogen, 75x KLIB NaturalGas
+- id: Tractor
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 900x ModularFrame, 600x Rotor, 600x BrassPlates, 2400x IronScrew
+  outputs: 60x Tractor
+- id: Tractor Vehicle Path
+  machine: BP_EquipmentDescriptorBuildGun
+  outputs: 60x VehiclePath Tractor
+- id: Train Station
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x ModularFrameHeavy, 1200x SteelPlate, 3000x Cement, 1200x Cable
+  outputs: 60x TrainStation
+- id: Tree Plot
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 12000x FF Dirt, 1500x IronRod, 1500x IronScrew, 1200x IronPlate
+  outputs: 60x FF TreePlot
+- id: Truck
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x ModularFrameHeavy, 120x Motor, 1500x Rubber, 1200x IronSheet
+  outputs: 60x Truck
+- id: Truck Station
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x ModularFrame, 240x Rotor, 600x BronzePipe, 900x IronSheet
+  outputs: 60x TruckStation
+- id: Truck Vehicle Path
+  machine: BP_EquipmentDescriptorBuildGun
+  outputs: 60x VehiclePath Truck
+- id: Turbine Tier 1 using Energized Slug Slime
+  machine: RP_MP_TurbineMk1
+  inputs: 6x SlugSlime High
+  outputs: 6x SlugSlime Mid
+- id: Turbine Tier 1 using Steam
+  machine: RP_MP_TurbineMk1
+  inputs: 40x Gas Steam Hot
+  outputs: 10x Water
+- id: Turbine Tier 2 using Energized Slug Slime
+  machine: RP_MP_TurbineMk2
+  inputs: 9x SlugSlime High
+  outputs: 9x SlugSlime Mid
+- id: Turbine Tier 2 using Steam
+  machine: RP_MP_TurbineMk2
+  inputs: 60x Gas Steam Hot
+  outputs: 15x Water
+- id: Turbine Tier 3 using Energized Slug Slime
+  machine: RP_MP_SuperTurbine
+  inputs: 120x SlugSlime High
+  outputs: 48x SlugSlime Mid
+- id: Turbine Tier 3 using Steam
+  machine: RP_MP_SuperTurbine
+  inputs: 900x Gas Steam Hot
+  outputs: 300x Water
+- id: Turbomotor
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 7.5x Motor, 3.75x ModularFrameLightweight, 11.25x FanBlade, 7.5x CoolingSystem
+  outputs: 1.875x MotorLightweight
+- id: Turquise Slug Slime
+  machine: FF_Composter
+  power: 10
+  inputs: 15x Turquise
+  outputs: 15x SlugSlime Mid
+- id: U-Jelly Landing Pad
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 6000x GenericBiomass, 900x IronScrew, 600x IronPlate, 600x CopperRod
+  outputs: 60x LandingPad
+- id: Universal Paint
+  machine: OilRefinery
+  power: 30
+  inputs: 60x SAM, 30x SlugSlime High
+  outputs: 15x SlugSlime Mineral
+- id: Universal Paint (Copper Slug)
+  machine: FF_Composter
+  power: 10
+  inputs: 6x Copper, 60000x DarkEnergy
+  outputs: 30x SlugSlime Mineral
+- id: Universal Paint (Golden Slug)
+  machine: FF_Composter
+  power: 10
+  inputs: 3x Golden, 30000x DarkEnergy
+  outputs: 30x SlugSlime Mineral
+- id: Universal Paint (Iron Slug)
+  machine: FF_Composter
+  power: 10
+  inputs: 12x Iron, 60000x DarkEnergy
+  outputs: 30x SlugSlime Mineral
+- id: Universal Paint (Orange Slug)
+  machine: FF_Composter
+  power: 10
+  inputs: 15x Orange, 45000x DarkEnergy
+  outputs: 15x SlugSlime Mineral
+- id: Universal Vehicle Path
+  machine: BP_EquipmentDescriptorBuildGun
+  outputs: 60x VehiclePath Universal
+- id: Unpackage Air
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedAir
+  outputs: 60x GasTank, 120x Air
+- id: Unpackage Algal Mass
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedLiquidBioWater
+  outputs: 60x FluidCanister, 60x Res LiquidBioWater
+- id: Unpackage Alumina Solution
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x PackagedAlumina
+  outputs: 60000x AluminaSolution, 60x FluidCanister
+- id: Unpackage Caustic Soda
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x PackagedCausticSoda
+  outputs: 60x FluidCanister, 60x CausticSoda
+- id: Unpackage Chlorine Gas
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedGas Chlor
+  outputs: 60x GasTank, 120x Gas Chlor
+- id: Unpackage Coolant
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x PackagedCoolingWater
+  outputs: 60x NC CryoTankEmpty, 60x CoolingWater
+- id: Unpackage Energized Slug Slime
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x PackagedSlugSlime High
+  outputs: 60x NC CryoTankEmpty, 60x SlugSlime High
+- id: Unpackage Ethylene Gas
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedMethane
+  outputs: 60x GasTank, 120x Ethylene
+- id: Unpackage Flue Gas
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedGas CarbonDioxide
+  outputs: 60x GasTank, 120x FlueGas
+- id: Unpackage Fuel
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x Fuel
+  outputs: 60x LiquidFuel, 60x FluidCanister
+- id: Unpackage Heavy Oil Residue
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x PackagedOilResidue
+  outputs: 60x HeavyOilResidue, 60x FluidCanister
+- id: Unpackage Hydrogen
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedGas Hydrogen
+  outputs: 60x GasTank, 120x Gas Hydrogen
+- id: Unpackage Ionized Fuel
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x PackagedIonizedFuel
+  outputs: 120000x IonizedFuel, 60x GasTank
+- id: Unpackage Liquid Biofuel
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x PackagedBiofuel
+  outputs: 60x LiquidBiofuel, 60x FluidCanister
+- id: Unpackage Muriatic Acid
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedLiquidHydrochloricAcid
+  outputs: 60x FluidCanister, 60x LiquidHydrochloricAcid
+- id: Unpackage Natural Gas
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedNaturalGas
+  outputs: 60x GasTank, 120x KLIB NaturalGas
+- id: Unpackage Nitric Acid
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x PackagedNitricAcid
+  outputs: 60x NitricAcid, 60x GasTank
+- id: Unpackage Nitrogen Gas
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x PackagedNitrogenGas
+  outputs: 120x NitrogenGas, 60x GasTank
+- id: Unpackage Oil
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedOil
+  outputs: 60x LiquidOil, 60x FluidCanister
+- id: Unpackage Purified Crude Oil
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x PackagedPurifiedCrudeOil
+  outputs: 60x FluidCanister, 60x PurifiedCrudeOil
+- id: Unpackage Rocket Fuel
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x PackagedRocketFuel
+  outputs: 120000x RocketFuel, 60x GasTank
+- id: Unpackage Slug Slime
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x PackagedSlugSlime Low
+  outputs: 60x NC CryoTankEmpty, 60x SlugSlime Low
+- id: Unpackage Sour Gas
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedSulfurtrixid
+  outputs: 60x GasTank, 120x Sulfurtrixid
+- id: Unpackage Spent Slug Slime
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x PackagedSlugSlime Mid
+  outputs: 60x NC CryoTankEmpty, 60x SlugSlime Mid
+- id: Unpackage Steam
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedGas Steam Hot
+  outputs: 60x GasTank, 120x Gas Steam Hot
+- id: Unpackage Steam
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedGas Steam
+  outputs: 60x GasTank, 120x Gas Steam
+- id: Unpackage Sulfuric Acid
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x PackagedSulfuricAcid
+  outputs: 60x SulfuricAcid, 60x FluidCanister
+- id: Unpackage TiCl Gas
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedGas Titantetrachlorid
+  outputs: 60x GasTank, 120x Gas Titantetrachlorid
+- id: Unpackage Toxic Air
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedToxicAir
+  outputs: 60x GasTank, 120x ToxicAir
+- id: Unpackage Turbofuel
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x TurboFuel
+  outputs: 60x LiquidTurboFuel, 60x FluidCanister
+- id: Unpackage Universal Paint
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 60x PackagedSlugSlime Mineral
+  outputs: 60x NC CryoTankEmpty, 60x SlugSlime Mineral
+- id: Unpackage Wastewater
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedLiquidDirtyWater
+  outputs: 60x FluidCanister, 60x Wastewater
+- id: Unpackage Water
+  machine: AB_FluidPacker, Packager
+  power: 10
+  inputs: 0.06x PackagedWater
+  outputs: 60x Water, 60x FluidCanister
+- id: Uranium Fuel Rod
+  machine: ManufacturerMk1
+  power: 55
+  inputs: 24x UraniumCell, 16.2x InvarPipe, 6x ElectromagneticControlRod
+  outputs: 1.2x NuclearFuelRod
+- id: Uranium Ore (Aurovite)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 480x OreGold
+  outputs: 60x OreUranium, 20000x DarkEnergy
+- id: Uranium Ore (Montanion)
+  machine: Converter
+  power: 300
+  inputs: 20x SAMIngot, 240x OreBauxite
+  outputs: 60x OreUranium
+- id: Valve
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x SteelPipe, 300x BrassPlates, 600x SteelBolt
+  outputs: 60x Valve
+- id: Vegetable Meal
+  machine: FF_CookingHub
+  power: 28
+  inputs: 40x FF Crop Potato, 40x FF Crop Carrot, 40x Water
+  outputs: 80x SnailFood Tier 2
+- id: Versatile Framework
+  machine: AssemblerMk1
+  power: 15
+  inputs: 3.75x BronzeFrame, 28.125x SteelRod
+  outputs: 5.625x SpaceElevatorPart 2
+- id: Vitamin Inhaler
+  inputs: 30x Mycelia, 15x Berry
+  outputs: 3x Medkit
+- id: Wall Outlet Mk.1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 240x Wire, 120x IronScrew, 60x CopperRod
+  outputs: 60x PowerPoleWall
+- id: Wall Outlet Mk.2
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 240x HighSpeedWire, 300x IronScrew, 60x CopperRod
+  outputs: 60x PowerPoleWallMk2
+- id: Wall Outlet Mk.3
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x HighSpeedConnector, 300x SteelBolt, 60x CopperRod
+  outputs: 60x PowerPoleWallMk3
+- id: Wall-Mounted Flood Light
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x Cable, 300x Glass, 360x IronScrew, 300x QuartzCrystal, 300x IronPlate
+  outputs: 60x FloodlightWall
+- id: Washed Bauxite
+  machine: OreWascher
+  power: 7
+  inputs: 60x OreBauxite, 25x SulfuricAcid
+  outputs: 75x CrushedBauxite, 40x Wastewater
+- id: Washed Caterium
+  machine: OreWascher
+  power: 7
+  inputs: 60x OreGold, 15x LiquidHydrochloricAcid
+  outputs: 60x CrushedCaterium, 40x Wastewater
+- id: Washed Cobalt
+  machine: OreWascher
+  power: 7
+  inputs: 60x OreBauxite, 15x LiquidHydrochloricAcid
+  outputs: 60x CrushedCobalt, 30x Wastewater
+- id: Washed Copper
+  machine: OreWascher
+  power: 7
+  inputs: 24x OreCopper, 24x Water
+  outputs: 36x CrushedCopper, 24x LiquidSlag
+- id: Washed Iron
+  machine: OreWascher
+  power: 7
+  inputs: 40x OreIron, 40x Water
+  outputs: 60x CrushedIron, 40x LiquidSlag
+- id: Washed Lead
+  machine: OreWascher
+  power: 7
+  inputs: 120x Stone, 30x SulfuricAcid
+  outputs: 150x CrushedLead, 15x DissolvedSilica
+- id: Washed Magnesium
+  machine: OreWascher
+  power: 7
+  inputs: 80x OreCopper, 20x LiquidHydrochloricAcid
+  outputs: 80x CrushedMagnesium, 32x LiquidSlag
+- id: Washed Nickel
+  machine: OreWascher
+  power: 7
+  inputs: 60x OreCopper, 30x CausticSoda
+  outputs: 40x CrushedNickle, 40x Wastewater
+- id: Washed Quartz Crystal
+  machine: OreWascher
+  power: 7
+  inputs: 60x RawQuartz, 10x NitricAcid
+  outputs: 75x QuartzCrystal, 20x DissolvedSilica
+- id: Washed Rutile
+  machine: OreWascher
+  power: 7
+  inputs: 100x OreIron, 10x NitricAcid
+  outputs: 20x PurifiedTitan, 40x LiquidSlag
+- id: Washed Tin
+  machine: OreWascher
+  power: 7
+  inputs: 60x OreIron, 30x Water
+  outputs: 45x CrushedTin, 60x LiquidSlag
+- id: Washed Zinc
+  machine: OreWascher
+  power: 7
+  inputs: 60x Stone, 40x Water
+  outputs: 60x CrushedZinc, 24x Wastewater
+- id: Water Extractor
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 300x Motor, 1200x BrassPipe, 900x Cable, 1200x SteelBolt
+  outputs: 60x WaterPump
+- id: Water Turbine Mk1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x IronRod, 72x FanBlade, 90x BrassPipe, 30x ModularFrame
+  outputs: 6x WaterTurbine Mk1
+- id: Wet Washer
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x BronzeFrame, 120x Rotor, 900x IronPlate, 900x IronScrew
+  outputs: 60x OreWascher
+- id: Wheat
+  machine: FF_CropPlot
+  power: 5
+  inputs: 10x FF WheatSeed
+  outputs: 10x FF Crop Wheat, 4x Leaves
+- id: Wheat Muffin
+  machine: FF_CookingHub
+  power: 28
+  inputs: 50x FF Crop Wheat, 10x Water
+  outputs: 1x FF Cooked Muffin Wheat
+- id: White Slug Slime
+  machine: FF_Composter
+  power: 10
+  inputs: 60x WhiteSlug
+  outputs: 12x SlugSlime High
+- id: Wind Turbine Mk1
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 30x Rotor, 90x IronRod, 120x TinPlates, 300x IronScrew
+  outputs: 6x WindTurbine Mk1
+- id: Wind Turbine Mk2
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 144x FanBlade, 30x Motor, 120x SteelPipe, 12x ModularFrameHeavy, 300x SteelBolt
+  outputs: 6x WindTurbine Mk2
+- id: Wind Turbine Mk3
+  machine: BP_EquipmentDescriptorBuildGun
+  inputs: 120x FanBlade, 150x Motor, 120x InvarPipe, 450x Cable, 600x Fabric
+  outputs: 6x WindTurbine Mk3
+- id: Wire
+  machine: ConstructorMk1
+  power: 4
+  inputs: 18x CopperRod
+  outputs: 30x Wire
+- id: Xeno-Basher
+  inputs: 18.75x SteelPlate, 3x Rotor, 7.5x ModularFrame, 112.5x SteelBolt
+  outputs: 0.7500000000000001x BP EquipmentDescriptorStunSpear
+- id: Xeno-Zapper
+  inputs: 75x IronScrew, 37.5x IronPlate, 15x Cable
+  outputs: 1.5x BP EquipmentDescriptorShockShank
+- id: Yellow Slug Egg
+  inputs: 500x EggDNA Yellow, 50x AlienProtein
+  outputs: 10x EggYellow
+- id: Yellow Slug Slime
+  machine: FF_Composter
+  power: 10
+  inputs: 30x YellowSlug
+  outputs: 80x SlugSlime Low
+- id: Yosse Berry
+  machine: FF_CropPlot
+  power: 5
+  inputs: 10x FF YosseSeed
+  outputs: 10x FF Crop YosseBerry, 4x Leaves
+- id: Yosse Muffin
+  machine: FF_CookingHub
+  power: 28
+  inputs: 30x FF Crop Wheat, 20x FF Crop YosseBerry, 10x Water
+  outputs: 1x FF Cooked Muffin Yosse
+- id: Zinc Ingot
+  machine: SmelterMk1
+  power: 4
+  inputs: 24x CrushedZinc
+  outputs: 15x ZincIngot
+- id: Zinc Plates
+  machine: ConstructorMk1
+  power: 4
+  inputs: 12.5x ZincIngot
+  outputs: 15x ZincPlates
+- id: Zipline
+  inputs: 375x HighSpeedWire, 375x IronScrew, 112.5x Cable, 75x TinPlates
+  outputs: 1.5x BP EqDescZipLine
