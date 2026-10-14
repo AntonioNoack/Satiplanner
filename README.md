@@ -5,12 +5,20 @@ Currently set to use Satisfactory+ recipes, but you can just plop your own Satip
 
 ## Installation
 
-Install Java (Language Runtime)
-Install GLPK (GNU Linear Programming Kit)
+1. Install Java (Language Runtime)
+2. Install GLPK (GNU Linear Programming Kit)
+
+The command "glpsol" (part of GLPK) must be available to the program.
+
+## Use
+
+Just open the jar using Java.
+Use Ctrl+S to save, and Ctrl+L to load at any time. If you already have a savepoint, it will prompt you when the program is started.
+Then double-click to add nodes. Use click-and-drag to connect them.
 
 ## Optimization
 
-To get anything optimized, you must set a limit (bottom of a node) to a fixed value.
+To get anything optimized, you must set the factory count of any factory (bottom of a node) to a fixed value.
 It then tries to minimize waste. Waste is the amount of resources not used from outputs to inputs.
 
 Inputs and outputs, that are not used at all, are ignored.
