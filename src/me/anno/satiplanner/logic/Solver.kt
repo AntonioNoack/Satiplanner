@@ -81,6 +81,9 @@ object Solver {
                 val inputs = factory.inputs[i]
                 if (inputs.isEmpty()) continue
 
+                val allInputs = collectInputs(inputs)
+                if (allInputs.isEmpty()) continue
+
                 val inputType = type.inputs[i]
                 val inputTypeT = inputType.type
                 sb.append("s.t. F${f}In${i}LTOut: ").production(f)
@@ -90,6 +93,7 @@ object Solver {
                 val wasteGroup = wasteGroupsByInput.getOrPut(Vector2i(f, i)) {
                     WasteGroup(inputTypeT)
                 }
+
                 if (wasteGroup.addWasteInput(factory)) {
                     for (output in wasteGroup.inputs) {
                         val oi = output.findInputIndex(inputTypeT)
@@ -98,7 +102,7 @@ object Solver {
                 }
 
                 var first = true
-                for (input in collectInputs(inputs)) {
+                for (input in allInputs) {
                     if (first) first = false
                     else sb.append(" + ")
 

@@ -1,6 +1,7 @@
 package me.anno.satiplanner.ui
 
 import me.anno.Time
+import me.anno.gpu.GFX
 import me.anno.input.Input
 import me.anno.input.Key
 import me.anno.language.translation.NameDesc
@@ -17,6 +18,7 @@ import me.anno.satiplanner.nodes.Connector
 import me.anno.satiplanner.nodes.Factory
 import me.anno.satiplanner.nodes.Node
 import me.anno.satiplanner.types.FactoryType
+import me.anno.satiplanner.types.WasteGroup
 import me.anno.ui.Style
 import me.anno.ui.base.components.AxisAlignment
 import me.anno.ui.base.groups.MapPanel
@@ -81,9 +83,6 @@ class FactoryPanel(
     var textFont = statusFont
     var titleFont = statusFont.withBold(true)
 
-    val unitsX = 7
-    val unitsY0s = 1
-
     val nodeBgColor = 0x252a33.withAlpha(200)
     val titleBgColor = 0x373C48.withAlpha(255)
     val bigBgColor = 0x222733.withAlpha(255)
@@ -119,25 +118,24 @@ class FactoryPanel(
     }
 
     fun getUnitsX(node: Node): Int = when (node) {
-        is Factory -> unitsX
-        else -> 1
+        is Factory -> 7
+        else -> 2
     }
 
     fun getUnitsY(node: Node): Int = when (node) {
-        is Factory -> unitsY0s + 1 + max(node.inputs.size, node.outputs.size)
+        is Factory -> 2 + max(node.inputs.size, node.outputs.size)
         else -> 1
     }
 
     fun getUnitsY0(node: Node): Int = when (node) {
-        is Factory -> unitsY0s
+        is Factory -> 1
         else -> 0
     }
 
-    fun drawLinks(canvas: Canvas, dx: Int, sw: Int, du: Int) {
+    fun drawLinks(canvas: Canvas, sw: Int, du: Int) {
         val scale = scale.x.toFloat()
 
         // draw links
-        val dxl = dx - sw.shr(1)
         for (nodeIndex in nodes.indices) {
             val node0 = nodes[nodeIndex]
             val u0 = getUnitsY(node0)
@@ -167,9 +165,15 @@ class FactoryPanel(
 
                     val j = node1.findOutputIndex(typeName)
                     val dy3 = (getUnitsY0(node1) + j) * du + du.shr(1) - dy1
+
+                    val dx0 = (getUnitsX(node0) * 0.5f * scale).toInt()
+                    val dxl0 = dx0 - sw.shr(1)
+
+                    val dx1 = (getUnitsX(node1) * 0.5f * scale).toInt()
+                    val dxl1 = dx1 - sw.shr(1)
                     canvas.drawLine(
-                        px0 - dxl, py0 + dy2,
-                        px1 + dxl, py1 + dy3,
+                        px0 - dxl0, py0 + dy2,
+                        px1 + dxl1, py1 + dy3,
                         1f, -1, nodeBgColor.withAlpha(0),
                         false,
                     )
@@ -178,7 +182,7 @@ class FactoryPanel(
         }
     }
 
-    fun drawDraggedLink(canvas: Canvas, dx: Int, sw: Int, du: Int) {
+    fun drawDraggedLink(canvas: Canvas, sw: Int, du: Int) {
         val window = window
         val node = draggedNode
         val scale = scale.x.toFloat()
@@ -188,8 +192,8 @@ class FactoryPanel(
             val px = coordsToWindowX(node.posX).toInt()
             val py = coordsToWindowY(node.posY).toInt()
 
-            val unitsY = getUnitsY(node)
-            val dy = (unitsY * 0.5f * scale).toInt()
+            val dx = (getUnitsX(node) * 0.5f * scale).toInt()
+            val dy = (getUnitsY(node) * 0.5f * scale).toInt()
 
             val x0 = px - dx
             val x1 = px + dx
@@ -206,7 +210,7 @@ class FactoryPanel(
         }
     }
 
-    fun drawFactories(canvas: Canvas, dx: Int, sw: Int, du: Int) {
+    fun drawFactories(canvas: Canvas, sw: Int, du: Int) {
         val scale = scale.x.toFloat()
         limitFont = limitFont.withSize(scale * 0.5f)
         textFont = textFont.withSize(scale * 0.3f)
@@ -217,11 +221,11 @@ class FactoryPanel(
         for (nodeIndex in nodes.indices) {
             val node = nodes[nodeIndex] as? Factory ?: continue
 
-            val unitsY = getUnitsY(node)
-            val dy = (unitsY * 0.5f * scale).toInt()
-
             val px = coordsToWindowX(node.posX).toInt()
             val py = coordsToWindowY(node.posY).toInt()
+
+            val dx = (getUnitsX(node) * 0.5f * scale).toInt()
+            val dy = (getUnitsY(node) * 0.5f * scale).toInt()
 
             val x0 = px - dx
             val x1 = px + dx
@@ -356,16 +360,16 @@ class FactoryPanel(
     val selectedShadowColor = 0xffaa13.withAlpha(255)
     val defaultShadowColor = 0x090B13.withAlpha(255)
 
-    fun drawConnectors(canvas: Canvas, dx: Int, sw: Int, du: Int) {
+    fun drawConnectors(canvas: Canvas, sw: Int, du: Int) {
         val scale = scale.x.toFloat()
         for (nodeIndex in nodes.indices) {
             val node = nodes[nodeIndex] as? Connector ?: continue
 
-            val unitsY = getUnitsY(node)
-            val dy = (unitsY * 0.5f * scale).toInt()
-
             val px = coordsToWindowX(node.posX).toInt()
             val py = coordsToWindowY(node.posY).toInt()
+
+            val dx = (getUnitsX(node) * 0.5f * scale).toInt()
+            val dy = (getUnitsY(node) * 0.5f * scale).toInt()
 
             val x0 = px - dx
             val x1 = px + dx
@@ -387,8 +391,6 @@ class FactoryPanel(
             canvas.drawRect(x1, y0 - 1, 1, h, shadow)
             canvas.drawRect(x0, y0 - 1, w, 1, shadow)
             canvas.drawRect(x0, y1, w, 1, shadow)
-
-            canvas.drawRect(x0, y0 + du, w, y1 - (y0 + du), nodeBgColor)
             canvas.drawRect(x0, y0, w, du, titleBgColor)
 
             if (sw >= 2) {
@@ -426,13 +428,12 @@ class FactoryPanel(
 
         val scale = scale.x.toFloat()
         val du = scale.toInt()
-        val dx = (unitsX * 0.5f * scale).toInt()
         val sw = du * 2 / 3
 
-        drawLinks(canvas, dx, sw, du)
-        drawConnectors(canvas, dx, sw, du)
-        drawFactories(canvas, dx, sw, du)
-        drawDraggedLink(canvas, dx, sw, du)
+        drawLinks(canvas, sw, du)
+        drawConnectors(canvas, sw, du)
+        drawFactories(canvas, sw, du)
+        drawDraggedLink(canvas, sw, du)
 
         drawStatus(canvas)
         drawPower(canvas)
@@ -452,7 +453,10 @@ class FactoryPanel(
         val a = acceleration
         a.set(0f)
         val window = window
-        if (isHovered && isInFocus && window != null) {
+        if (isHovered && isInFocus &&
+            window != null &&
+            GFX.someWindow.isInFocus
+        ) {
             val dx = min(20, min(width, height) / 30)
             val invDx = 1f / dx
 
@@ -479,10 +483,10 @@ class FactoryPanel(
             val dx = (center.x - prevPos.x).toFloat()
             val dy = (center.y - prevPos.y).toFloat()
             for (i in nodes.indices) {
-                val factory = nodes[i]
-                if (factory.isSelected) {
-                    factory.posX += dx
-                    factory.posY += dy
+                val node = nodes[i]
+                if (node.isSelected) {
+                    node.posX += dx
+                    node.posY += dy
                 }
             }
         }
@@ -561,7 +565,7 @@ class FactoryPanel(
     }
 
     fun stopDragging(x: Float, y: Float) {
-        val srcFactory = draggedNode ?: return
+        val srcNode = draggedNode ?: return
         val typeName = draggedType
         val srcIsInput = draggedIsInput
         val dstData = getHoverData(x, y)
@@ -569,9 +573,9 @@ class FactoryPanel(
         if (dstData != null) {
             val dstFactory = dstData.node
             success = if (srcIsInput) {
-                dstFactory.connectTo(srcFactory, typeName)
+                dstFactory.connectTo(srcNode, typeName)
             } else {
-                srcFactory.connectTo(dstFactory, typeName)
+                srcNode.connectTo(dstFactory, typeName)
             }
         }
 
@@ -584,11 +588,11 @@ class FactoryPanel(
             } else {
                 types.filter { type -> type.inputs.any2 { it.type == typeName } }
             }
-            openOptionsForFactory(x, y, options) { dstFactory ->
+            openOptionsForFactory(x, y, options, typeName) { dstNode ->
                 val success = if (srcIsInput) {
-                    dstFactory.connectTo(srcFactory, typeName)
+                    dstNode.connectTo(srcNode, typeName)
                 } else {
-                    srcFactory.connectTo(dstFactory, typeName)
+                    srcNode.connectTo(dstNode, typeName)
                 }
                 if (success) isValid = false
             }
@@ -622,11 +626,11 @@ class FactoryPanel(
         val dx = windowToCoordsDirX(dx.toDouble()).toFloat()
         val dy = windowToCoordsDirY(dy.toDouble()).toFloat()
         for (i in nodes.indices) {
-            val factory = nodes[i]
-            if (!factory.isSelected) continue
+            val node = nodes[i]
+            if (!node.isSelected) continue
 
-            factory.posX += dx
-            factory.posY += dy
+            node.posX += dx
+            node.posY += dy
         }
     }
 
@@ -690,25 +694,39 @@ class FactoryPanel(
                 isValid = false
             }
         } else {
-            openOptionsForFactory(x, y, types) {}
+            openOptionsForFactory(
+                x, y, types,
+                resourceType = null, callback = null
+            )
         }
     }
 
     fun openOptionsForFactory(
         x: Float, y: Float, types: List<FactoryType>,
-        callback: (Factory) -> Unit
+        resourceType: String?,
+        callback: ((Node) -> Unit)?
     ) {
-        Menu.openMenu(windowStack, NameDesc("Add Factory"), types.map { type ->
-            MenuOption(NameDesc("${type.recipeName} (${type.factoryName})")) {
-                val factory = Factory(type).apply {
-                    posX = windowToCoordsX(x)
-                    posY = windowToCoordsY(y)
-                }
-                nodes.add(factory)
-                isValid = false
-                callback(factory)
+        val options = ArrayList<MenuOption>(types.size + 1)
+        fun create(node: Node) {
+            node.posX = windowToCoordsX(x)
+            node.posY = windowToCoordsY(y)
+
+            nodes.add(node)
+            isValid = false
+            callback?.invoke(node)
+        }
+        if (resourceType != null) {
+            options += MenuOption(NameDesc("Connector")) {
+                create(Connector(resourceType))
             }
-        })
+        }
+        for (i in types.indices) {
+            val type = types[i]
+            options += MenuOption(NameDesc("${type.recipeName} (${type.factoryName})")) {
+                create(Factory(type))
+            }
+        }
+        Menu.openMenu(windowStack, NameDesc("Add Factory"), options)
     }
 
     fun getHoverData(x: Float, y: Float): HoverData? {
@@ -724,16 +742,54 @@ class FactoryPanel(
         val px = (x - coordsToWindowX(node.posX) + dx) * 0.5f * unitsX / dx
         val py = (y - coordsToWindowY(node.posY) + dy) * 0.5f * unitsY / dy
 
-        val slotIndex = floor(py - unitsY0s).toInt()
-        val isInput = px < unitsX * 0.5f
+        val unitsY0s = getUnitsY0(node).toFloat()
+        val slotIndexF = py - unitsY0s
+        val slotIndex = floor(slotIndexF).toInt()
+        val sideX = px - unitsX * 0.5f
+        val isInput = sideX < 0f
 
-        return HoverData(node, isInput, slotIndex, py - unitsY0s)
+        if (node is Connector && abs(sideX) < 0.4f) {
+            return HoverData(node, isInput, -1, slotIndexF)
+        }
+
+        return HoverData(node, isInput, slotIndex, slotIndexF)
+    }
+
+    private fun getInput(it: Node, type: String): Double {
+        if (it !is Factory) return 0.0
+        val idx = it.findInputIndex(type)
+        if (idx < 0) return 0.0
+        return it.inputMultiplier * it.calculated * it.type.inputs[idx].amount
+    }
+
+    private fun getOutput(it: Node, type: String): Double {
+        if (it !is Factory) return 0.0
+        val idx = it.findOutputIndex(type)
+        if (idx < 0) return 0.0
+        return it.outputMultiplier * it.calculated * it.type.outputs[idx].amount
     }
 
     override fun getTooltipText(x: Float, y: Float): String? {
         val hoverData = getHoverData(x, y) ?: return null
         return when (val node = hoverData.node) {
-            is Connector -> node.resourceType
+            is Connector -> {
+                // sum all inputs and outputs for interesting statistics
+                val type = node.resourceType
+                val wg = WasteGroup(type)
+                wg.addWasteInput(node)
+                wg.addWasteOutput(node)
+
+                val directInputSum = node.inputs.first().sumOf { getOutput(it, type) }
+                val directOutputSum = node.outputs.first().sumOf { getInput(it, type) }
+                val wgInputSum = wg.inputs.sumOf { getInput(it, type) }
+                val wgOutputSum = wg.outputs.sumOf { getOutput(it, type) }
+                val allInputSum = nodes.sumOf { getInput(it, type) }
+                val allOutputSum = nodes.sumOf { getOutput(it, type) }
+                "$type\n" +
+                        "Node: $directOutputSum → $directInputSum (${directOutputSum - directInputSum})\n" +
+                        "Net: $wgOutputSum → $wgInputSum (${wgOutputSum - wgInputSum})\n" +
+                        "All: $allOutputSum → $allInputSum (${allOutputSum - allInputSum})\n"
+            }
             is Factory -> {
                 val type = node.type
                 val slotIndex = hoverData.slotIndex
@@ -760,37 +816,36 @@ class FactoryPanel(
 
     override fun onKeyTyped(x: Float, y: Float, key: Key) {
         if (Input.isControlDown) when (key) {
-            Key.KEY_S -> {
-                Menu.askName(
-                    windowStack, x.toInt() - Menu.paddingX, y.toInt() - Menu.paddingY,
-                    NameDesc("Enter Name"), lastSaveName,
-                    NameDesc("Save"), enableSpellcheck = false, {
-                        when (it.toAllowedFilename()) {
-                            it -> {
-                                var fileName = it
-                                if (!fileName.endsWith(".json")) fileName += ".json"
-                                if (folder.getChild(fileName).exists) 0x33ffff
-                                else 0x33ff33
-                            }
-                            null -> 0xff3333
-                            else -> 0xffff33
-                        }.withAlpha(255)
-                    }) {
-                    var fileName = it.toAllowedFilename()
-                    if (fileName != null) {
-                        if (!fileName.endsWith(".json")) fileName += ".json"
-                        lastSaveName = fileName
-                        val file = folder.getChild(fileName)
-                        me.anno.satiplanner.logic.save(file, nodes)
-                        Menu.msg(NameDesc("Saved as $file"))
-                    }
-                }
-            }
-            Key.KEY_L -> {
-                // ask whether user is sure?
-                askLoad(this, types)
-            }
+            Key.KEY_S -> askSave(x, y)
+            Key.KEY_L -> askLoad(this, types)
             else -> {}
+        }
+    }
+
+    fun askSave(x: Float, y: Float) {
+        Menu.askName(
+            windowStack, x.toInt() - Menu.paddingX, y.toInt() - Menu.paddingY,
+            NameDesc("Enter Name"), lastSaveName,
+            NameDesc("Save"), enableSpellcheck = false, {
+                when (it.toAllowedFilename()) {
+                    it -> {
+                        var fileName = it
+                        if (!fileName.endsWith(".json")) fileName += ".json"
+                        if (folder.getChild(fileName).exists) 0x33ffff
+                        else 0x33ff33
+                    }
+                    null -> 0xff3333
+                    else -> 0xffff33
+                }.withAlpha(255)
+            }) {
+            var fileName = it.toAllowedFilename()
+            if (fileName != null) {
+                if (!fileName.endsWith(".json")) fileName += ".json"
+                lastSaveName = fileName
+                val file = folder.getChild(fileName)
+                me.anno.satiplanner.logic.save(file, nodes)
+                Menu.msg(NameDesc("Saved as $file"))
+            }
         }
     }
 

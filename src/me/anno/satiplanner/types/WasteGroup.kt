@@ -1,5 +1,6 @@
 package me.anno.satiplanner.types
 
+import me.anno.satiplanner.nodes.Connector
 import me.anno.satiplanner.nodes.Node
 
 /**
@@ -11,22 +12,32 @@ class WasteGroup(val type: String) {
     val inputs = HashSet<Node>()
     val outputs = HashSet<Node>()
 
-    fun addWasteOutput(factory: Node) {
-        val i = factory.findOutputIndex(type)
-        val inputs = factory.outputs.getOrNull(i) ?: return
-        if (this.outputs.add(factory)) {
+    fun addWasteOutput(node: Node) {
+        val i = node.findOutputIndex(type)
+        val inputs = node.outputs.getOrNull(i) ?: return
+        if (this.outputs.add(node)) {
             for (input in inputs) {
                 addWasteInput(input)
+            }
+
+            if (node is Connector) {
+                // self is an input, too
+                addWasteInput(node)
             }
         }
     }
 
-    fun addWasteInput(factory: Node): Boolean {
-        val i = factory.findInputIndex(type)
-        val inputs = factory.inputs.getOrNull(i) ?: return false
-        if (this.inputs.add(factory)) {
+    fun addWasteInput(node: Node): Boolean {
+        val i = node.findInputIndex(type)
+        val inputs = node.inputs.getOrNull(i) ?: return false
+        if (this.inputs.add(node)) {
             for (input in inputs) {
                 addWasteOutput(input)
+            }
+
+            if (node is Connector) {
+                // self is an output, too
+                addWasteOutput(node)
             }
             return true
         } else return false
