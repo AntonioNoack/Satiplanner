@@ -123,7 +123,10 @@ class FactoryPanel(
     }
 
     fun getUnitsY(node: Node): Int = when (node) {
-        is Factory -> 2 + max(node.inputs.size, node.outputs.size)
+        is Factory -> {
+            val type = node.type
+            2 + max(type.inputs.size, type.outputs.size)
+        }
         else -> 1
     }
 
@@ -391,7 +394,7 @@ class FactoryPanel(
             canvas.drawRect(x1, y0 - 1, 1, h, shadow)
             canvas.drawRect(x0, y0 - 1, w, 1, shadow)
             canvas.drawRect(x0, y1, w, 1, shadow)
-            canvas.drawRect(x0, y0, w, du, titleBgColor)
+            canvas.drawRect(x0, y0, w, h, titleBgColor)
 
             if (sw >= 2) {
 
