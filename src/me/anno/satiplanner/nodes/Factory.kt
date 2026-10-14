@@ -35,6 +35,8 @@ class Factory(val type: FactoryType) : Node() {
     var calculatedStr = ""
     var calculated = 0.0
 
+    var checked = false
+
     override fun findInputIndex(type: String): Int = findTypeIndex(this.type.inputs, type)
     override fun findOutputIndex(type: String): Int = findTypeIndex(this.type.outputs, type)
 

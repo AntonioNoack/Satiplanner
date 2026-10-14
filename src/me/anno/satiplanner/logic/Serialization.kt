@@ -24,8 +24,12 @@ fun loadFiles(): List<FileReference> {
     return folder.listChildren().filter { it.lcExtension == "json" }
 }
 
-fun load(file: FileReference, types: List<FactoryType>): List<Node> {
+fun loadNodes(file: FileReference, types: List<FactoryType>): List<Node> {
     val scanner = JsonScanner(file.readTextSync())
+    return loadNodes(scanner, types)
+}
+
+fun loadNodes(scanner: JsonScanner, types: List<FactoryType>): List<Node> {
     val nodes = ArrayList<Node>()
     val type0 = types.first()
     val typesByName = types.associateBy { it.recipeName }
@@ -60,6 +64,10 @@ fun load(file: FileReference, types: List<FactoryType>): List<Node> {
                         "sloops" -> {
                             val value = scanner.readNumber().toInt()
                             (node as? Factory)?.sloops = value
+                        }
+                        "checked" -> {
+                            val value = scanner.readBoolean()
+                            (node as? Factory)?.checked = value
                         }
                         "inputs" -> {
                             var slot = 0
@@ -99,9 +107,12 @@ fun load(file: FileReference, types: List<FactoryType>): List<Node> {
     return nodes
 }
 
-fun save(file: FileReference, nodes: List<Node>) {
+fun saveNodes(file: FileReference, nodes: List<Node>) {
     file.getParent().tryMkdirs()
+    file.writeText(saveNodes(nodes).toString())
+}
 
+fun saveNodes(nodes: List<Node>): StringWriter {
     val output = StringWriter()
     val writer = JsonWriter(output)
     for (i in nodes.indices) {
@@ -127,6 +138,8 @@ fun save(file: FileReference, nodes: List<Node>) {
                         writer.attr("sloops")
                         writer.write(node.sloops)
 
+                        writer.attr("checked")
+                        writer.write(node.checked)
                     }
                     is Connector -> {
                         writer.attr("resourceType")
@@ -142,13 +155,15 @@ fun save(file: FileReference, nodes: List<Node>) {
 
                 writer.attr("inputs")
                 writer.writeArray(node.inputs) { input ->
-                    writer.writeArray(input.map { it.index }) { index ->
-                        writer.write(index)
+                    writer.writeArray(input) { other ->
+                        if (nodes.getOrNull(other.index) === other) {
+                            writer.write(other.index)
+                        }
                     }
                 }
             }
         }
     }
 
-    file.writeText(output.toString())
+    return output
 }

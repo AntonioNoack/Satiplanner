@@ -6,7 +6,7 @@ import me.anno.engine.Events.addEvent
 import me.anno.engine.WindowRenderFlags
 import me.anno.language.translation.NameDesc
 import me.anno.satiplanner.logic.RecipeSerialization
-import me.anno.satiplanner.logic.load
+import me.anno.satiplanner.logic.loadNodes
 import me.anno.satiplanner.logic.loadFiles
 import me.anno.satiplanner.types.FactoryType
 import me.anno.satiplanner.ui.FactoryPanel
@@ -18,6 +18,8 @@ import me.anno.utils.structures.Iterators.toList
 import java.io.File
 
 fun main() {
+
+    // todo checkbox
 
     val recipes = readRecipesFromFile()
     val renames = loadRenames()
@@ -49,7 +51,7 @@ fun askLoad(panel: FactoryPanel, recipes: List<FactoryType>) {
         panel.windowStack, NameDesc("Load"),
         loadFiles().map { file ->
             MenuOption(NameDesc(file.nameWithoutExtension)) {
-                val factories = load(file, recipes)
+                val factories = loadNodes(file, recipes)
                 panel.nodes.clear()
                 panel.nodes.addAll(factories)
                 panel.lastSaveName = file.nameWithoutExtension

@@ -6,16 +6,15 @@ import me.anno.fonts.msdf.MSDFFont
 import me.anno.gpu.GFX
 import me.anno.input.Input
 import me.anno.input.Key
+import me.anno.io.json.generic.JsonScanner
 import me.anno.language.translation.NameDesc
 import me.anno.maths.Maths.clamp
 import me.anno.maths.Maths.dtTo01
 import me.anno.maths.Maths.sq
 import me.anno.parser.SimpleExpressionParser
 import me.anno.satiplanner.askLoad
+import me.anno.satiplanner.logic.*
 import me.anno.satiplanner.logic.NumberFormatting.format
-import me.anno.satiplanner.logic.Solver
-import me.anno.satiplanner.logic.createSimpleFactory
-import me.anno.satiplanner.logic.folder
 import me.anno.satiplanner.nodes.Connector
 import me.anno.satiplanner.nodes.Factory
 import me.anno.satiplanner.nodes.Node
@@ -31,9 +30,14 @@ import me.anno.ui.editor.files.FileNames.toAllowedFilename
 import me.anno.utils.Color.withAlpha
 import me.anno.utils.OS.res
 import me.anno.utils.structures.lists.Lists.any2
+import me.anno.utils.structures.lists.Lists.count2
 import me.anno.utils.structures.lists.Lists.none2
+import me.anno.utils.structures.lists.Lists.sumOfFloat
+import me.anno.utils.types.Floats.f1
 import me.anno.utils.types.Floats.roundToIntOr
+import me.anno.utils.types.Floats.toIntOr
 import me.anno.utils.types.Strings.shorten
+import org.joml.AABBi
 import org.joml.Vector2d
 import org.joml.Vector2f
 import kotlin.concurrent.thread
@@ -131,10 +135,8 @@ class FactoryPanel(
         )
     }
 
-    fun getUnitsX(node: Node): Int = when (node) {
-        is Factory -> 7
-        else -> 2
-    }
+    @Suppress("unused")
+    fun getUnitsX(node: Node): Int = 7
 
     fun getUnitsY(node: Node): Int = when (node) {
         is Factory -> {
@@ -227,11 +229,19 @@ class FactoryPanel(
         }
     }
 
-    fun drawFactories(canvas: Canvas, sw: Int, du: Int) {
+    fun updateFonts() {
         val scale = scale.x.toFloat()
         limitFont = limitFont.withSize(scale * 0.5f)
         textFont = textFont.withSize(scale * 0.3f)
-        val titleFont = titleFont.withSize(scale * 0.3f)
+        titleFont = titleFont.withSize(scale * 0.3f)
+    }
+
+    fun drawFactories(
+        canvas: Canvas, sw: Int, du: Int,
+        isRectSelecting: Boolean
+    ) {
+        val scale = scale.x.toFloat()
+        val titleFont = titleFont
         val limitFont = limitFont
         val textFont = textFont
 
@@ -248,12 +258,11 @@ class FactoryPanel(
             val x1 = px + dx
             val y0 = py - dy
             val y1 = py + dy
-            if (x1 < canvas.x0 || y1 < canvas.y0 ||
-                x0 > canvas.x1 || y0 > canvas.y1
-            ) continue
+            if (!overlaps(x0, y0, x1, y1, canvas)) continue
 
+            val willBeSelected = isRectSelecting && overlaps(x0, y0, x1, y1, rectSelect)
             val shadow =
-                if (node.isSelected) selectedShadowColor
+                if (node.isSelected || willBeSelected) selectedShadowColor
                 else defaultShadowColor
 
             val w = x1 - x0
@@ -282,12 +291,13 @@ class FactoryPanel(
                     titleX, titleY + titleFont.sizeInt + limitFont.sizeInt.shr(2),
                     0, textFont, fontImpl,
                     type.factoryName, 0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
-                    w - du * 2, limitFont.sizeInt,
+                    w - du * 2, textFont.sizeInt,
                     AxisAlignment.MIN, AxisAlignment.MIN,
                 )
             }
 
             if (limitFont.sizeInt > 3) {
+                // limit
                 val countY = y1 - du.shr(2) * 3
                 val hasLimit = node.limit >= 0f
                 canvas.drawText(
@@ -298,15 +308,24 @@ class FactoryPanel(
                     w, -1,
                     AxisAlignment.CENTER, AxisAlignment.MIN,
                 )
+                // checkbox
+                canvas.drawText(
+                    x1 - du.shr(3), y1 - du / 12, 0, limitFont, fontImpl,
+                    if (node.checked) "✅" else "⬜",
+                    0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
+                    -1, -1, AxisAlignment.MAX, AxisAlignment.MAX,
+                )
             }
 
             // draw multiplier and sloop
             if (textFont.sizeInt > 3) {
+                // overclock
                 canvas.drawText(
                     x1 - sw.shr(1), y0 + du * 2 / 5, 0, textFont, fontImpl,
                     "${node.overclock.format()}%", 0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
                     -1, -1, AxisAlignment.MAX, AxisAlignment.CENTER,
                 )
+                // sloop
                 canvas.drawText(
                     x1 - sw.shr(1), y0 + du * 4 / 5, 0, textFont, fontImpl,
                     "${node.sloops} Sloops", 0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
@@ -377,8 +396,40 @@ class FactoryPanel(
     val selectedShadowColor = 0xffaa13.withAlpha(255)
     val defaultShadowColor = 0x090B13.withAlpha(255)
 
-    fun drawConnectors(canvas: Canvas, sw: Int, du: Int) {
+    private fun overlaps(
+        x0: Int, y0: Int, x1: Int, y1: Int,
+        x2: Int, y2: Int, x3: Int, y3: Int,
+    ): Boolean {
+        return x1 >= x2 && y1 >= y2 &&
+                x0 <= x3 && y0 <= y3
+    }
+
+    private fun overlaps(
+        x0: Int, y0: Int, x1: Int, y1: Int,
+        canvas: Canvas
+    ): Boolean {
+        return overlaps(
+            x0, y0, x1, y1,
+            canvas.x0, canvas.y0,
+            canvas.x1, canvas.y1
+        )
+    }
+
+    private fun overlaps(
+        x0: Int, y0: Int, x1: Int, y1: Int,
+        bounds: AABBi
+    ): Boolean {
+        return overlaps(
+            x0, y0, x1, y1,
+            bounds.minX, bounds.minY,
+            bounds.maxX, bounds.maxY,
+        )
+    }
+
+    fun drawConnectors(canvas: Canvas, sw: Int, du: Int, isRectSelecting: Boolean) {
         val scale = scale.x.toFloat()
+        val titleFont = titleFont
+        val textFont = textFont
         for (nodeIndex in nodes.indices) {
             val node = nodes[nodeIndex] as? Connector ?: continue
 
@@ -392,12 +443,11 @@ class FactoryPanel(
             val x1 = px + dx
             val y0 = py - dy
             val y1 = py + dy
-            if (x1 < canvas.x0 || y1 < canvas.y0 ||
-                x0 > canvas.x1 || y0 > canvas.y1
-            ) continue
+            if (!overlaps(x0, y0, x1, y1, canvas)) continue
 
+            val willBeSelected = isRectSelecting && overlaps(x0, y0, x1, y1, rectSelect)
             val shadow =
-                if (node.isSelected) selectedShadowColor
+                if (node.isSelected || willBeSelected) selectedShadowColor
                 else defaultShadowColor
 
             val w = x1 - x0
@@ -409,6 +459,29 @@ class FactoryPanel(
             canvas.drawRect(x0, y0 - 1, w, 1, shadow)
             canvas.drawRect(x0, y1, w, 1, shadow)
             canvas.drawRect(x0, y0, w, h, titleBgColor)
+
+            val titleW = w - du * 2
+            val titleX = x0 + du + du.shr(3) + titleW.shr(1)
+            val titleY = y0 + (du - titleFont.sizeInt).shr(3)
+            if (titleFont.sizeInt > 3) {
+                val type = node.resourceType
+                canvas.drawText(
+                    titleX, titleY, 0, titleFont, fontImpl,
+                    type, 0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
+                    titleW, titleFont.sizeInt,
+                    AxisAlignment.CENTER, AxisAlignment.MIN,
+                )
+                val directInputSum = node.inputs.first().sumOf { getOutput(it, type) }
+                val directOutputSum = node.outputs.first().sumOf { getInput(it, type) }
+                canvas.drawText(
+                    titleX, titleY + titleFont.sizeInt + limitFont.sizeInt.shr(2),
+                    0, textFont, fontImpl,
+                    "${directInputSum.f1()} -> ${directOutputSum.f1()}",
+                    0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
+                    titleW, textFont.sizeInt,
+                    AxisAlignment.CENTER, AxisAlignment.MIN,
+                )
+            }
 
             if (sw >= 2) {
 
@@ -446,18 +519,52 @@ class FactoryPanel(
         val scale = scale.x.toFloat()
         val du = scale.toInt()
         val sw = du * 2 / 3
+        val isRectSelecting = Input.isLeftDown && Input.isShiftDown
+
+        updateRectSelect()
+        updateFonts()
 
         drawLinks(canvas, sw, du)
-        drawConnectors(canvas, sw, du)
-        drawFactories(canvas, sw, du)
+        drawConnectors(canvas, sw, du, isRectSelecting)
+        drawFactories(canvas, sw, du, isRectSelecting)
         drawDraggedLink(canvas, sw, du)
+        drawRectangleSelect(canvas, isRectSelecting)
 
         drawStatus(canvas)
         drawPower(canvas)
     }
 
+    fun updateRectSelect() {
+        val window = window ?: return
+        val x0 = window.mouseXi
+        val y0 = window.mouseYi
+        val x1 = coordsToWindowX(downX).toIntOr()
+        val y1 = coordsToWindowY(downY).toIntOr()
+        rectSelect.minX = min(x0, x1)
+        rectSelect.maxX = max(x0, x1)
+        rectSelect.minY = min(y0, y1)
+        rectSelect.maxY = max(y0, y1)
+    }
+
+    fun drawRectangleSelect(canvas: Canvas, isRectSelecting: Boolean) {
+        if (!isRectSelecting) return
+        val minX = rectSelect.minX
+        val maxX = rectSelect.maxX
+        val minY = rectSelect.minY
+        val maxY = rectSelect.maxY
+        val color = 0xffff77.withAlpha(255)
+        canvas.drawRect(minX, minY, maxX - minX, 1, color)
+        canvas.drawRect(minX, maxY, maxX - minX, 1, color)
+        canvas.drawRect(minX, minY, 1, maxY - minY, color)
+        canvas.drawRect(maxX, minY, 1, maxY - minY, color)
+    }
+
     val velocity = Vector2f()
     val acceleration = Vector2f()
+
+    var downX = 0f
+    var downY = 0f
+    val rectSelect = AABBi()
 
     override fun onUpdate() {
         super.onUpdate()
@@ -512,7 +619,6 @@ class FactoryPanel(
     }
 
     val isDragging get() = draggedNode != null
-
     var draggedNode: Node? = null
     var draggedSlot = -1
     var draggedType = ""
@@ -537,14 +643,19 @@ class FactoryPanel(
     }
 
     override fun onKeyDown(x: Float, y: Float, key: Key) {
-        val hoverData = getHoverData(x, y)
-        nodes.forEach { if (it != hoverData?.node) it.isSelected = false }
 
         if (key == Key.BUTTON_LEFT) {
+
+            downX = windowToCoordsX(x)
+            downY = windowToCoordsY(y)
+
+            val hasManySelected = nodes.count2 { it.isSelected } > 1
+            if (hasManySelected) return // don't start to drag
+
             // if is on input/output, start dragging
+            val hoverData = getHoverData(x, y)
             if (hoverData != null) {
-                val node = hoverData.node
-                when (node) {
+                when (val node = hoverData.node) {
                     is Connector -> {
                         val slotIndex = hoverData.slotIndex
                         val isLeft = hoverData.isInput
@@ -581,7 +692,35 @@ class FactoryPanel(
         if (key == Key.BUTTON_LEFT) stopDragging(x, y)
     }
 
+    fun applyRectSelect() {
+        val selectAll = !Input.isControlDown
+        val scale = scale.x.toFloat()
+        val rectSelect = rectSelect
+        for (i in nodes.indices) {
+            val node = nodes[i]
+            val px = coordsToWindowX(node.posX).toInt()
+            val py = coordsToWindowY(node.posY).toInt()
+
+            val dx = (getUnitsX(node) * 0.5f * scale).toInt()
+            val dy = (getUnitsY(node) * 0.5f * scale).toInt()
+
+            val x0 = px - dx
+            val x1 = px + dx
+            val y0 = py - dy
+            val y1 = py + dy
+            if (overlaps(x0, y0, x1, y1, rectSelect)) {
+                node.isSelected = selectAll || !node.isSelected
+            }
+        }
+    }
+
     fun stopDragging(x: Float, y: Float) {
+
+        if (Input.isShiftDown) {
+            applyRectSelect()
+            return
+        }
+
         val srcNode = draggedNode ?: return
         val typeName = draggedType
         val srcIsInput = draggedIsInput
@@ -622,9 +761,8 @@ class FactoryPanel(
 
     override fun onMouseClicked(x: Float, y: Float, button: Key, long: Boolean) {
         val clicked = getNodeAt(x, y)
-
-        // todo rectangle selection
-        if (Input.isShiftDown || Input.isControlDown) {
+        if (Input.isShiftDown) return // handled separately
+        if (Input.isControlDown) {
             if (clicked != null) {
                 clicked.isSelected = !clicked.isSelected
             }
@@ -636,10 +774,13 @@ class FactoryPanel(
 
     override fun onMouseMoved(x: Float, y: Float, dx: Float, dy: Float) {
         if (isDragging) return
+        if (Input.isShiftDown && Input.isLeftDown) return // rectangle-select
         if (nodes.none2 { it.isSelected } || !Input.isLeftDown) {
+            // move grid
             return super.onMouseMoved(x, y, dx, dy)
         }
 
+        // move nodes
         val dx = windowToCoordsDirX(dx.toDouble()).toFloat()
         val dy = windowToCoordsDirY(dy.toDouble()).toFloat()
         for (i in nodes.indices) {
@@ -673,41 +814,47 @@ class FactoryPanel(
 
     override fun onDoubleClick(x: Float, y: Float, button: Key) {
         val clicked = getHoverData(x, y)
-        if (clicked != null && clicked.node is Factory &&
+        val node = clicked?.node
+        if (clicked != null && node is Factory &&
+            clicked.onCheckbox
+        ) {
+            // toggle checked
+            node.checked = !node.checked
+        } else if (clicked != null && node is Factory &&
             clicked.slotIndex < 0 && !clicked.isInput
         ) {
+            // edit sloops or overclock
             val sloops = clicked.slotIndexF > -0.5f
-            val factory = clicked.node
             if (sloops) {
                 Menu.askNumber(
                     windowStack, NameDesc("Set Sloops"),
-                    factory.sloops.toString(), NameDesc("Set")
+                    node.sloops.toString(), NameDesc("Set")
                 ) { str ->
-                    factory.sloops = str.toIntOrNull() ?: 0
+                    node.sloops = str.toIntOrNull() ?: 0
                     isValid = false
                 }
             } else {
                 Menu.askNumber(
                     windowStack, NameDesc("Set Overclock"),
-                    factory.overclock.format(), NameDesc("Set")
+                    node.overclock.format(), NameDesc("Set")
                 ) { str ->
                     val value = SimpleExpressionParser.parseDouble(str)
-                    factory.overclock = value ?: 1.0
+                    node.overclock = value ?: 1.0
                     isValid = false
                 }
             }
         } else if (clicked != null &&
-            clicked.node is Factory &&
-            clicked.slotIndex >= clicked.node.type
+            node is Factory &&
+            clicked.slotIndex >= node.type
                 .run { max(inputs.size, outputs.size) }
         ) {
             // ask for new limit
             Menu.askNumber(
                 windowStack, NameDesc("Set Constant"),
-                clicked.node.limit.format(), NameDesc("Set")
+                node.limit.format(), NameDesc("Set")
             ) { str ->
                 val value = SimpleExpressionParser.parseDouble(str)
-                clicked.node.limit = value ?: -1.0
+                node.limit = value ?: -1.0
                 isValid = false
             }
         } else {
@@ -765,11 +912,12 @@ class FactoryPanel(
         val sideX = px - unitsX * 0.5f
         val isInput = sideX < 0f
 
-        if (node is Connector && abs(sideX) < 0.4f) {
-            return HoverData(node, isInput, -1, slotIndexF)
+        if (node is Connector && abs(sideX) < 3.1f) {
+            return HoverData(node, isInput, -1, slotIndexF, onCheckbox = false)
         }
 
-        return HoverData(node, isInput, slotIndex, slotIndexF)
+        val onCheckbox = slotIndexF > unitsY - 2f && px > unitsX - 1f
+        return HoverData(node, isInput, slotIndex, slotIndexF, onCheckbox)
     }
 
     private fun getInput(it: Node, type: String): Double {
@@ -860,10 +1008,44 @@ class FactoryPanel(
                 if (!fileName.endsWith(".json")) fileName += ".json"
                 lastSaveName = fileName
                 val file = folder.getChild(fileName)
-                me.anno.satiplanner.logic.save(file, nodes)
+                saveNodes(file, nodes)
                 Menu.msg(NameDesc("Saved as $file"))
             }
         }
+    }
+
+    override fun onCopyRequested(x: Float, y: Float): Any? {
+        val selectedNodes = nodes.filter { it.isSelected }
+        if (selectedNodes.isEmpty()) return null
+        return saveNodes(selectedNodes).toString()
+    }
+
+    override fun onPaste(x: Float, y: Float, data: String, type: String) {
+        val newNodes = try {
+            loadNodes(JsonScanner(data), types)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return
+        }
+
+        if (newNodes.isEmpty()) return
+
+        val dx = windowToCoordsX(x) - newNodes.sumOfFloat { it.posX } / newNodes.size
+        val dy = windowToCoordsY(y) - newNodes.sumOfFloat { it.posY } / newNodes.size
+
+        for (i in newNodes.indices) {
+            val node = newNodes[i]
+            node.posX += dx
+            node.posY += dy
+            node.isSelected = true
+        }
+
+        for (i in nodes.indices) {
+            val node = nodes[i]
+            node.isSelected = false
+        }
+        nodes.addAll(newNodes)
+        isValid = false
     }
 
 }
