@@ -4,6 +4,7 @@ import me.anno.satiplanner.nodes.Connector
 import me.anno.satiplanner.nodes.Factory
 import me.anno.satiplanner.nodes.Node
 import me.anno.satiplanner.types.WasteGroup
+import me.anno.utils.Clock
 import org.joml.Vector2i
 import kotlin.concurrent.thread
 import kotlin.math.min
@@ -27,6 +28,7 @@ object Solver {
 
     private fun executeGLPKScript(sb: StringBuilder, factories: List<Factory>): Boolean {
         val recipe = sb.toString()
+        val clock = Clock("Solver")
         val process = ProcessBuilder("glpsol", "-m", "/dev/stdin").start()
         process.outputStream.write(recipe.toByteArray())
         process.outputStream.close()
@@ -41,8 +43,9 @@ object Solver {
             parseResult(line, factories)
             println(line)
         }
-
-        return process.waitFor() == 0
+        val status = process.waitFor()
+        clock.stop("Solving")
+        return status == 0
     }
 
     private fun parseResult(line: String, factories: List<Factory>) {
