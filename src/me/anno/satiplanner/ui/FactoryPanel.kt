@@ -1,6 +1,8 @@
 package me.anno.satiplanner.ui
 
 import me.anno.Time
+import me.anno.fonts.FontImpl
+import me.anno.fonts.msdf.MSDFFont
 import me.anno.gpu.GFX
 import me.anno.input.Input
 import me.anno.input.Key
@@ -27,6 +29,7 @@ import me.anno.ui.base.menu.MenuOption
 import me.anno.ui.canvas.Canvas
 import me.anno.ui.editor.files.FileNames.toAllowedFilename
 import me.anno.utils.Color.withAlpha
+import me.anno.utils.OS.res
 import me.anno.utils.structures.lists.Lists.any2
 import me.anno.utils.structures.lists.Lists.none2
 import me.anno.utils.types.Floats.roundToIntOr
@@ -49,6 +52,17 @@ class FactoryPanel(
         .mapValues { (_, name) -> name.shorten(30) }
 
     val nodes = ArrayList<Node>()
+
+    val fontImpl: FontImpl<*> = run {
+        val folder = res.getChild("fonts")
+        val fontImpl = MSDFFont(folder.getChild("VerdanaMSDF.png"))
+        folder.getChild("VerdanaMSDF.json")
+            .inputStream { input, exception ->
+                exception?.printStackTrace()
+                input?.use { fontImpl.read(input) }
+            }
+        fontImpl
+    }
 
     var isValid = true
     var isCalculating = false
@@ -259,15 +273,15 @@ class FactoryPanel(
             if (titleFont.sizeInt > 3) {
                 val type = node.type
                 canvas.drawText(
-                    titleX, titleY, titleFont, type.recipeName,
-                    0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
+                    titleX, titleY, 0, titleFont, fontImpl,
+                    type.recipeName, 0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
                     w - du * 2, titleFont.sizeInt,
                     AxisAlignment.MIN, AxisAlignment.MIN,
                 )
                 canvas.drawText(
                     titleX, titleY + titleFont.sizeInt + limitFont.sizeInt.shr(2),
-                    textFont, type.factoryName,
-                    0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
+                    0, textFont, fontImpl,
+                    type.factoryName, 0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
                     w - du * 2, limitFont.sizeInt,
                     AxisAlignment.MIN, AxisAlignment.MIN,
                 )
@@ -277,7 +291,7 @@ class FactoryPanel(
                 val countY = y1 - du.shr(2) * 3
                 val hasLimit = node.limit >= 0f
                 canvas.drawText(
-                    px, countY, limitFont,
+                    px, countY, 0, limitFont, fontImpl,
                     if (hasLimit) "> ${node.limit} <" else node.calculatedStr,
                     if (hasLimit) 0xffcc99.withAlpha(255) else 0xcccccc.withAlpha(255),
                     titleBgColor.withAlpha(0),
@@ -289,14 +303,14 @@ class FactoryPanel(
             // draw multiplier and sloop
             if (textFont.sizeInt > 3) {
                 canvas.drawText(
-                    x1 - sw.shr(1), y0 + du * 2 / 5, textFont, "${node.overclock.format()}%",
-                    0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
-                    AxisAlignment.MAX, AxisAlignment.CENTER,
+                    x1 - sw.shr(1), y0 + du * 2 / 5, 0, textFont, fontImpl,
+                    "${node.overclock.format()}%", 0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
+                    -1, -1, AxisAlignment.MAX, AxisAlignment.CENTER,
                 )
                 canvas.drawText(
-                    x1 - sw.shr(1), y0 + du * 4 / 5, textFont, "${node.sloops} Sloops",
-                    0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
-                    AxisAlignment.MAX, AxisAlignment.CENTER,
+                    x1 - sw.shr(1), y0 + du * 4 / 5, 0, textFont, fontImpl,
+                    "${node.sloops} Sloops", 0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
+                    -1, -1, AxisAlignment.MAX, AxisAlignment.CENTER,
                 )
             }
 
@@ -314,12 +328,12 @@ class FactoryPanel(
                     if (textFont.sizeInt > 3) {
                         val inputType1 = shortRenames[inputType.type] ?: inputType.shortType
                         canvas.drawText(
-                            x0 + du, y + sw.shr(1) - textFont.sizeInt, textFont, inputType1,
-                            0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
+                            x0 + du, y + sw.shr(1) - textFont.sizeInt, 0, textFont, fontImpl,
+                            inputType1, 0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
                             wl, hl, AxisAlignment.MIN, AxisAlignment.MIN,
                         )
                         canvas.drawText(
-                            x0 + du, y + (sw + textFont.sizeInt).shr(1), textFont,
+                            x0 + du, y + (sw + textFont.sizeInt).shr(1), 0, textFont, fontImpl,
                             "${(inputType.amount * node.calculated * inputMultiplier).format()}/min",
                             0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
                             wl, hl, AxisAlignment.MIN, AxisAlignment.MIN,
@@ -338,12 +352,12 @@ class FactoryPanel(
                     if (textFont.sizeInt > 3) {
                         val outputType1 = shortRenames[outputType.type] ?: outputType.shortType
                         canvas.drawText(
-                            x1 - du, y + sw.shr(1) - textFont.sizeInt, textFont, outputType1,
-                            0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
+                            x1 - du, y + sw.shr(1) - textFont.sizeInt, 0, textFont, fontImpl,
+                            outputType1, 0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
                             wl, hl, AxisAlignment.MAX, AxisAlignment.MIN,
                         )
                         canvas.drawText(
-                            x1 - du, y + (sw + textFont.sizeInt).shr(1), textFont,
+                            x1 - du, y + (sw + textFont.sizeInt).shr(1), 0, textFont, fontImpl,
                             "${(outputType.amount * node.calculated * outputMultiplier).format()}/min",
                             0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
                             wl, hl, AxisAlignment.MAX, AxisAlignment.MIN,

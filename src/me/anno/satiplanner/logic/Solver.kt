@@ -5,11 +5,14 @@ import me.anno.satiplanner.nodes.Factory
 import me.anno.satiplanner.nodes.Node
 import me.anno.satiplanner.types.WasteGroup
 import me.anno.utils.Clock
+import org.apache.logging.log4j.LogManager
 import org.joml.Vector2i
 import kotlin.concurrent.thread
 import kotlin.math.min
 
 object Solver {
+
+    private val LOGGER = LogManager.getLogger(Solver::class)
 
     fun optimizeProduction(nodes: List<Node>): Boolean {
         val factories = nodes.filterIsInstance<Factory>()
@@ -28,20 +31,22 @@ object Solver {
 
     private fun executeGLPKScript(sb: StringBuilder, factories: List<Factory>): Boolean {
         val recipe = sb.toString()
-        val clock = Clock("Solver")
+        val clock = Clock(LOGGER)
         val process = ProcessBuilder("glpsol", "-m", "/dev/stdin").start()
         process.outputStream.write(recipe.toByteArray())
         process.outputStream.close()
 
         thread(name = "glpsol-err") {
             process.errorStream.bufferedReader().forEachLine { line ->
-                System.err.println(line)
+                LOGGER.error(line)
             }
         }
 
         process.inputStream.bufferedReader().forEachLine { line ->
             parseResult(line, factories)
-            println(line)
+            if (!line.startsWith("Generating") && ".val = " !in line) {
+                LOGGER.info(line)
+            }
         }
         val status = process.waitFor()
         clock.stop("Solving")
