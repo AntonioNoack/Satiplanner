@@ -19,8 +19,6 @@ import java.io.File
 
 fun main() {
 
-    // todo checkbox
-
     val recipes = readRecipesFromFile()
     val renames = loadRenames()
 
