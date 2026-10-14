@@ -1,8 +1,8 @@
 package me.anno.satiplanner.development
 
 import me.anno.io.json.generic.JsonScanner
-import me.anno.satiplanner.FactoryType
-import me.anno.satiplanner.Resource
+import me.anno.satiplanner.types.FactoryType
+import me.anno.satiplanner.types.Resource
 import me.anno.utils.OS.res
 import me.anno.utils.structures.lists.Lists.any2
 import me.anno.utils.types.Strings.toDouble

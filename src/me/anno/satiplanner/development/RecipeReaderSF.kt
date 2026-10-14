@@ -1,7 +1,7 @@
 package me.anno.satiplanner.development
 
-import me.anno.satiplanner.FactoryType
-import me.anno.satiplanner.Resource
+import me.anno.satiplanner.types.FactoryType
+import me.anno.satiplanner.types.Resource
 import me.anno.utils.OS.res
 import me.anno.utils.structures.Iterators.toList
 import me.anno.utils.types.Strings.isBlank2

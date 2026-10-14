@@ -1,4 +1,4 @@
-package me.anno.satiplanner
+package me.anno.satiplanner.ui
 
 import me.anno.Time
 import me.anno.input.Input
@@ -8,8 +8,15 @@ import me.anno.maths.Maths.clamp
 import me.anno.maths.Maths.dtTo01
 import me.anno.maths.Maths.sq
 import me.anno.parser.SimpleExpressionParser
-import me.anno.satiplanner.FactoryOptimizer.createSimpleFactory
-import me.anno.satiplanner.NumberFormatting.format
+import me.anno.satiplanner.askLoad
+import me.anno.satiplanner.logic.NumberFormatting.format
+import me.anno.satiplanner.logic.Solver
+import me.anno.satiplanner.logic.createSimpleFactory
+import me.anno.satiplanner.logic.folder
+import me.anno.satiplanner.nodes.Connector
+import me.anno.satiplanner.nodes.Factory
+import me.anno.satiplanner.nodes.Node
+import me.anno.satiplanner.types.FactoryType
 import me.anno.ui.Style
 import me.anno.ui.base.components.AxisAlignment
 import me.anno.ui.base.groups.MapPanel
@@ -21,6 +28,7 @@ import me.anno.utils.Color.withAlpha
 import me.anno.utils.structures.lists.Lists.any2
 import me.anno.utils.structures.lists.Lists.none2
 import me.anno.utils.types.Floats.roundToIntOr
+import me.anno.utils.types.Strings.shorten
 import org.joml.Vector2d
 import org.joml.Vector2f
 import kotlin.concurrent.thread
@@ -29,9 +37,16 @@ import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
 
-class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style) {
+class FactoryPanel(
+    val types: List<FactoryType>,
+    val renames: Map<String, String>,
+    style: Style
+) : MapPanel(style) {
 
-    val factories = ArrayList<Factory>()
+    val shortRenames = renames
+        .mapValues { (_, name) -> name.shorten(30) }
+
+    val nodes = ArrayList<Node>()
 
     var isValid = true
     var isCalculating = false
@@ -40,12 +55,11 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
     fun validate() {
         if (isValid || isCalculating) return
         isCalculating = true
-        val factories = ArrayList(factories)
         thread(name = "Calculate") {
             isValid = true
             allFine = null
             allFine = try {
-                FactoryOptimizer.optimize(factories)
+                Solver.optimizeProduction(nodes)
             } catch (e: Exception) {
                 e.printStackTrace()
                 false
@@ -58,7 +72,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
         scale.set(30.0)
         targetScale.set(scale)
 
-        factories += createSimpleFactory(types)
+        nodes += createSimpleFactory(types)
         isValid = false
     }
 
@@ -68,7 +82,6 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
     var titleFont = statusFont.withBold(true)
 
     val unitsX = 7
-    val unitsY0 = 2
     val unitsY0s = 1
 
     val nodeBgColor = 0x252a33.withAlpha(200)
@@ -93,7 +106,11 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
     }
 
     fun drawPower(canvas: Canvas) {
-        val power = factories.sumOf { it.calculated * it.powerMultiplier * it.type.power }
+        var power = 0.0
+        for (i in nodes.indices) {
+            val node = nodes[i] as? Factory ?: continue
+            power += node.calculated * node.powerMultiplier * node.type.power
+        }
         canvas.drawText(
             x + width.shr(1), y, statusFont, "${power.roundToIntOr()} MW",
             0xffffaa.withAlpha(255), bigBgColor.withAlpha(0),
@@ -101,35 +118,55 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
         )
     }
 
+    fun getUnitsX(node: Node): Int = when (node) {
+        is Factory -> unitsX
+        else -> 1
+    }
+
+    fun getUnitsY(node: Node): Int = when (node) {
+        is Factory -> unitsY0s + 1 + max(node.inputs.size, node.outputs.size)
+        else -> 1
+    }
+
+    fun getUnitsY0(node: Node): Int = when (node) {
+        is Factory -> unitsY0s
+        else -> 0
+    }
+
     fun drawLinks(canvas: Canvas, dx: Int, sw: Int, du: Int) {
         val scale = scale.x.toFloat()
 
         // draw links
         val dxl = dx - sw.shr(1)
-        for (i in factories.indices) {
-            val f0 = factories[i]
-            val t0 = f0.type
-            val u0 = unitsY0 + max(t0.inputs.size, t0.outputs.size)
+        for (nodeIndex in nodes.indices) {
+            val node0 = nodes[nodeIndex]
+            val u0 = getUnitsY(node0)
             val dy0 = (u0 * 0.5f * scale).toInt()
 
-            val px0 = coordsToWindowX(f0.posX)
-            val py0 = coordsToWindowY(f0.posY)
+            val px0 = coordsToWindowX(node0.posX)
+            val py0 = coordsToWindowY(node0.posY)
 
-            val inputs = f0.inputs
-            for (i in 0 until min(inputs.size, t0.inputs.size)) {
-                val typeName = t0.inputs[i].type
-                for (f1 in inputs[i]) {
-                    val t1 = f1.type
+            val inputs = node0.inputs
+            val maxNumInputs = when (node0) {
+                is Factory -> node0.type.inputs.size
+                is Connector -> 1
+            }
 
-                    val u1 = unitsY0 + max(t1.inputs.size, t1.outputs.size)
+            for (i in 0 until min(inputs.size, maxNumInputs)) {
+                val dy2 = (getUnitsY0(node0) + i) * du + du.shr(1) - dy0
+                val typeName = when (node0) {
+                    is Factory -> node0.type.inputs[i].type
+                    is Connector -> node0.resourceType
+                }
+                for (node1 in inputs[i]) {
+                    val u1 = getUnitsY(node1)
                     val dy1 = (u1 * 0.5f * scale).toInt()
 
-                    val px1 = coordsToWindowX(f1.posX)
-                    val py1 = coordsToWindowY(f1.posY)
+                    val px1 = coordsToWindowX(node1.posX)
+                    val py1 = coordsToWindowY(node1.posY)
 
-                    val j = t1.outputs.indexOfFirst { it.type == typeName }
-                    val dy2 = (unitsY0s + i) * du + du.shr(1) - dy0
-                    val dy3 = (unitsY0s + j) * du + du.shr(1) - dy1
+                    val j = node1.findOutputIndex(typeName)
+                    val dy3 = (getUnitsY0(node1) + j) * du + du.shr(1) - dy1
                     canvas.drawLine(
                         px0 - dxl, py0 + dy2,
                         px1 + dxl, py1 + dy3,
@@ -143,16 +180,15 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
 
     fun drawDraggedLink(canvas: Canvas, dx: Int, sw: Int, du: Int) {
         val window = window
-        val factory = draggedFactory
+        val node = draggedNode
         val scale = scale.x.toFloat()
-        if (factory != null && window != null) {
+        if (node != null && window != null) {
             canvas.push()
 
-            val px = coordsToWindowX(factory.posX).toInt()
-            val py = coordsToWindowY(factory.posY).toInt()
+            val px = coordsToWindowX(node.posX).toInt()
+            val py = coordsToWindowY(node.posY).toInt()
 
-            val type = factory.type
-            val unitsY = unitsY0 + max(type.inputs.size, type.outputs.size)
+            val unitsY = getUnitsY(node)
             val dy = (unitsY * 0.5f * scale).toInt()
 
             val x0 = px - dx
@@ -160,7 +196,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
             val y0 = py - dy
 
             val xi = if (draggedIsInput) x0 + sw.shr(1) else x1 - sw.shr(1)
-            val yi = y0 + (unitsY0s + draggedSlot) * du + du.shr(1)
+            val yi = y0 + (getUnitsY0(node) + draggedSlot) * du + du.shr(1)
 
             canvas.drawLine(
                 xi.toFloat(), yi.toFloat(), window.mouseX, window.mouseY,
@@ -178,14 +214,14 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
         val limitFont = limitFont
         val textFont = textFont
 
-        for (i in factories.indices) {
-            val factory = factories[i]
-            val type = factory.type
-            val unitsY = unitsY0 + max(type.inputs.size, type.outputs.size)
+        for (nodeIndex in nodes.indices) {
+            val node = nodes[nodeIndex] as? Factory ?: continue
+
+            val unitsY = getUnitsY(node)
             val dy = (unitsY * 0.5f * scale).toInt()
 
-            val px = coordsToWindowX(factory.posX).toInt()
-            val py = coordsToWindowY(factory.posY).toInt()
+            val px = coordsToWindowX(node.posX).toInt()
+            val py = coordsToWindowY(node.posY).toInt()
 
             val x0 = px - dx
             val x1 = px + dx
@@ -196,8 +232,8 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
             ) continue
 
             val shadow =
-                if (factory.isSelected) 0xffaa13.withAlpha(255)
-                else 0x090B13.withAlpha(255)
+                if (node.isSelected) selectedShadowColor
+                else defaultShadowColor
 
             val w = x1 - x0
             val h = y1 - y0
@@ -214,6 +250,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
             val titleX = x0 + du.shr(3)
             val titleY = y0 + (du - titleFont.sizeInt).shr(3)
             if (titleFont.sizeInt > 3) {
+                val type = node.type
                 canvas.drawText(
                     titleX, titleY, titleFont, type.recipeName,
                     0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
@@ -231,10 +268,10 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
 
             if (limitFont.sizeInt > 3) {
                 val countY = y1 - du.shr(2) * 3
-                val hasLimit = factory.limit >= 0f
+                val hasLimit = node.limit >= 0f
                 canvas.drawText(
                     px, countY, limitFont,
-                    if (hasLimit) "> ${factory.limit} <" else factory.calculatedStr,
+                    if (hasLimit) "> ${node.limit} <" else node.calculatedStr,
                     if (hasLimit) 0xffcc99.withAlpha(255) else 0xcccccc.withAlpha(255),
                     titleBgColor.withAlpha(0),
                     w, -1,
@@ -245,12 +282,12 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
             // draw multiplier and sloop
             if (textFont.sizeInt > 3) {
                 canvas.drawText(
-                    x1 - sw.shr(1), y0 + du * 2 / 5, textFont, "${factory.overclock.format()}%",
+                    x1 - sw.shr(1), y0 + du * 2 / 5, textFont, "${node.overclock.format()}%",
                     0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
                     AxisAlignment.MAX, AxisAlignment.CENTER,
                 )
                 canvas.drawText(
-                    x1 - sw.shr(1), y0 + du * 4 / 5, textFont, "${factory.sloops} Sloops",
+                    x1 - sw.shr(1), y0 + du * 4 / 5, textFont, "${node.sloops} Sloops",
                     0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
                     AxisAlignment.MAX, AxisAlignment.CENTER,
                 )
@@ -258,48 +295,49 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
 
             if (sw >= 2) {
                 val hl = textFont.sizeInt
-                val bg3 = 0x7985A0.withAlpha(255)
-                val bg2 = 0x723333.withAlpha(255)
-                val inputMultiplier = factory.inputMultiplier
+                val inputMultiplier = node.inputMultiplier
+                val type = node.type
                 for (i in type.inputs.indices) {
-                    val y = y0 + du * (unitsY0s + i) + (du - sw).shr(1)
-                    val input = factory.inputs.getOrNull(i)
+                    val y = y0 + du * (getUnitsY0(node) + i) + (du - sw).shr(1)
+                    val input = node.inputs.getOrNull(i)
                     val inputType = type.inputs[i]
-                    val color = if (!input.isNullOrEmpty()) bg3 else bg2
+                    val color = if (!input.isNullOrEmpty()) slotFilledColor else slotEmptyColor
                     val wl = if (i >= type.outputs.size) w - du else w.shr(1) - du
                     canvas.drawRect(x0, y, sw, sw, color, 1)
                     if (textFont.sizeInt > 3) {
+                        val inputType1 = shortRenames[inputType.type] ?: inputType.shortType
                         canvas.drawText(
-                            x0 + du, y + sw.shr(1) - textFont.sizeInt, textFont, inputType.shortType,
+                            x0 + du, y + sw.shr(1) - textFont.sizeInt, textFont, inputType1,
                             0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
                             wl, hl, AxisAlignment.MIN, AxisAlignment.MIN,
                         )
                         canvas.drawText(
                             x0 + du, y + (sw + textFont.sizeInt).shr(1), textFont,
-                            "${(inputType.amount * factory.calculated * inputMultiplier).format()}/min",
+                            "${(inputType.amount * node.calculated * inputMultiplier).format()}/min",
                             0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
                             wl, hl, AxisAlignment.MIN, AxisAlignment.MIN,
                         )
                     }
                 }
 
-                val outputMultiplier = factory.outputMultiplier
+                val outputMultiplier = node.outputMultiplier
                 for (i in type.outputs.indices) {
-                    val y = y0 + du * (unitsY0s + i) + (du - sw).shr(1)
-                    val output = factory.outputs.getOrNull(i)
+                    val y = y0 + du * (getUnitsY0(node) + i) + (du - sw).shr(1)
+                    val output = node.outputs.getOrNull(i)
                     val outputType = type.outputs[i]
-                    val color = if (!output.isNullOrEmpty()) bg3 else bg2
+                    val color = if (!output.isNullOrEmpty()) slotFilledColor else slotEmptyColor
                     val wl = if (i >= type.inputs.size) w - du else w.shr(1) - du
                     canvas.drawRect(x1 - sw, y, sw, sw, color, 1)
                     if (textFont.sizeInt > 3) {
+                        val outputType1 = shortRenames[outputType.type] ?: outputType.shortType
                         canvas.drawText(
-                            x1 - du, y + sw.shr(1) - textFont.sizeInt, textFont, outputType.shortType,
+                            x1 - du, y + sw.shr(1) - textFont.sizeInt, textFont, outputType1,
                             0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
                             wl, hl, AxisAlignment.MAX, AxisAlignment.MIN,
                         )
                         canvas.drawText(
                             x1 - du, y + (sw + textFont.sizeInt).shr(1), textFont,
-                            "${(outputType.amount * factory.calculated * outputMultiplier).format()}/min",
+                            "${(outputType.amount * node.calculated * outputMultiplier).format()}/min",
                             0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
                             wl, hl, AxisAlignment.MAX, AxisAlignment.MIN,
                         )
@@ -309,11 +347,64 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
 
             // to make overlap
             canvas.finish()
+        }
+    }
 
-            // todo draw labels & hoverable buttons
-            //  - how many machines we calculated
-            //  - speedup multiplier
-            //  - output multiplier
+    val slotFilledColor = 0x7985A0.withAlpha(255)
+    val slotEmptyColor = 0x723333.withAlpha(255)
+
+    val selectedShadowColor = 0xffaa13.withAlpha(255)
+    val defaultShadowColor = 0x090B13.withAlpha(255)
+
+    fun drawConnectors(canvas: Canvas, dx: Int, sw: Int, du: Int) {
+        val scale = scale.x.toFloat()
+        for (nodeIndex in nodes.indices) {
+            val node = nodes[nodeIndex] as? Connector ?: continue
+
+            val unitsY = getUnitsY(node)
+            val dy = (unitsY * 0.5f * scale).toInt()
+
+            val px = coordsToWindowX(node.posX).toInt()
+            val py = coordsToWindowY(node.posY).toInt()
+
+            val x0 = px - dx
+            val x1 = px + dx
+            val y0 = py - dy
+            val y1 = py + dy
+            if (x1 < canvas.x0 || y1 < canvas.y0 ||
+                x0 > canvas.x1 || y0 > canvas.y1
+            ) continue
+
+            val shadow =
+                if (node.isSelected) selectedShadowColor
+                else defaultShadowColor
+
+            val w = x1 - x0
+            val h = y1 - y0
+
+            // draw shadow around node
+            canvas.drawRect(x0 - 1, y0 - 1, 1, h, shadow)
+            canvas.drawRect(x1, y0 - 1, 1, h, shadow)
+            canvas.drawRect(x0, y0 - 1, w, 1, shadow)
+            canvas.drawRect(x0, y1, w, 1, shadow)
+
+            canvas.drawRect(x0, y0 + du, w, y1 - (y0 + du), nodeBgColor)
+            canvas.drawRect(x0, y0, w, du, titleBgColor)
+
+            if (sw >= 2) {
+
+                val y = y0 + du * getUnitsY0(node) + (du - sw).shr(1)
+                val input = node.inputs.firstOrNull()
+                val colorIn = if (!input.isNullOrEmpty()) slotFilledColor else slotEmptyColor
+                canvas.drawRect(x0, y, sw, sw, colorIn, 1)
+
+                val output = node.outputs.firstOrNull()
+                val colorOut = if (!output.isNullOrEmpty()) slotFilledColor else slotEmptyColor
+                canvas.drawRect(x1 - sw, y, sw, sw, colorOut, 1)
+            }
+
+            // to make overlap
+            canvas.finish()
         }
     }
 
@@ -339,6 +430,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
         val sw = du * 2 / 3
 
         drawLinks(canvas, dx, sw, du)
+        drawConnectors(canvas, dx, sw, du)
         drawFactories(canvas, dx, sw, du)
         drawDraggedLink(canvas, dx, sw, du)
 
@@ -386,8 +478,8 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
             // use actual movement, not direct movement
             val dx = (center.x - prevPos.x).toFloat()
             val dy = (center.y - prevPos.y).toFloat()
-            for (i in factories.indices) {
-                val factory = factories[i]
+            for (i in nodes.indices) {
+                val factory = nodes[i]
                 if (factory.isSelected) {
                     factory.posX += dx
                     factory.posY += dy
@@ -398,49 +490,64 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
         target.add(v.x * dt, v.y * dt)
     }
 
-    val isDragging get() = draggedFactory != null
+    val isDragging get() = draggedNode != null
 
-    var draggedFactory: Factory? = null
+    var draggedNode: Node? = null
     var draggedSlot = -1
     var draggedType = ""
     var draggedIsInput = false
 
-    fun getFactoryAt(x: Float, y: Float): Factory? {
+    fun getNodeAt(x: Float, y: Float): Node? {
         val cx = windowToCoordsX(x)
         val cy = windowToCoordsY(y)
-        val factory = factories.minByOrNull { sq(it.posX - cx, it.posY - cy) }
+        val node = nodes.minByOrNull { sq(it.posX - cx, it.posY - cy) }
             ?: return null
 
         val scale = scale.x
+        val unitsX = getUnitsX(node)
         val dx = (unitsX * 0.5f * scale).toInt()
 
-        val type = factory.type
-        val unitsY = unitsY0 + max(type.inputs.size, type.outputs.size)
+        val unitsY = getUnitsY(node)
         val dy = (unitsY * 0.5f * scale).toInt()
 
-        val px = coordsToWindowX(factory.posX).toInt()
-        val py = coordsToWindowY(factory.posY).toInt()
-        return if (abs(px - x) < dx && abs(py - y) < dy) factory else null
+        val px = coordsToWindowX(node.posX).toInt()
+        val py = coordsToWindowY(node.posY).toInt()
+        return if (abs(px - x) < dx && abs(py - y) < dy) node else null
     }
 
     override fun onKeyDown(x: Float, y: Float, key: Key) {
         val hoverData = getHoverData(x, y)
-        factories.forEach { if (it != hoverData?.factory) it.isSelected = false }
+        nodes.forEach { if (it != hoverData?.node) it.isSelected = false }
 
         if (key == Key.BUTTON_LEFT) {
             // if is on input/output, start dragging
             if (hoverData != null) {
-                val factory = hoverData.factory
-                val type = factory.type
-                val slotIndex = hoverData.slotIndex
-                val isLeft = hoverData.isInput
-                val slotList = if (isLeft) type.inputs else type.outputs
-                if (slotIndex in slotList.indices) {
-                    draggedSlot = slotIndex
-                    draggedType = slotList[slotIndex].type
-                    draggedFactory = factory
-                    draggedIsInput = isLeft
-                    return
+                val node = hoverData.node
+                when (node) {
+                    is Connector -> {
+                        val slotIndex = hoverData.slotIndex
+                        val isLeft = hoverData.isInput
+                        if (slotIndex == 0) {
+                            draggedSlot = 0
+                            draggedType = node.resourceType
+                            draggedNode = node
+                            draggedIsInput = isLeft
+                            return
+                        }
+                    }
+                    is Factory -> {
+                        val type = node.type
+                        val slotIndex = hoverData.slotIndex
+                        val isLeft = hoverData.isInput
+                        val slotList = if (isLeft) type.inputs else type.outputs
+                        if (slotIndex in slotList.indices) {
+                            draggedSlot = slotIndex
+                            draggedType = slotList[slotIndex].type
+                            draggedNode = node
+                            draggedIsInput = isLeft
+                            return
+                        }
+                    }
                 }
             }
         }
@@ -454,13 +561,13 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
     }
 
     fun stopDragging(x: Float, y: Float) {
-        val srcFactory = draggedFactory ?: return
+        val srcFactory = draggedNode ?: return
         val typeName = draggedType
         val srcIsInput = draggedIsInput
         val dstData = getHoverData(x, y)
         var success = false
         if (dstData != null) {
-            val dstFactory = dstData.factory
+            val dstFactory = dstData.node
             success = if (srcIsInput) {
                 dstFactory.connectTo(srcFactory, typeName)
             } else {
@@ -487,13 +594,13 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
             }
         }
 
-        draggedFactory = null
+        draggedNode = null
         draggedType = ""
         draggedSlot = -1
     }
 
     override fun onMouseClicked(x: Float, y: Float, button: Key, long: Boolean) {
-        val clicked = getFactoryAt(x, y)
+        val clicked = getNodeAt(x, y)
 
         // todo rectangle selection
         if (Input.isShiftDown || Input.isControlDown) {
@@ -501,21 +608,21 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                 clicked.isSelected = !clicked.isSelected
             }
         } else {
-            factories.forEach { it.isSelected = false }
+            nodes.forEach { it.isSelected = false }
             clicked?.isSelected = true
         }
     }
 
     override fun onMouseMoved(x: Float, y: Float, dx: Float, dy: Float) {
         if (isDragging) return
-        if (factories.none2 { it.isSelected } || !Input.isLeftDown) {
+        if (nodes.none2 { it.isSelected } || !Input.isLeftDown) {
             return super.onMouseMoved(x, y, dx, dy)
         }
 
         val dx = windowToCoordsDirX(dx.toDouble()).toFloat()
         val dy = windowToCoordsDirY(dy.toDouble()).toFloat()
-        for (i in factories.indices) {
-            val factory = factories[i]
+        for (i in nodes.indices) {
+            val factory = nodes[i]
             if (!factory.isSelected) continue
 
             factory.posX += dx
@@ -525,10 +632,10 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
 
     override fun onDeleteKey(x: Float, y: Float) {
         // delete factories
-        val changed = factories.removeIf { it.isSelected }
+        val changed = nodes.removeIf { it.isSelected }
         if (changed) {
-            for (i in factories.indices) {
-                val factory = factories[i]
+            for (i in nodes.indices) {
+                val factory = nodes[i]
                 val inputs = factory.inputs
                 for (j in inputs.indices) {
                     inputs[j].removeIf { it.isSelected }
@@ -545,9 +652,11 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
 
     override fun onDoubleClick(x: Float, y: Float, button: Key) {
         val clicked = getHoverData(x, y)
-        if (clicked != null && clicked.slotIndex < 0 && !clicked.isInput) {
+        if (clicked != null && clicked.node is Factory &&
+            clicked.slotIndex < 0 && !clicked.isInput
+        ) {
             val sloops = clicked.slotIndexF > -0.5f
-            val factory = clicked.factory
+            val factory = clicked.node
             if (sloops) {
                 Menu.askNumber(
                     windowStack, NameDesc("Set Sloops"),
@@ -566,16 +675,18 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                     isValid = false
                 }
             }
-        } else if (clicked != null && clicked.slotIndex >=
-            clicked.factory.type.run { max(inputs.size, outputs.size) }
+        } else if (clicked != null &&
+            clicked.node is Factory &&
+            clicked.slotIndex >= clicked.node.type
+                .run { max(inputs.size, outputs.size) }
         ) {
             // ask for new limit
             Menu.askNumber(
                 windowStack, NameDesc("Set Constant"),
-                clicked.factory.limit.format(), NameDesc("Set")
+                clicked.node.limit.format(), NameDesc("Set")
             ) { str ->
                 val value = SimpleExpressionParser.parseDouble(str)
-                clicked.factory.limit = value ?: -1.0
+                clicked.node.limit = value ?: -1.0
                 isValid = false
             }
         } else {
@@ -593,7 +704,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                     posX = windowToCoordsX(x)
                     posY = windowToCoordsY(y)
                 }
-                factories.add(factory)
+                nodes.add(factory)
                 isValid = false
                 callback(factory)
             }
@@ -601,42 +712,48 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
     }
 
     fun getHoverData(x: Float, y: Float): HoverData? {
-        val factory = getFactoryAt(x, y) ?: return null
+        val node = getNodeAt(x, y) ?: return null
 
         val scale = scale.x
+        val unitsX = getUnitsX(node)
         val dx = (unitsX * 0.5f * scale).toInt()
 
-        val type = factory.type
-        val unitsY = unitsY0 + max(type.inputs.size, type.outputs.size)
+        val unitsY = getUnitsY(node)
         val dy = (unitsY * 0.5f * scale).toInt()
 
-        val px = (x - coordsToWindowX(factory.posX) + dx) * 0.5f * unitsX / dx
-        val py = (y - coordsToWindowY(factory.posY) + dy) * 0.5f * unitsY / dy
+        val px = (x - coordsToWindowX(node.posX) + dx) * 0.5f * unitsX / dx
+        val py = (y - coordsToWindowY(node.posY) + dy) * 0.5f * unitsY / dy
 
         val slotIndex = floor(py - unitsY0s).toInt()
         val isInput = px < unitsX * 0.5f
 
-        return HoverData(factory, isInput, slotIndex, py - unitsY0s)
+        return HoverData(node, isInput, slotIndex, py - unitsY0s)
     }
 
     override fun getTooltipText(x: Float, y: Float): String? {
         val hoverData = getHoverData(x, y) ?: return null
-        val factory = hoverData.factory
-        val type = factory.type
-        val slotIndex = hoverData.slotIndex
-        val isLeft = hoverData.isInput
-        val speed = factory.calculated
-        if (isLeft && slotIndex in type.inputs.indices) {
-            val input = type.inputs[slotIndex]
-            return "${input.type} ${speed.format()} * ${input.amount.format()}/min"
-        }
+        return when (val node = hoverData.node) {
+            is Connector -> node.resourceType
+            is Factory -> {
+                val type = node.type
+                val slotIndex = hoverData.slotIndex
+                val isLeft = hoverData.isInput
+                val speed = node.calculated
+                if (isLeft && slotIndex in type.inputs.indices) {
+                    val input = type.inputs[slotIndex]
+                    val typeName = renames[input.type] ?: input.type
+                    return "$typeName ${node.inputMultiplier} * ${speed.format()} * ${input.amount.format()}/min"
+                }
 
-        if (!isLeft && slotIndex in type.outputs.indices) {
-            val input = type.outputs[slotIndex]
-            return "${input.type} ${speed.format()} * ${input.amount.format()}/min"
-        }
+                if (!isLeft && slotIndex in type.outputs.indices) {
+                    val input = type.outputs[slotIndex]
+                    val typeName = renames[input.type] ?: input.type
+                    return "$typeName ${node.outputMultiplier} * ${speed.format()} * ${input.amount.format()}/min"
+                }
 
-        return "${type.recipeName} (${type.factoryName})"
+                "${type.recipeName} (${type.factoryName})"
+            }
+        }
     }
 
     var lastSaveName = ""
@@ -664,7 +781,7 @@ class FactoryPanel(val types: List<FactoryType>, style: Style) : MapPanel(style)
                         if (!fileName.endsWith(".json")) fileName += ".json"
                         lastSaveName = fileName
                         val file = folder.getChild(fileName)
-                        save(file, factories)
+                        me.anno.satiplanner.logic.save(file, nodes)
                         Menu.msg(NameDesc("Saved as $file"))
                     }
                 }

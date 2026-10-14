@@ -1,5 +1,7 @@
-package me.anno.satiplanner
+package me.anno.satiplanner.logic
 
+import me.anno.satiplanner.types.FactoryType
+import me.anno.satiplanner.types.Resource
 import org.apache.logging.log4j.LogManager
 import java.io.File
 

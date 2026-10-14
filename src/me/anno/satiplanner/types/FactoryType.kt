@@ -1,4 +1,4 @@
-package me.anno.satiplanner
+package me.anno.satiplanner.types
 
 class FactoryType(
     val recipeName: String,

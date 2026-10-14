@@ -1,4 +1,4 @@
-package me.anno.satiplanner
+package me.anno.satiplanner.types
 
 import me.anno.utils.types.Strings.shorten
 

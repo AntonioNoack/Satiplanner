@@ -1,6 +1,7 @@
-package me.anno.satiplanner
+package me.anno.satiplanner.logic
 
 import kotlin.math.abs
+import kotlin.math.max
 import kotlin.math.pow
 
 object NumberFormatting {
@@ -42,7 +43,7 @@ object NumberFormatting {
         val pow = i - j
         val extra = 10.0.pow(j - length + 2)
         val str1 = (toDouble() + extra).toString()
-        val i1 = str1.indexOf('.') + 1 + kotlin.math.max(pow, 1)
+        val i1 = str1.indexOf('.') + 1 + max(pow, 1)
         val str2 = str1.substring(0, i1)
         return str2
     }
