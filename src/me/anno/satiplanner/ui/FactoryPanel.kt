@@ -789,9 +789,9 @@ class FactoryPanel(
                 val allInputSum = nodes.sumOf { getInput(it, type) }
                 val allOutputSum = nodes.sumOf { getOutput(it, type) }
                 "$type\n" +
-                        "Node: $directOutputSum → $directInputSum (${directOutputSum - directInputSum})\n" +
-                        "Net: $wgOutputSum → $wgInputSum (${wgOutputSum - wgInputSum})\n" +
-                        "All: $allOutputSum → $allInputSum (${allOutputSum - allInputSum})\n"
+                        "Node: ${directOutputSum.format()} → ${directInputSum.format()} (${(directOutputSum - directInputSum).format()})\n" +
+                        "Net: ${wgOutputSum.format()} → ${wgInputSum.format()} (${(wgOutputSum - wgInputSum).format()})\n" +
+                        "All: ${allOutputSum.format()} → ${allInputSum.format()} (${(allOutputSum - allInputSum).format()})\n"
             }
             is Factory -> {
                 val type = node.type
