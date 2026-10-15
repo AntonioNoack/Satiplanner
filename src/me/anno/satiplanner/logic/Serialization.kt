@@ -62,7 +62,7 @@ fun loadNodes(scanner: JsonScanner, types: List<FactoryType>): List<Node> {
                             (node as? Factory)?.overclock = value
                         }
                         "sloops" -> {
-                            val value = scanner.readNumber().toInt()
+                            val value = scanner.readNumber().toDouble()
                             (node as? Factory)?.sloops = value
                         }
                         "checked" -> {

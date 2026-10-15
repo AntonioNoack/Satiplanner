@@ -27,6 +27,7 @@ import me.anno.ui.base.menu.Menu
 import me.anno.ui.base.menu.MenuOption
 import me.anno.ui.canvas.Canvas
 import me.anno.ui.editor.files.FileNames.toAllowedFilename
+import me.anno.ui.input.NumberType
 import me.anno.utils.Color.withAlpha
 import me.anno.utils.OS.res
 import me.anno.utils.structures.lists.Lists.any2
@@ -320,16 +321,17 @@ class FactoryPanel(
             // draw multiplier and sloop
             if (textFont.sizeInt > 3) {
                 // overclock
+                val dj = sw / 6
                 canvas.drawText(
-                    x1 - sw.shr(1), y0 + du * 2 / 5, 0, textFont, fontImpl,
-                    "${node.overclock.format()}%", 0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
-                    -1, -1, AxisAlignment.MAX, AxisAlignment.CENTER,
+                    x1 - dj, y0 + dj, 0, textFont, fontImpl,
+                    "${node.overclock.format1()}%", 0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
+                    -1, -1, AxisAlignment.MAX, AxisAlignment.MIN,
                 )
                 // sloop
                 canvas.drawText(
-                    x1 - sw.shr(1), y0 + du * 4 / 5, 0, textFont, fontImpl,
-                    "${node.sloops} Sloops", 0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
-                    -1, -1, AxisAlignment.MAX, AxisAlignment.CENTER,
+                    x1 - dj, y0 + du - dj, 0, textFont, fontImpl,
+                    "${node.sloops.format1()} Sloops", 0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
+                    -1, -1, AxisAlignment.MAX, AxisAlignment.MAX,
                 )
             }
 
@@ -826,20 +828,21 @@ class FactoryPanel(
             // edit sloops or overclock
             val sloops = clicked.slotIndexF > -0.5f
             if (sloops) {
-                Menu.askNumber(
+                Menu.askFloat(
                     windowStack, NameDesc("Set Sloops"),
-                    node.sloops.toString(), NameDesc("Set")
-                ) { str ->
-                    node.sloops = str.toIntOrNull() ?: 0
+                    node.sloops, NameDesc("Set"),
+                    NumberType.DOUBLE_PLUS
+                ) { value ->
+                    node.sloops = value
                     isValid = false
                 }
             } else {
-                Menu.askNumber(
+                Menu.askFloat(
                     windowStack, NameDesc("Set Overclock"),
-                    node.overclock.format(), NameDesc("Set")
-                ) { str ->
-                    val value = SimpleExpressionParser.parseDouble(str)
-                    node.overclock = value ?: 1.0
+                    node.overclock, NameDesc("Set"),
+                    NumberType.DOUBLE_PLUS
+                ) { value ->
+                    node.overclock = value
                     isValid = false
                 }
             }
@@ -981,16 +984,15 @@ class FactoryPanel(
 
     override fun onKeyTyped(x: Float, y: Float, key: Key) {
         if (Input.isControlDown) when (key) {
-            Key.KEY_S -> askSave(x, y)
+            Key.KEY_S -> askSave()
             Key.KEY_L -> askLoad(this, types)
             else -> {}
         }
     }
 
-    fun askSave(x: Float, y: Float) {
+    fun askSave() {
         Menu.askName(
-            windowStack, x.toInt() - Menu.paddingX, y.toInt() - Menu.paddingY,
-            NameDesc("Enter Name"), lastSaveName,
+            windowStack, NameDesc("Enter Name"), lastSaveName,
             NameDesc("Save"), enableSpellcheck = false, {
                 when (it.toAllowedFilename()) {
                     it -> {
@@ -1046,6 +1048,11 @@ class FactoryPanel(
         }
         nodes.addAll(newNodes)
         isValid = false
+    }
+
+    fun Double.format1(): String {
+        val str = f1()
+        return if (str.endsWith(".0")) str.substring(0, str.length - 2) else str
     }
 
 }

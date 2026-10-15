@@ -16,7 +16,7 @@ class Factory(val type: FactoryType) : Node() {
     var overclock = 100.0
 
     // 1,2 or 4, total = 2x?
-    var sloops = 0
+    var sloops = 0.0
 
     val inputMultiplier: Double
         get() = overclock * 0.01
