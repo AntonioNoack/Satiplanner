@@ -4,6 +4,7 @@ import me.anno.Time
 import me.anno.fonts.FontImpl
 import me.anno.fonts.msdf.MSDFFont
 import me.anno.gpu.GFX
+import me.anno.gpu.drawing.DrawCurves
 import me.anno.input.Input
 import me.anno.input.Key
 import me.anno.io.json.generic.JsonScanner
@@ -153,6 +154,14 @@ class FactoryPanel(
     }
 
     fun drawLinks(canvas: Canvas, sw: Int, du: Int) {
+        canvas.custom {
+            val batch = DrawCurves.lineBatch.start()
+            drawLinksImpl(canvas, sw, du)
+            DrawCurves.lineBatch.finish(batch)
+        }
+    }
+
+    fun drawLinksImpl(canvas: Canvas, sw: Int, du: Int) {
         val scale = scale.x.toFloat()
 
         // draw links
@@ -191,11 +200,19 @@ class FactoryPanel(
 
                     val dx1 = (getUnitsX(node1) * 0.5f * scale).toInt()
                     val dxl1 = dx1 - sw.shr(1)
-                    canvas.drawLine(
-                        px0 - dxl0, py0 + dy2,
-                        px1 + dxl1, py1 + dy3,
-                        1f, -1, nodeBgColor.withAlpha(0),
-                        false,
+
+                    val x0 = px0 - dxl0
+                    val y0 = py0 + dy2
+                    val x1 = px1 + dxl1
+                    val y1 = py1 + dy3
+
+                    if (overlaps(
+                            min(x0, x1).toInt(), min(y0, y1).toInt(),
+                            max(x0, x1).toInt(), max(y0, y1).toInt(), canvas
+                        )
+                    ) DrawCurves.drawLine(
+                        x0, y0, x1, y1, 1f, -1,
+                        nodeBgColor.withAlpha(0), false,
                     )
                 }
             }

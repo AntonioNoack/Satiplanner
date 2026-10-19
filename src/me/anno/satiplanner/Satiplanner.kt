@@ -25,8 +25,8 @@ fun main() {
     Build.isDebug = false
     Build.isShipped = true
     testPureUI("Satiplanner") {
-        WindowRenderFlags.enableVSync = true
-        WindowRenderFlags.showFPS = false
+        WindowRenderFlags.enableVSync = false
+        WindowRenderFlags.showFPS = true
         WindowRenderFlags.showTutorialKeys = false
 
         val panel = FactoryPanel(recipes, renames, style)
