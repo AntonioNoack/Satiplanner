@@ -237,15 +237,14 @@ class FactoryPanel(
         titleFont = titleFont.withSize(scale * 0.3f)
     }
 
+    var numRecentBounds = 0
+    private val maxRecentBounds = 32
+    private val recentBounds = IntArray(maxRecentBounds * 4)
     fun drawFactories(
         canvas: Canvas, sw: Int, du: Int,
         isRectSelecting: Boolean
     ) {
         val scale = scale.x.toFloat()
-        val titleFont = titleFont
-        val limitFont = limitFont
-        val textFont = textFont
-
         for (nodeIndex in nodes.indices) {
             val node = nodes[nodeIndex] as? Factory ?: continue
 
@@ -261,134 +260,175 @@ class FactoryPanel(
             val y1 = py + dy
             if (!overlaps(x0, y0, x1, y1, canvas)) continue
 
-            val willBeSelected = isRectSelecting && overlaps(x0, y0, x1, y1, rectSelect)
-            val shadow =
-                if (node.isSelected || willBeSelected) selectedShadowColor
-                else defaultShadowColor
+            if (numRecentBounds >= maxRecentBounds ||
+                overlapsRecentBounds(x0, y0, x1, y1)
+            ) finishBounds(canvas)
 
-            val w = x1 - x0
-            val h = y1 - y0
+            drawFactory(
+                canvas, sw, du, isRectSelecting,
+                node, x0, y0, x1, y1
+            )
 
-            // draw shadow around node
-            canvas.drawRect(x0 - 1, y0 - 1, 1, h, shadow)
-            canvas.drawRect(x1, y0 - 1, 1, h, shadow)
-            canvas.drawRect(x0, y0 - 1, w, 1, shadow)
-            canvas.drawRect(x0, y1, w, 1, shadow)
+            pushRecentBounds(x0, y0, x1, y1)
+        }
+    }
 
-            canvas.drawRect(x0, y0 + du, w, y1 - (y0 + du), nodeBgColor)
-            canvas.drawRect(x0, y0, w, du, titleBgColor)
-
-            val titleX = x0 + du.shr(3)
-            val titleY = y0 + (du - titleFont.sizeInt).shr(3)
-            if (titleFont.sizeInt > 3) {
-                val type = node.type
-                canvas.drawText(
-                    titleX, titleY, 0, titleFont, fontImpl,
-                    type.recipeName, 0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
-                    w - du * 2, titleFont.sizeInt,
-                    AxisAlignment.MIN, AxisAlignment.MIN,
+    fun overlapsRecentBounds(x0: Int, y0: Int, x1: Int, y1: Int): Boolean {
+        val recentBounds = recentBounds
+        for (j in 0 until numRecentBounds) {
+            val i = j shl 2
+            if (overlaps(
+                    x0, y0, x1, y1,
+                    recentBounds[i], recentBounds[i + 1],
+                    recentBounds[i + 2], recentBounds[i + 3]
                 )
-                canvas.drawText(
-                    titleX, titleY + titleFont.sizeInt + limitFont.sizeInt.shr(2),
-                    0, textFont, fontImpl,
-                    type.factoryName, 0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
-                    w - du * 2, textFont.sizeInt,
-                    AxisAlignment.MIN, AxisAlignment.MIN,
-                )
-            }
+            ) return true
+        }
+        return false
+    }
 
-            if (limitFont.sizeInt > 3) {
-                // limit
-                val countY = y1 - du.shr(2) * 3
-                val hasLimit = node.limit >= 0f
-                canvas.drawText(
-                    px, countY, 0, limitFont, fontImpl,
-                    if (hasLimit) "> ${node.limit} <" else node.calculatedStr,
-                    if (hasLimit) 0xffcc99.withAlpha(255) else 0xcccccc.withAlpha(255),
-                    titleBgColor.withAlpha(0),
-                    w, -1,
-                    AxisAlignment.CENTER, AxisAlignment.MIN,
-                )
-                // checkbox
-                canvas.drawText(
-                    x1 - du.shr(3), y1 - du / 12, 0, limitFont, fontImpl,
-                    if (node.checked) "✅" else "⬜",
-                    0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
-                    -1, -1, AxisAlignment.MAX, AxisAlignment.MAX,
-                )
-            }
+    fun pushRecentBounds(x0: Int, y0: Int, x1: Int, y1: Int) {
+        val i = numRecentBounds++ * 4
+        val recentBounds = recentBounds
+        recentBounds[i] = x0
+        recentBounds[i + 1] = y0
+        recentBounds[i + 2] = x1
+        recentBounds[i + 3] = y1
+    }
 
-            // draw multiplier and sloop
-            if (textFont.sizeInt > 3) {
-                // overclock
-                val dj = sw / 6
-                canvas.drawText(
-                    x1 - dj, y0 + dj, 0, textFont, fontImpl,
-                    "${node.overclock.format1()}%", 0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
-                    -1, -1, AxisAlignment.MAX, AxisAlignment.MIN,
-                )
-                // sloop
-                canvas.drawText(
-                    x1 - dj, y0 + du - dj, 0, textFont, fontImpl,
-                    "${node.sloops.format1()} Sloops", 0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
-                    -1, -1, AxisAlignment.MAX, AxisAlignment.MAX,
-                )
-            }
+    fun drawFactory(
+        canvas: Canvas, sw: Int, du: Int,
+        isRectSelecting: Boolean, node: Factory,
+        x0: Int, y0: Int, x1: Int, y1: Int,
+    ) {
+        val titleFont = titleFont
+        val limitFont = limitFont
+        val textFont = textFont
 
-            if (sw >= 2) {
-                val hl = textFont.sizeInt
-                val inputMultiplier = node.inputMultiplier
-                val type = node.type
-                for (i in type.inputs.indices) {
-                    val y = y0 + du * (getUnitsY0(node) + i) + (du - sw).shr(1)
-                    val input = node.inputs.getOrNull(i)
-                    val inputType = type.inputs[i]
-                    val color = if (!input.isNullOrEmpty()) slotFilledColor else slotEmptyColor
-                    val wl = if (i >= type.outputs.size) w - du else w.shr(1) - du
-                    canvas.drawRect(x0, y, sw, sw, color, 1)
-                    if (textFont.sizeInt > 3) {
-                        val inputType1 = shortRenames[inputType.type] ?: inputType.shortType
-                        canvas.drawText(
-                            x0 + du, y + sw.shr(1) - textFont.sizeInt, 0, textFont, fontImpl,
-                            inputType1, 0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                            wl, hl, AxisAlignment.MIN, AxisAlignment.MIN,
-                        )
-                        canvas.drawText(
-                            x0 + du, y + (sw + textFont.sizeInt).shr(1), 0, textFont, fontImpl,
-                            "${(inputType.amount * node.calculated * inputMultiplier).format()}/min",
-                            0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                            wl, hl, AxisAlignment.MIN, AxisAlignment.MIN,
-                        )
-                    }
+        val willBeSelected = isRectSelecting && overlaps(x0, y0, x1, y1, rectSelect)
+        val shadow =
+            if (node.isSelected || willBeSelected) selectedShadowColor
+            else defaultShadowColor
+
+        val w = x1 - x0
+        val h = y1 - y0
+
+        // draw shadow around node
+        canvas.drawRect(x0 - 1, y0 - 1, 1, h, shadow)
+        canvas.drawRect(x1, y0 - 1, 1, h, shadow)
+        canvas.drawRect(x0, y0 - 1, w, 1, shadow)
+        canvas.drawRect(x0, y1, w, 1, shadow)
+
+        canvas.drawRect(x0, y0 + du, w, y1 - (y0 + du), nodeBgColor)
+        canvas.drawRect(x0, y0, w, du, titleBgColor)
+
+        val titleX = x0 + du.shr(3)
+        val titleY = y0 + (du - titleFont.sizeInt).shr(3)
+        if (titleFont.sizeInt > 3) {
+            val type = node.type
+            canvas.drawText(
+                titleX, titleY, 0, titleFont, fontImpl,
+                type.recipeName, 0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
+                w - du * 2, titleFont.sizeInt,
+                AxisAlignment.MIN, AxisAlignment.MIN,
+            )
+            canvas.drawText(
+                titleX, titleY + titleFont.sizeInt + limitFont.sizeInt.shr(2),
+                0, textFont, fontImpl,
+                type.factoryName, 0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
+                w - du * 2, textFont.sizeInt,
+                AxisAlignment.MIN, AxisAlignment.MIN,
+            )
+        }
+
+        if (limitFont.sizeInt > 3) {
+            // limit
+            val countY = y1 - du.shr(2) * 3
+            val hasLimit = node.limit >= 0f
+            canvas.drawText(
+                (x0 + x1).shr(1), countY, 0, limitFont, fontImpl,
+                if (hasLimit) "> ${node.limit} <" else node.calculatedStr,
+                if (hasLimit) 0xffcc99.withAlpha(255) else 0xcccccc.withAlpha(255),
+                titleBgColor.withAlpha(0),
+                w, -1,
+                AxisAlignment.CENTER, AxisAlignment.MIN,
+            )
+            // checkbox
+            canvas.drawText(
+                x1 - du.shr(3), y1 - du / 12, 0, limitFont, fontImpl,
+                if (node.checked) "✅" else "⬜",
+                0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
+                -1, -1, AxisAlignment.MAX, AxisAlignment.MAX,
+            )
+        }
+
+        // draw multiplier and sloop
+        if (textFont.sizeInt > 3) {
+            // overclock
+            val dj = sw / 6
+            canvas.drawText(
+                x1 - dj, y0 + dj, 0, textFont, fontImpl,
+                "${node.overclock.format1()}%", 0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
+                -1, -1, AxisAlignment.MAX, AxisAlignment.MIN,
+            )
+            // sloop
+            canvas.drawText(
+                x1 - dj, y0 + du - dj, 0, textFont, fontImpl,
+                "${node.sloops.format1()} Sloops", 0xcccccc.withAlpha(255), titleBgColor.withAlpha(0),
+                -1, -1, AxisAlignment.MAX, AxisAlignment.MAX,
+            )
+        }
+
+        if (sw >= 2) {
+            val hl = textFont.sizeInt
+            val inputMultiplier = node.inputMultiplier
+            val type = node.type
+            for (i in type.inputs.indices) {
+                val y = y0 + du * (getUnitsY0(node) + i) + (du - sw).shr(1)
+                val input = node.inputs.getOrNull(i)
+                val inputType = type.inputs[i]
+                val color = if (!input.isNullOrEmpty()) slotFilledColor else slotEmptyColor
+                val wl = if (i >= type.outputs.size) w - du else w.shr(1) - du
+                canvas.drawRect(x0, y, sw, sw, color, 1)
+                if (textFont.sizeInt > 3) {
+                    val inputType1 = shortRenames[inputType.type] ?: inputType.shortType
+                    canvas.drawText(
+                        x0 + du, y + sw.shr(1) - textFont.sizeInt, 0, textFont, fontImpl,
+                        inputType1, 0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
+                        wl, hl, AxisAlignment.MIN, AxisAlignment.MIN,
+                    )
+                    canvas.drawText(
+                        x0 + du, y + (sw + textFont.sizeInt).shr(1), 0, textFont, fontImpl,
+                        "${(inputType.amount * node.calculated * inputMultiplier).format()}/min",
+                        0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
+                        wl, hl, AxisAlignment.MIN, AxisAlignment.MIN,
+                    )
                 }
-
-                val outputMultiplier = node.outputMultiplier
-                for (i in type.outputs.indices) {
-                    val y = y0 + du * (getUnitsY0(node) + i) + (du - sw).shr(1)
-                    val output = node.outputs.getOrNull(i)
-                    val outputType = type.outputs[i]
-                    val color = if (!output.isNullOrEmpty()) slotFilledColor else slotEmptyColor
-                    val wl = if (i >= type.inputs.size) w - du else w.shr(1) - du
-                    canvas.drawRect(x1 - sw, y, sw, sw, color, 1)
-                    if (textFont.sizeInt > 3) {
-                        val outputType1 = shortRenames[outputType.type] ?: outputType.shortType
-                        canvas.drawText(
-                            x1 - du, y + sw.shr(1) - textFont.sizeInt, 0, textFont, fontImpl,
-                            outputType1, 0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                            wl, hl, AxisAlignment.MAX, AxisAlignment.MIN,
-                        )
-                        canvas.drawText(
-                            x1 - du, y + (sw + textFont.sizeInt).shr(1), 0, textFont, fontImpl,
-                            "${(outputType.amount * node.calculated * outputMultiplier).format()}/min",
-                            0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
-                            wl, hl, AxisAlignment.MAX, AxisAlignment.MIN,
-                        )
-                    }
-                }
             }
 
-            // to make overlap
-            canvas.finish()
+            val outputMultiplier = node.outputMultiplier
+            for (i in type.outputs.indices) {
+                val y = y0 + du * (getUnitsY0(node) + i) + (du - sw).shr(1)
+                val output = node.outputs.getOrNull(i)
+                val outputType = type.outputs[i]
+                val color = if (!output.isNullOrEmpty()) slotFilledColor else slotEmptyColor
+                val wl = if (i >= type.inputs.size) w - du else w.shr(1) - du
+                canvas.drawRect(x1 - sw, y, sw, sw, color, 1)
+                if (textFont.sizeInt > 3) {
+                    val outputType1 = shortRenames[outputType.type] ?: outputType.shortType
+                    canvas.drawText(
+                        x1 - du, y + sw.shr(1) - textFont.sizeInt, 0, textFont, fontImpl,
+                        outputType1, 0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
+                        wl, hl, AxisAlignment.MAX, AxisAlignment.MIN,
+                    )
+                    canvas.drawText(
+                        x1 - du, y + (sw + textFont.sizeInt).shr(1), 0, textFont, fontImpl,
+                        "${(outputType.amount * node.calculated * outputMultiplier).format()}/min",
+                        0xffffff.withAlpha(255), nodeBgColor.withAlpha(0),
+                        wl, hl, AxisAlignment.MAX, AxisAlignment.MIN,
+                    )
+                }
+            }
         }
     }
 
@@ -430,8 +470,6 @@ class FactoryPanel(
 
     fun drawConnectors(canvas: Canvas, sw: Int, du: Int, isRectSelecting: Boolean) {
         val scale = scale.x.toFloat()
-        val titleFont = titleFont
-        val textFont = textFont
         for (nodeIndex in nodes.indices) {
             val node = nodes[nodeIndex] as? Connector ?: continue
 
@@ -447,58 +485,75 @@ class FactoryPanel(
             val y1 = py + dy
             if (!overlaps(x0, y0, x1, y1, canvas)) continue
 
-            val willBeSelected = isRectSelecting && overlaps(x0, y0, x1, y1, rectSelect)
-            val shadow =
-                if (node.isSelected || willBeSelected) selectedShadowColor
-                else defaultShadowColor
+            if (numRecentBounds >= maxRecentBounds ||
+                overlapsRecentBounds(x0, y0, x1, y1)
+            ) finishBounds(canvas)
 
-            val w = x1 - x0
-            val h = y1 - y0
+            drawConnector(
+                canvas, sw, du, isRectSelecting,
+                node, x0, y0, x1, y1
+            )
 
-            // draw shadow around node
-            canvas.drawRect(x0 - 1, y0 - 1, 1, h, shadow)
-            canvas.drawRect(x1, y0 - 1, 1, h, shadow)
-            canvas.drawRect(x0, y0 - 1, w, 1, shadow)
-            canvas.drawRect(x0, y1, w, 1, shadow)
-            canvas.drawRect(x0, y0, w, h, titleBgColor)
+            pushRecentBounds(x0, y0, x1, y1)
+        }
+    }
 
-            val titleW = w - du * 2
-            val titleX = x0 + du + du.shr(3) + titleW.shr(1)
-            val titleY = y0 + (du - titleFont.sizeInt).shr(3)
-            if (titleFont.sizeInt > 3) {
-                val type = node.resourceType
-                canvas.drawText(
-                    titleX, titleY, 0, titleFont, fontImpl,
-                    type, 0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
-                    titleW, titleFont.sizeInt,
-                    AxisAlignment.CENTER, AxisAlignment.MIN,
-                )
-                val directInputSum = node.inputs.first().sumOf { getOutput(it, type) }
-                val directOutputSum = node.outputs.first().sumOf { getInput(it, type) }
-                canvas.drawText(
-                    titleX, titleY + titleFont.sizeInt + limitFont.sizeInt.shr(2),
-                    0, textFont, fontImpl,
-                    "${directInputSum.f1()} -> ${directOutputSum.f1()}",
-                    0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
-                    titleW, textFont.sizeInt,
-                    AxisAlignment.CENTER, AxisAlignment.MIN,
-                )
-            }
+    fun drawConnector(
+        canvas: Canvas, sw: Int, du: Int, isRectSelecting: Boolean,
+        node: Connector, x0: Int, y0: Int, x1: Int, y1: Int,
+    ) {
 
-            if (sw >= 2) {
+        val titleFont = titleFont
+        val textFont = textFont
 
-                val y = y0 + du * getUnitsY0(node) + (du - sw).shr(1)
-                val input = node.inputs.firstOrNull()
-                val colorIn = if (!input.isNullOrEmpty()) slotFilledColor else slotEmptyColor
-                canvas.drawRect(x0, y, sw, sw, colorIn, 1)
+        val willBeSelected = isRectSelecting && overlaps(x0, y0, x1, y1, rectSelect)
+        val shadow =
+            if (node.isSelected || willBeSelected) selectedShadowColor
+            else defaultShadowColor
 
-                val output = node.outputs.firstOrNull()
-                val colorOut = if (!output.isNullOrEmpty()) slotFilledColor else slotEmptyColor
-                canvas.drawRect(x1 - sw, y, sw, sw, colorOut, 1)
-            }
+        val w = x1 - x0
+        val h = y1 - y0
 
-            // to make overlap
-            canvas.finish()
+        // draw shadow around node
+        canvas.drawRect(x0 - 1, y0 - 1, 1, h, shadow)
+        canvas.drawRect(x1, y0 - 1, 1, h, shadow)
+        canvas.drawRect(x0, y0 - 1, w, 1, shadow)
+        canvas.drawRect(x0, y1, w, 1, shadow)
+        canvas.drawRect(x0, y0, w, h, titleBgColor)
+
+        val titleW = w - du * 2
+        val titleX = x0 + du + du.shr(3) + titleW.shr(1)
+        val titleY = y0 + (du - titleFont.sizeInt).shr(3)
+        if (titleFont.sizeInt > 3) {
+            val type = node.resourceType
+            canvas.drawText(
+                titleX, titleY, 0, titleFont, fontImpl,
+                type, 0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
+                titleW, titleFont.sizeInt,
+                AxisAlignment.CENTER, AxisAlignment.MIN,
+            )
+            val directInputSum = node.inputs.first().sumOf { getOutput(it, type) }
+            val directOutputSum = node.outputs.first().sumOf { getInput(it, type) }
+            canvas.drawText(
+                titleX, titleY + titleFont.sizeInt + limitFont.sizeInt.shr(2),
+                0, textFont, fontImpl,
+                "${directInputSum.f1()} -> ${directOutputSum.f1()}",
+                0xffffff.withAlpha(255), titleBgColor.withAlpha(0),
+                titleW, textFont.sizeInt,
+                AxisAlignment.CENTER, AxisAlignment.MIN,
+            )
+        }
+
+        if (sw >= 2) {
+
+            val y = y0 + du * getUnitsY0(node) + (du - sw).shr(1)
+            val input = node.inputs.firstOrNull()
+            val colorIn = if (!input.isNullOrEmpty()) slotFilledColor else slotEmptyColor
+            canvas.drawRect(x0, y, sw, sw, colorIn, 1)
+
+            val output = node.outputs.firstOrNull()
+            val colorOut = if (!output.isNullOrEmpty()) slotFilledColor else slotEmptyColor
+            canvas.drawRect(x1 - sw, y, sw, sw, colorOut, 1)
         }
     }
 
@@ -529,11 +584,18 @@ class FactoryPanel(
         drawLinks(canvas, sw, du)
         drawConnectors(canvas, sw, du, isRectSelecting)
         drawFactories(canvas, sw, du, isRectSelecting)
+        finishBounds(canvas)
+
         drawDraggedLink(canvas, sw, du)
         drawRectangleSelect(canvas, isRectSelecting)
 
         drawStatus(canvas)
         drawPower(canvas)
+    }
+
+    fun finishBounds(canvas: Canvas) {
+        numRecentBounds = 0
+        canvas.finish()
     }
 
     fun updateRectSelect() {
